@@ -1,40 +1,13 @@
-<section class="basket">
-    <div class="container">
-        <!-- Block with yours items in the basket -->
-        <!-- <div class="card-products">
-            <div class="card-products-quantity">
-
-            </div>
-            <div class="card-products-delete-all">
-
-            </div>
-            <div class="card-products-list-container">
-
-            </div>
-        </div> -->
-
-        <!-- Block checkout -->
-        <!-- <div class="checkout">
-            <h2 class="checkout-title">Your Order</h2>
-            <div class="checkout-total">
-                <p class="checkout-total-text">Total</p>
-                <p class="checkout-total-sum"></p>
-            </div>
-            <form class="checkout-form">
-                <input class="checkout-input" type="email">
-                <button class="checkout-order-button" type="submit">Checkout</button>
-            </form>
-        </div> -->
-
-        <!-- IF basket empty -->
-        <div class="empty-basket">
-            <img class="basket-img" src="../img/yellow shopping basket@1x.png" alt="empty basket">
-            <h3 class="empty-basket-title">
-                Your basket is
-                <span class="empty-basket-span">empty...</span>
-            </h3>
-            <p class="empty-basket-text">Go to the main page to select your favorite products and add them to the cart.
-            </p>
+<section class="basket container">
+    <div class="cart-info">
+        <div class="cart-icon">
+            <svg class="cart-svg-icon">
+                <use href="../img/sptite.svg#icon-cart"></use>
+            </svg>
         </div>
+        <h2 class="cart-info-title">
+            CART (<span class="cart-info-span js-cart-info">0</span>)
+        </h2>
     </div>
+    <div class="js-basket"></div>
 </section>
