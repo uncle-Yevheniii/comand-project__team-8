@@ -71,3 +71,32 @@
   margin: 0 auto;
   padding-bottom: 120px;
 }
+
+/**
+  |============================
+  | CART WITH PRODUCTS
+  |============================
+*/
+
+.cart-with-items-container {
+  overflow-y: auto;
+  max-height: 480px;
+}
+.cart-delete-all {
+  display: flex;
+  gap: 8px;
+  margin-top: 14px;
+  margin-bottom: 30px;
+  align-items: center;
+  justify-content: flex-end;
+}
+.cart-delete-all-text {
+  color: #010101;
+  font-size: 14px;
+  font-weight: 500;
+  line-height: 1.29;
+}
+.cart-delete-all-btn {
+  background-color: transparent;
+  border: none;
+}
