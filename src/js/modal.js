@@ -9,13 +9,15 @@
 //   refs.openModalBtn.addEventListener("click", toggleModal);
   refs.closeModalBtn.addEventListener("click", toggleModal);
     backdrop.addEventListener("click", toggleModal);
-    document.addEventListener("keydown", event => {
-        if (event.code == "Escape") {
+    document.addEventListener("keydown", handleKey);
+    function handleKey(event) {
+        if (event.code === "Escape") {
             toggleModal();
-}
-});
+        }
+    }
+
   function toggleModal() {
     refs.modal.classList.add("is-hidden");
   }
 })();
-console.log("werty");
+      document.removeEventListener("keydown", handleKey)
