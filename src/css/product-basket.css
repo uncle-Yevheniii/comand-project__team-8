@@ -1,0 +1,15 @@
+.basket-img{
+    width: 132px;
+    height: 114px;
+}
+.empty-basket{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+.empty-basket-title{
+    font-size: 18px;
+    font-weight: 500;
+    line-height: 1.11;
+}
