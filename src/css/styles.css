@@ -12,6 +12,7 @@
 @import url('./discount-products.css');
 @import url('./products-list.css');
 @import url('./footer.css');
+@import url('./modalwindow.css');
 
 :root {
   /* fonts */
