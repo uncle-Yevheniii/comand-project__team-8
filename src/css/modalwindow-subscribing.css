@@ -77,4 +77,8 @@
     max-width: 328px;
     height: 80px;
   }
+  .modal-product-close-icon {
+    width: 28px;
+    height: 28px;
+  }
 }
