@@ -1,12 +1,11 @@
-import {emptyCartMarkup} from './js/empty-basket';
+import { emptyCartMarkup } from './js/empty-basket';
+import { cartDeleteAll } from './js/cart-delete-all';
 import { basketMarkup } from './js/basket-markup';
+import { changeQuantity } from './js/cart-quantity';
 
 const cart = document.querySelector('.js-basket');
-const quantity = document.querySelector('.js-cart-info')
 
-// const USER_CART = JSON.parse(localStorage.getItem('cart'));
-// const USER_CART = [];
-const USER_CART = [
+const data = [
     {
       "_id": "640c2dd963a319ea671e383b",
       "name": "Ackee",
@@ -37,15 +36,21 @@ const USER_CART = [
       "is10PercentOff": false,
       "popularity": 0
     }
-  ]
+]
+  
+localStorage.setItem('cart',JSON.stringify(data)) 
 
-function renderCart(data) {
-    quantity.textContent = USER_CART.length;
+const USER_CART = JSON.parse(localStorage.getItem('cart'));
+// const USER_CART = [];
+
+export function renderCart(data) {
+    changeQuantity();
     if (data.length === 0) {
         cart.innerHTML = emptyCartMarkup;
     } else {
         cart.innerHTML = basketMarkup(USER_CART);
     };
+    cartDeleteAll();
 };
 
 renderCart(USER_CART)
