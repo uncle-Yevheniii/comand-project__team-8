@@ -1,4 +1,4 @@
-import cartIcon from '../img/sptite.svg#icon-cart';
+import cartIcon from '../img/sptite.svg';
 import axios from 'axios';
 const container = document.querySelector('.products-list');
 
@@ -6,8 +6,8 @@ async function fetchAPI() {
   return await axios
     .get('https://food-boutique.b.goit.study/api/products', {
       params: {
-        perPage: 1,
-        page: 1,
+        perPage: 9,
+        page: 3,
       },
     })
     .then(result => {
@@ -23,32 +23,58 @@ lala();
 function createCardMarkUp(arr) {
   // filter надо
   return arr
-    .map(({ name, img, category, size, popularity, price }) => {
-      if (category.includes('_')) {
-        const rightCategory = category.split('');
-        rightCategory.splice(category.indexOf('_'), 1, ' ');
-        category = rightCategory.join('');
-      }
+    .map(
+      ({
+        name,
+        img,
+        category,
+        size,
+        popularity,
+        price,
+        is10PercentOff: discount,
+      }) => {
+        if (category.includes('_')) {
+          const rightCategory = category.split('');
+          while (category.includes('_')) {
+            rightCategory.splice(category.indexOf('_'), 1, ' ');
+          }
+          category = rightCategory.join('');
+        }
 
-      return `
+        return `
     <div class="productlist-card">
     <div class="productlist-card-img-wrapper">
         <img src="${img}" alt="${name}" class="productlist-card-img" width="140">
     </div>
-    <p class="productlist-card-header">${name}</p>
-    <p class="productlist-card-text">
-        <span class="productlist-card-text-headers">Category: </span>${category}
-        <span class="productlist-card-text-headers">Size: </span>${size}
-        <span class="productlist-card-text-headers">Popularity: </span>${popularity}
-    </p>
+    <h3 class="productlist-card-header">${name}</h3>
+    <div class="productlist-card-text-wrapper">
+        <p class="productlist-card-text">
+          Category: <span class="productlist-card-text-span">${category}</span>
+        </p>
+        <p class="productlist-card-text">
+          Size: <span class="productlist-card-text-span">${size}</span>
+        </p>
+        <p class="productlist-card-text">
+          Popularity: <span class="productlist-card-text-span">${popularity}</span>
+        </p>
+    </div>
+
     <div class="productlist-card-bottom">
         <span class="productlist-card-price">$${price}</span>
         <button type="button" class="productlist-card-btn"><svg class="productlist-card-icon-cart" width="18" height="18">
-                <use href="../img/sptite.svg#icon-cart"></use>
+                <use href="${cartIcon}#icon-cart"></use>
             </svg></button>
     </div>
+    ${
+      discount
+        ? `<svg class="productlist-dicount" width="60" height="60">
+      <use href="../img/sptite.svg#icon-discount"></use>
+    </svg>`
+        : ``
+    }
 </div>
   `;
-    })
+      }
+    )
     .join('');
 }
