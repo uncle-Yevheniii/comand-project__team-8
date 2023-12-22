@@ -2,12 +2,37 @@
   margin-top: 18px;
 }
 
+@media only screen and (min-width: 768px) {
+  .header-section {
+    margin-top: 24px;
+  }
+}
+
+@media only screen and (min-width: 1440px) {
+  .header-section {
+    margin-top: 77px;
+    margin-bottom: 100px;
+  }
+}
+
+/* ---------- */
+
 .header-container {
   display: flex;
   align-items: center;
   justify-content: center;
   gap: 60px;
 }
+/* ...... */
+
+@media only screen and (min-width: 768px) {
+  .header-container {
+    /* gap: 262px; */
+    justify-content: space-between;
+  }
+}
+
+/* --------- */
 
 .header-container-logo {
   display: flex;
@@ -24,6 +49,15 @@
   padding: 6px;
 }
 
+/* @media only screen and (min-width: 768px) {
+  .header-container {
+    width: 20px;
+    height: 20px;
+  }
+} */
+
+/* ---------- */
+
 .header-logo-text {
   text-align: center;
   margin-left: 8px;
@@ -38,24 +72,50 @@
   letter-spacing: -0.36px;
 }
 
+@media only screen and (min-width: 768px) {
+  .header-logo-text {
+    font-size: 24px;
+    line-height: 24px; /* 111.111% */
+    letter-spacing: -0.48px;
+  }
+}
+
 .header-container-home {
   display: flex;
   align-items: center;
   justify-content: center;
 }
 
+/* --------- */
+
 .header-home-button {
   width: 37px;
   height: 18px;
   border-radius: 30px;
   background: #6d8434;
-  padding: 6px;
+  padding: 10px 20px;
+}
+
+@media only screen and (min-width: 768px) {
+  .header-home-button {
+    width: 48px;
+    height: 24px;
+    border-radius: 30px;
+    background: #6d8434;
+    padding: 12px 28px;
+  }
 }
 
 /* --------------- */
 
 .header-container-home {
   gap: 6px;
+}
+
+@media only screen and (min-width: 768px) {
+  .header-container-home {
+    gap: 16px;
+  }
 }
 
 .header-home-button {
@@ -82,4 +142,22 @@
   border-radius: 30px;
   background-color: #6d8434;
   padding: 12px;
+}
+
+.header-cart {
+  display: none;
+}
+
+@media only screen and (min-width: 768px) {
+  .header-cart {
+    color: #010101;
+    font-family: Neue Montreal;
+    font-size: 18px;
+    font-style: normal;
+    font-weight: 500;
+    line-height: 24px;
+    text-transform: uppercase;
+    margin-left: 14px;
+    display: block;
+  }
 }
