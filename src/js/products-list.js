@@ -7,7 +7,7 @@ async function fetchAPI() {
     .get('https://food-boutique.b.goit.study/api/products', {
       params: {
         perPage: 9,
-        page: 3,
+        page: 7,
       },
     })
     .then(result => {
@@ -35,8 +35,8 @@ function createCardMarkUp(arr) {
       }) => {
         if (category.includes('_')) {
           const rightCategory = category.split('');
-          while (category.includes('_')) {
-            rightCategory.splice(category.indexOf('_'), 1, ' ');
+          while (rightCategory.includes('_')) {
+            rightCategory.splice(rightCategory.indexOf('_'), 1, ' ');
           }
           category = rightCategory.join('');
         }
