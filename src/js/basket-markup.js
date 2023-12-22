@@ -11,7 +11,13 @@ export function basketMarkup(USER_CART) {
 
             <ul class="cart-with-items-list">
             ${USER_CART.map(
-                
+                ({ category, img, name, price, size, _id }) => `
+                <li class="cart-product-list" data-cart-product-id=${_id}>
+                    <div class="cart-product-img-container">
+                        <img class="cart-product-img" src=${img} alt=${name}/>
+                    </div>
+                </li>
+                `
             ).join('')}
             </ul>
 
@@ -40,10 +46,11 @@ export function cartMarkupFull(YOUR_CART) {
     <ul class="your-cart-list">` +
     YOUR_CART.map(
       ({ category, img, name, price, size, _id }) =>
-            `<div class="cart-list-container"><li class="cart-product-card" data-product-id=${_id}>
-        <div class="product-cart-container">
-            <img class="cart-product-img" src=${img} alt=${name} />
-            </div>
+            `<div class="cart-list-container">
+            <li class="cart-product-card" data-product-id=${_id}>
+                <div class="product-cart-container">
+                    <img class="cart-product-img" src=${img} alt=${name} />
+                </div>
             <div class="cart-product-card-discription">
                 <div class="cart-product-card-info">
                     <p class="cart-product-name">${name}</p>
@@ -59,7 +66,6 @@ export function cartMarkupFull(YOUR_CART) {
                             <use href="${icons}#icon-remove" data-removeit=${_id}></use></use>
                         </svg>
                     </button>
-                    <!-- <div class="counter"></div> -->
                 </div>
             </div>
         </li>`

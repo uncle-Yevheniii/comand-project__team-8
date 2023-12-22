@@ -100,3 +100,17 @@
   background-color: transparent;
   border: none;
 }
+
+.cart-product-img-container{
+  width: 100px;
+  height: 100px;
+  border-radius: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: #FAFAFA;
+}
+.cart-product-img {
+  width: 64px;
+  height: 64px;
+}
