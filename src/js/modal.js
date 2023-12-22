@@ -8,16 +8,19 @@
     const backdrop= document.querySelector(".backdrop");
 //   refs.openModalBtn.addEventListener("click", toggleModal);
   refs.closeModalBtn.addEventListener("click", toggleModal);
-    backdrop.addEventListener("click", toggleModal);
+  backdrop.addEventListener("click", toggleModal);
+
     document.addEventListener("keydown", handleKey);
-    function handleKey(event) {
+
+      function handleKey(event) {
         if (event.code === "Escape") {
-            toggleModal();
+          toggleModal();
+           document.removeEventListener("keydown", handleKey)
         }
     }
-
   function toggleModal() {
     refs.modal.classList.add("is-hidden");
   }
+  
 })();
-      document.removeEventListener("keydown", handleKey)
+     

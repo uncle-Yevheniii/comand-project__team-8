@@ -82,7 +82,7 @@
 }
 .modal-wimdow-add-to-cart-btn {
   margin: 0 auto;
-
+  margin-top: 40px;
   cursor: pointer;
   border: none;
   border-radius: 4px;
@@ -139,4 +139,68 @@
   background-color: rgba(1, 1, 1, 0.4);
   transition: opacity 250ms cubic-bezier(0.4, 0, 0.2, 1),
     visibility 250ms cubic-bezier(0.4, 0, 0.2, 1);
+}
+.modal-product-img {
+  max-width: 160px;
+  height: 160px;
+}
+@media only screen and (min-width: 767.98px) {
+  .modal-product-img-text {
+    display: flex;
+    gap: 24px;
+  }
+  .modal-container {
+    padding: 40px;
+  }
+  .modal-wimdow-add-to-cart-btn {
+    margin-top: 48px;
+    min-width: 130px;
+    font-size: 16px;
+  }
+
+  .container-cost-button {
+    font-family: 'Neue Montreal';
+    font-style: normal;
+    font-weight: 500;
+    font-size: 20px;
+    line-height: 1.11;
+    color: var(--p_color-text);
+  }
+  .container-cost-button {
+    gap: 339px;
+  }
+  .modal-product-container-img {
+    padding-left: 40px;
+    padding-right: 40px;
+  }
+  .modal-product-name {
+    margin-top: 0px;
+    font-size: 20px;
+  }
+  .modal-product-description {
+    margin-top: 24px;
+    font-size: 16px;
+  }
+}
+
+@media only screen and (min-width: 1440px) {
+  .modal-container {
+    max-width: 600px;
+  }
+  .container-cost-button {
+    justify-content: space-between;
+  }
+  .modal-wimdow-add-to-cart-btn {
+    margin: 0;
+  }
+  .modal-product-img-text {
+    margin-bottom: 48px;
+  }
+
+  .modal-container-descs {
+    max-width: 246px;
+  }
+  .modal-product-description {
+    max-width: 256px;
+  }
 }
