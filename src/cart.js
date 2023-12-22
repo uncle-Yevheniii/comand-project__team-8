@@ -3,6 +3,7 @@ import { cartDeleteAll } from './js/cart-delete-all';
 import { basketMarkup } from './js/basket-markup';
 import { changeQuantity } from './js/cart-quantity';
 
+
 const cart = document.querySelector('.js-basket');
 
 const data = [
@@ -28,6 +29,16 @@ const data = [
     },
     {
       "_id": "640c2dd963a319ea671e37ad",
+      "name": "Black Olives",
+      "img": "https://ftp.goit.study/img/so-yummy/ingredients/640c2dd963a319ea671e37ad.png",
+      "category": "Fresh_Produce",
+      "price": 3.99,
+      "size": "1 jar (16 oz)",
+      "is10PercentOff": false,
+      "popularity": 0
+    },
+    {
+      "_id": "640c2dd963a319ea671e37a",
       "name": "Black Olives",
       "img": "https://ftp.goit.study/img/so-yummy/ingredients/640c2dd963a319ea671e37ad.png",
       "category": "Fresh_Produce",

@@ -4,9 +4,15 @@ import {changeQuantity} from './cart-quantity'
 export function cartDeleteAll() {
     const deleteAllBtn = document.querySelector('.cart-delete-all-btn');
 
-    deleteAllBtn.addEventListener('click', () => {
-        localStorage.setItem('cart', '[]');
-        changeQuantity();
-        renderCart([]);
-    });
+    if (deleteAllBtn) {
+        const callBack = () => {
+            localStorage.setItem('cart', '[]');
+            changeQuantity();
+            renderCart([]);
+
+            deleteAllBtn.removeEventListener('click', callBack);
+        };
+
+        deleteAllBtn.addEventListener('click', callBack);
+    };
 };
