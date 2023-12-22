@@ -45,7 +45,7 @@
 /* phone screen*/
 .container {
   min-width: 320px;
-  max-width: 375px;
+  max-width: 335px;
 
   margin-left: auto;
   margin-right: auto;
@@ -143,6 +143,18 @@
   src: url('./fonts/NeueMontreal-BoldItalic.otf') format('opentype');
   font-weight: 700;
   font-style: italic;
+}
+/* Regular - звичайний */
+@font-face {
+  font-family: 'Fontspring-DEMO-quincycf';
+  src: url('./fonts/Fontspring-DEMO-quincycf-regular.otf') format('opentype');
+  font-weight: 400;
+}
+/* Black - чорний */
+@font-face {
+  font-family: 'Fontspring-DEMO-quincycf';
+  src: url('./fonts/Fontspring-DEMO-quincycf-black.otf') format('opentype');
+  font-weight: 900;
 }
 
 body {
