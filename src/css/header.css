@@ -1,0 +1,9 @@
+.header-section {
+  margin-top: 18px;
+}
+
+.header-container-logo {
+  align-items: center;
+  display: flex;
+  gap: 8px;
+}
