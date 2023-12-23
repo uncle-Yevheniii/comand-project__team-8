@@ -8,7 +8,12 @@
     const backdrop= document.querySelector(".backdrop");
 //   refs.openModalBtn.addEventListener("click", toggleModal);
   refs.closeModalBtn.addEventListener("click", toggleModal);
-  backdrop.addEventListener("click", toggleModal);
+  backdrop.addEventListener("click", handleBackdrop);
+  function handleBackdrop(event) {
+    if (event.target === backdrop) {
+      toggleModal();
+    }
+  }
 
     document.addEventListener("keydown", handleKey);
 
