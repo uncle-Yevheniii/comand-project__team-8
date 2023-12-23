@@ -1,0 +1,24 @@
+.email-container {
+  padding-top: 80px;
+  padding-bottom: 80px;
+  padding-left: 45px;
+  padding-right: 45px;
+}
+@media only screen and (min-width: 767.98px) {
+  .email-container {
+    padding-left: 60px;
+    padding-right: 60px;
+    padding-top: 100px;
+    padding-bottom: 100px;
+  }
+  .modal-subscr-title {
+    line-height: 1;
+  }
+  .modal-subcr-text {
+    line-height: 1.25;
+  }
+
+  .modal-wrapper-text {
+    height: auto;
+  }
+}
