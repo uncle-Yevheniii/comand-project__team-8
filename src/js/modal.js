@@ -10,9 +10,10 @@
   refs.closeModalBtn.addEventListener("click", toggleModal);
   backdrop.addEventListener("click", handleBackdrop);
   function handleBackdrop(event) {
-    if (event.target === backdrop) {
-      toggleModal();
+    if (event.target !== backdrop) {
+      return;
     }
+        toggleModal();
   }
 
     document.addEventListener("keydown", handleKey);
