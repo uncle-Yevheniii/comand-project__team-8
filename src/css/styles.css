@@ -12,7 +12,18 @@
 @import url('./discount-products.css');
 @import url('./products-list.css');
 @import url('./footer.css');
+
+
+@import url('./modalwindowproduct.css');
+@import url('./modalwindow-subscribing.css');
+@import url('./modalwindowemail.css');
+@import url('./cartmodal.css');
+
+
 @import url('./product-basket.css');
+
+
+
 
 :root {
   /* fonts */
