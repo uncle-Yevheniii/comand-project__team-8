@@ -28,7 +28,7 @@ async function generatePopularCardListMarkup(){
 
 function renderPopularCards({img, name, price, size, popularity}){
   return `
-  <li class="list-item" data-id="">
+  <li class="list-item" data-id="1">
       <img class="img-popular" src="${img}" alt="">     
           <h3 class="popular-title">${name}</h3>
           <p class="popular-desc">${price}</p>
