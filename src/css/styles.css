@@ -13,17 +13,12 @@
 @import url('./products-list.css');
 @import url('./footer.css');
 
-
 @import url('./modalwindowproduct.css');
 @import url('./modalwindow-subscribing.css');
 @import url('./modalwindowemail.css');
 @import url('./cartmodal.css');
 
-
 @import url('./product-basket.css');
-
-
-
 
 :root {
   /* fonts */
@@ -67,8 +62,7 @@
 /* tablet screen */
 @media only screen and (min-width: 768px) {
   .container {
-    max-width: 768px;
-
+    max-width: 704px;
     padding-left: 32px;
     padding-right: 32px;
   }
