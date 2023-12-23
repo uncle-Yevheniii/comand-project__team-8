@@ -1,0 +1,4 @@
+.wrapperPopularProduct{
+    display: flex;
+    flex-direction: column;
+}
