@@ -78,10 +78,20 @@
   |============================
 */
 
-.cart-with-items-container {
+.cart-with-items-list {
   overflow-y: auto;
   max-height: 480px;
+  list-style: none;
+  padding: 0;
 }
+/* .cart-with-items-list::-webkit-scrollbar{
+  width: 5px;
+  height: 115px;
+}
+.cart-with-items-list::-webkit-scrollbar-thumb{
+  border-radius: 20px;
+  background-color: rgba(1, 1, 1, 0.08);
+} */
 .cart-delete-all {
   display: flex;
   gap: 8px;
@@ -99,6 +109,11 @@
 .cart-delete-all-btn {
   background-color: transparent;
   border: none;
+}
+.delete-all-icon-svg {
+  fill: #010101;
+  width: 24px;
+  height: 24px;
 }
 
 .cart-product-img-container{
@@ -225,4 +240,91 @@
 
 .cart-form-btn:is(:hover, :focus) {
   background: 1px solid #586f1f;
+}
+
+.cart-product-list {
+  display: flex;
+
+  gap: 20px;
+  background-color: #E8E8E2;
+  position: relative;
+  padding: 30px 0;
+}
+
+.cart-product-list:after {
+  content: '';
+  width: 333px;
+  border: 1px solid rgba(1, 1, 1, 0.1);
+  display: block;
+  position: absolute;
+  bottom: 0;
+  left: 0;
+}
+.cart-product-list:last-child:after {
+  display: none;
+  border: none;
+}
+.cart-product-name {
+  color: #010101;
+  font-size: 18px;
+  font-weight: 500;
+  line-height: 1.11;
+  margin-bottom: 10px;
+}
+.cart-product-features {
+  display: flex;
+  gap: 8px;
+  margin-bottom: 36px;
+}
+.cart-product-category{
+  color: rgba(1, 1, 1, 0.30);
+  font-size: 12px;
+  font-weight: 400;
+  line-height: 1.17;
+  display: flex;
+  gap: 4px;
+}
+.cart-product-category-span {
+  color: #010101;
+  font-size: 12px;
+  font-weight: 400;
+  line-height: 1.17;
+}
+.cart-product-size {
+  color: rgba(1, 1, 1, 0.30);
+  font-size: 12px;
+  font-weight: 400;
+  line-height: 1.17;
+  display: flex;
+  gap: 4px;
+}
+.cart-product-size-span {
+  color: #010101;
+  font-size: 12px;
+  font-weight: 400;
+  line-height: 1.17;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  max-width: 50px;
+  white-space: nowrap;
+}
+.cart-product-info-price {
+  color: #010101;
+  font-size: 18px;
+  font-weight: 500;
+  line-height: 1.11;
+}
+.cart-product-remove-btn {
+  padding: 0;
+  position: absolute;
+  top: 30px;
+  right: 14px;
+  border: none;
+  background-color: transparent;
+  display: flex;
+}
+
+.cart-product-remove-svg {
+  width: 18px;
+  height: 18px;
 }
