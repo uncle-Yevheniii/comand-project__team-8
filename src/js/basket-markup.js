@@ -63,5 +63,5 @@ export function basketMarkup(USER_CART) {
                 </form>
             </div>
     `;
-    return cart;
+    return cart
 };
