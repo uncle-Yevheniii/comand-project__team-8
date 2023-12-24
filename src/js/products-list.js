@@ -10,7 +10,7 @@ const defaultParams = {
 };
 
 productsGeneretor();
-window.onresize = productsGeneretor;
+// window.onresize = productsGeneretor;
 
 function limitChange(obj) {
   if (window.innerWidth < 768) {
@@ -32,7 +32,7 @@ async function productsGeneretor() {
 
 async function render(params) {
   try {
-    limitChange(params);
+    // limitChange(params);
     const data = await fetchData(params);
     container.innerHTML = createCardMarkup(data.results);
   } catch (error) {
