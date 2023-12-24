@@ -4,7 +4,7 @@
     align-items: center;
     gap: 14px;
     margin-bottom: 14px;
-    padding-top: 54px;
+    padding-top: 72px;
 }
 .cart-icon {
     width: 38px;
@@ -334,3 +334,141 @@
   | TABLET
   |============================
 */
+
+@media only screen and (min-width: 768px) {
+  .cart-info{
+    padding-top: 99px;
+  }
+  .cart-icon{
+    width: 42px;
+    height: 42px;
+  }
+  .cart-info-title{
+    font-size: 32px;
+    line-height: 1;
+  }
+  .cart-info-span{
+    font-size: 32px;
+    line-height: 1;
+  }
+/* Empty basket */
+  .basket-empty-img{
+    width: 164px;
+    height: 140px;
+    margin-top: 135px;
+    margin-bottom: 40px;
+  }
+  .empty-basket-title{
+    font-size: 20px;
+    line-height: 1.2;
+  }
+  .empty-basket-span{
+    font-size: 20px;
+    line-height: 1.2;
+  }
+  .empty-basket-text{
+    font-size: 18px;
+    line-height: 1.33;
+    max-width: 387px;
+  }
+  /* Cart with items */
+  .cart-delete-all{
+    margin-top: 26px;
+  }
+  .cart-delete-all-text{
+    font-size: 16px;
+    line-height: 1.25;
+  }
+
+  .cart-product-img-container{
+    width: 120px;
+    height: 120px;
+  }
+  .cart-product-img{
+    width: 72px;
+    height: 72px;
+  }
+  .cart-product-list{
+    gap: 40px;
+    padding: 40px 0;
+  }
+  .cart-product-list::after{
+    width: 672px;
+  }
+  .cart-product-remove-btn{
+    top: 40px;
+    right: 39px;
+  }
+  .cart-product-remove-svg{
+    height: 20px;
+    width: 20px;
+  }
+  .cart-product-name{
+    font-size: 20px;
+    line-height: 1.2;
+    margin-bottom: 12px;
+  }
+  .cart-product-features{
+    gap: 16px;
+    margin-bottom: 44px;
+  }
+  .cart-product-category-span{
+    font-size: 14px;
+    line-height: 1.28;
+  }
+  .cart-product-size-span{
+    font-size: 14px;
+    line-height: 1.28;
+  }
+  .cart-product-info-price{
+    font-size: 20px;
+    line-height: 1.2;
+  }
+  .cart-form-order-input{
+    padding-bottom: 100px;
+    display: flex;
+    gap: 16px;
+  }
+  .cart-order-title{
+    font-size: 32px;
+    line-height: 1;
+  }
+  .cart-order-total{
+    margin-bottom: 40px;
+    width: 590px;
+  }
+  .cart-order-text-total{
+    font-size: 20px;
+    line-height: 1.2;
+    padding-top: 22px;
+    padding-left: 28px;
+    padding-bottom: 14px;
+  }
+  .cart-order-sum-container{
+    gap: 8px;
+  }
+  .cart-order-sum{
+    font-size: 32px;
+    line-height: 1;
+    padding-top: 14px;
+    padding-right: 28px;
+  }
+  .cart-form-order-mail-input{
+    width: 359px;
+    height: 54px;
+    margin-bottom: 0;
+  }
+  .cart-form-order-mail-input::placeholder{
+    font-size: 18px;
+    line-height: 1.34;
+  }
+  .cart-form-btn{
+    font-size: 20px;
+    line-height: 1.2;
+    width: 215px;
+    height: 54px;
+  }
+  .cart-with-items-list{
+    max-height: 606px;
+  }
+}
