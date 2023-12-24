@@ -1,26 +1,57 @@
 import axios from "axios";
+import cartIcon from '../img/sptite.svg';
 // import { handleModal } from "./modal";
 const ul = document.querySelector(".wrapperPopularProduct");
 console.log(ul);
 const body = document.querySelector("body")
 ul.addEventListener("click", handleCardClick);
 
+const list = document.querySelector(".products-list");
+console.log(list);
+list.addEventListener("click", handleCardProductClick )
 
 
+async function handleCardProductClick(event) {
+    list.removeEventListener("click", handleCardProductClick);
+
+
+  
+       const product = event.target.closest(".productlist-card");
+
+
+    if (product === null||event.target.closest(".productlist-card-btn")) {
+    list.addEventListener("click", handleCardProductClick )
+        return;
+ }
+    console.log(product);
+    // delete later for button
+
+    const id = product.dataset.id;
+
+    const info = await serviceProductInfo(id);
+    console.log(info);
+
+    body.insertAdjacentHTML("beforeend", createMarkup(info))
+
+handleProductModal() 
+}
 
 async function handleCardClick(event) {
     ul.removeEventListener("click", handleCardClick);
     const product = event.target.closest("li");
+        if (product === null||event.target.closest(".productlist-card-btn")) {
+     ul.addEventListener("click", handleCardClick);
+        return;
+ }
     // delete later for button
     // delete if click is not li
     const id = product.dataset.id;
 
     const info = await serviceProductInfo(id);
     console.log(info);
-    // createMarkup(info);
-    // console.log(createMarkup(info));
+
     body.insertAdjacentHTML("beforeend", createMarkup(info))
-    // handleModal();
+
 handleProductModal() 
 }
 
@@ -43,8 +74,9 @@ async function serviceProductInfo(id) {
 function createMarkup(info) {
     const { name, category, size, popularity, desc, price, img } = info;
     return `
+
     <div class="backdrop" data-modal>
-  <div class="modal-container" data-modal>
+  <div class="modal-container modal-product" data-modal">
     <svg
       class="modal-product-close-icon"
       width="22"
@@ -98,7 +130,7 @@ function createMarkup(info) {
       <button class="modal-wimdow-add-to-cart-btn">
         Add to
         <svg class="modal-product-addtocart" width="18" height="18">
-          <use href="../img/sptite.svg#icon-cart"></use>
+          <use href="${cartIcon}#icon-cart"></use>
         </svg>
       </button>
     </div>
@@ -137,4 +169,18 @@ closeModalBtn.addEventListener("click", toggleModal);
      closeModalBtn.removeEventListener("click", toggleModal);
  }
     ul.addEventListener("click", handleCardClick);
+    list.addEventListener("click", handleCardProductClick )
+    // list.addEventListener("click", handleCardPopularClick);
+}
+
+
+function showLoader(span) {
+    
+    span.style.visibility = "visible";
+}
+
+function hideLoader(span) {
+
+    
+    span.style.display = "none";
 }
