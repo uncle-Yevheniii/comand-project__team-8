@@ -1,4 +1,4 @@
-import"./assets/styles-0947779b.js";const l="/comand-project__team-8/assets/yellow-shopping-basket@1x-fe591d80.png",m="/comand-project__team-8/assets/yellow-shopping-basket@2x-61cba68c.png",v=`
+import"./assets/styles-2e2afaf9.js";const l="/comand-project__team-8/assets/yellow-shopping-basket@1x-fe591d80.png",m="/comand-project__team-8/assets/yellow-shopping-basket@2x-61cba68c.png",v=`
     <picture class="empty-basket">
         <source srcset="${l} 1x, ${m} 2x" />
         <img src="${l}" alt="basket" class="basket-empty-img"/>
@@ -68,5 +68,5 @@ import"./assets/styles-0947779b.js";const l="/comand-project__team-8/assets/yell
                     <button type="submit" class="cart-form-btn">Checkout</button>
                 </form>
             </div>
-    `}const y=document.querySelector(".js-basket");function k(t){y.addEventListener("click",e=>{const a=t.filter(c=>c._id!==e.target.dataset.remove);localStorage.setItem("cart",JSON.stringify(a)),r(a)})}const i=document.querySelector(".js-basket"),$=JSON.parse(localStorage.getItem("cart"));function r(t){p(),t.length===0?i.innerHTML=v:i.innerHTML=f(t),g(),k(t)}r($);
+    `}const y=document.querySelector(".js-basket");function k(t){y.addEventListener("click",e=>{const a=t.filter(c=>c._id!==e.target.dataset.remove);localStorage.setItem("cart",JSON.stringify(a)),r(a)})}const i=document.querySelector(".js-basket"),$=JSON.parse(localStorage.getItem("cart"))||[];function r(t){p(),t.length===0?i.innerHTML=v:i.innerHTML=f(t),g(),k(t)}r($);
 //# sourceMappingURL=commonHelpers.js.map
