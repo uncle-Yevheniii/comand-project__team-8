@@ -1,4 +1,4 @@
-import"./assets/styles-2e2afaf9.js";const l="/comand-project__team-8/assets/yellow-shopping-basket@1x-fe591d80.png",m="/comand-project__team-8/assets/yellow-shopping-basket@2x-61cba68c.png",v=`
+import"./assets/styles-9d3fbeab.js";const l="/comand-project__team-8/assets/yellow-shopping-basket@1x-fe591d80.png",m="/comand-project__team-8/assets/yellow-shopping-basket@2x-61cba68c.png",v=`
     <picture class="empty-basket">
         <source srcset="${l} 1x, ${m} 2x" />
         <img src="${l}" alt="basket" class="basket-empty-img"/>
