@@ -17,14 +17,13 @@ async function onReload(){
 }
 
 function renderCards({img, name, price, size, popularity}){
-  const rating = (popularity/10000).toFixed(0)
-  return `
+    return `
   <li class="list-item" data-id="">
       <img class="img-popular" src="${img}" alt="">     
           <h3 class="popular-title">${name}</h3>
           <p class="popular-desc">${price}</p>
           <p class="popular-desc">${size}</p>
-          <p class="popular-desc">${rating}</p>       
+          <p class="popular-desc">${popularity}</p>       
   </li>
   `
 }
