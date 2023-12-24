@@ -8,9 +8,10 @@
   
   <title>🍓Food Boutique🥦</title>
   <script type="module" crossorigin src="/comand-project__team-8/commonHelpers2.js"></script>
-  <link rel="modulepreload" crossorigin href="/comand-project__team-8/assets/sptite-b91ddc2d.js">
-  <link rel="modulepreload" crossorigin href="/comand-project__team-8/assets/vendor-a61d8330.js">
-  <link rel="stylesheet" href="/comand-project__team-8/assets/sptite-4151567f.css">
+  <link rel="modulepreload" crossorigin href="/comand-project__team-8/assets/sptite-6e6a83f4.js">
+  <link rel="modulepreload" crossorigin href="/comand-project__team-8/assets/vendor-3d334923.js">
+  <link rel="stylesheet" href="/comand-project__team-8/assets/sptite-9543fe1b.css">
+  <link rel="stylesheet" href="/comand-project__team-8/assets/vendor-4d59271d.css">
 </head>
 
 <body>
@@ -60,7 +61,27 @@
   </div>
 </section>
 
-    
+    <div class="container">
+    <form class="filters-form">
+        <label class="filters-form-label">Filters:</label>
+        <input 
+            class="filters-form-input"
+            type="text"
+            placeholder="Search for anything">
+        <button class="filters-form-btn" type="submit"> 
+            <svg class="filters-form-btn-icon" width="20px" height="20px"> 
+                <use href="../img/sptite.svg#icon-search"></use> 
+            </svg> 
+        </button>
+        <select class="filters-form-select-category" id="single">
+            <option value="" disabled selected hidden>Categories</option>
+        </select>
+        <!-- <select class="filters-form-select-sortby">
+            <option value="" disabled selected hidden>A to Z</option>
+        </select> -->
+    </form>
+</div>
+
 
     <div class="container wrapper">
       <div class="products-list"></div>

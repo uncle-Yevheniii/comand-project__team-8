@@ -1,9 +1,9 @@
-import{c as v}from"./assets/sptite-b91ddc2d.js";import{a as i}from"./assets/vendor-a61d8330.js";async function h({keyword:t,category:o,page:a,limit:c}){const s="https://food-boutique.b.goit.study/api/products";return(await i.get(s,{params:{keyword:t,category:o,page:a,limit:c}})).data}async function f(){const t="https://food-boutique.b.goit.study/api/products/popular";return(await i.get(t)).data}const y=document.querySelector(".products-list"),w={keyword:null,category:null,page:1,limit:6};$();async function $(){return localStorage.getItem("settings")?await u(JSON.parse(localStorage.getItem("settings"))):await u(w)}async function u(t){try{const o=await h(t);y.innerHTML=b(o.results)}catch(o){console.log(o.message)}}function b(t){return t.map(({name:o,img:a,category:c,size:s,popularity:e,price:r,is10PercentOff:n,_id:g})=>(c.includes("_")&&(c=c.split("_").join(" ")),`
+import{c as v}from"./assets/sptite-6e6a83f4.js";import{S as f,a as i}from"./assets/vendor-3d334923.js";new f({select:"#single"});const h=document.querySelector(".filters-form");h.addEventListener("submit",t=>{t.preventDefault()});async function y({keyword:t,category:e,page:o,limit:c}){const s="https://food-boutique.b.goit.study/api/products";return(await i.get(s,{params:{keyword:t,category:e,page:o,limit:c}})).data}async function w(){const t="https://food-boutique.b.goit.study/api/products/popular";return(await i.get(t)).data}const $=document.querySelector(".products-list"),b={keyword:null,category:null,page:1,limit:6};L();async function L(){return localStorage.getItem("settings")?await u(JSON.parse(localStorage.getItem("settings"))):await u(b)}async function u(t){try{const e=await y(t);$.innerHTML=k(e.results)}catch(e){console.log(e.message)}}function k(t){return t.map(({name:e,img:o,category:c,size:s,popularity:a,price:r,is10PercentOff:n,_id:g})=>(c.includes("_")&&(c=c.split("_").join(" ")),`
     <div class="productlist-card" data-id="${g}">
     <div class="productlist-card-img-wrapper">
-        <img src="${a}" alt="${o}" class="productlist-card-img" width="140">
+        <img src="${o}" alt="${e}" class="productlist-card-img" width="140">
     </div>
-    <h3 class="productlist-card-header">${o}</h3>
+    <h3 class="productlist-card-header">${e}</h3>
     <div class="productlist-card-text-wrapper">
         <p class="productlist-card-text">
           Category: <span class="productlist-card-text-span">${c}</span>
@@ -12,7 +12,7 @@ import{c as v}from"./assets/sptite-b91ddc2d.js";import{a as i}from"./assets/vend
           Size: <span class="productlist-card-text-span">${s}</span>
         </p>
         <p class="productlist-card-text">
-          Popularity: <span class="productlist-card-text-span">${e}</span>
+          Popularity: <span class="productlist-card-text-span">${a}</span>
         </p>
     </div>
 
@@ -27,15 +27,15 @@ import{c as v}from"./assets/sptite-b91ddc2d.js";import{a as i}from"./assets/vend
       <use href="../img/sptite.svg#icon-discount"></use>
     </svg>`:""}
 </div>
-  `)).join("")}document.addEventListener("DOMContentLoaded",k);const p=document.querySelector(".wrapperPopularProduct");async function k(){try{const t=await E();if(t===void 0)throw new Error;S(t)}catch{m()}}function L({img:t,name:o,price:a,size:c,popularity:s}){return`
+  `)).join("")}document.addEventListener("DOMContentLoaded",E);const p=document.querySelector(".wrapperPopularProduct");async function E(){try{const t=await x();if(t===void 0)throw new Error;P(t)}catch{m()}}function S({img:t,name:e,price:o,size:c,popularity:s}){return`
     <li class="list-item" data-id="">
       <img class="img-popular" src="${t}" alt="">     
-          <h3 class="popular-title">${o}</h3>
-          <p class="popular-desc">${a}</p>
+          <h3 class="popular-title">${e}</h3>
+          <p class="popular-desc">${o}</p>
           <p class="popular-desc">${c}</p>
           <p class="popular-desc">${s}</p>       
     </li>
-  `}async function E(){try{return(await f()).reduce((o,a)=>o+L(a),"")}catch{m()}}function S(t){p.insertAdjacentHTML("beforeend",t)}function m(){console.error("Error:",err),p.innerHTML=""}const d=document.querySelector(".wrapperPopularProduct");console.log(d);const x=document.querySelector("body");d.addEventListener("click",l);async function l(t){d.removeEventListener("click",l);const a=t.target.closest("li").dataset.id,c=await P(a);console.log(c),x.insertAdjacentHTML("beforeend",C(c)),M()}async function P(t){const o="https://food-boutique.b.goit.study/api/products/";return i.get(`${o}${t}`).then(a=>a.data).catch(a=>{throw new Error(a)})}function C(t){const{name:o,category:a,size:c,popularity:s,desc:e,price:r,img:n}=t;return`
+  `}async function x(){try{return(await w()).reduce((e,o)=>e+S(o),"")}catch{m()}}function P(t){p.insertAdjacentHTML("beforeend",t)}function m(){console.error("Error:",err),p.innerHTML=""}const d=document.querySelector(".wrapperPopularProduct");console.log(d);const q=document.querySelector("body");d.addEventListener("click",l);async function l(t){d.removeEventListener("click",l);const o=t.target.closest("li").dataset.id,c=await C(o);console.log(c),q.insertAdjacentHTML("beforeend",M(c)),j()}async function C(t){const e="https://food-boutique.b.goit.study/api/products/";return i.get(`${e}${t}`).then(o=>o.data).catch(o=>{throw new Error(o)})}function M(t){const{name:e,category:o,size:c,popularity:s,desc:a,price:r,img:n}=t;return`
     <div class="backdrop" data-modal>
   <div class="modal-container" data-modal>
     <svg
@@ -51,18 +51,18 @@ import{c as v}from"./assets/sptite-b91ddc2d.js";import{a as i}from"./assets/vend
         <img
           class="modal-product-img"
           src="${n}"
-          alt="${o}"
+          alt="${e}"
           width="160"
           height="160"
         />
       </div>
       <div class="modal-product-text">
-        <p class="modal-product modal-product-name">${o}</p>
+        <p class="modal-product modal-product-name">${e}</p>
         <div class="modal-container-descs">
           <p class="modal-product modal-product-desc">
             Category:
             <span class="modal-product-desc modal-product-desc-value"
-              >${a}</span
+              >${o}</span
             >
           </p>
 
@@ -80,7 +80,7 @@ import{c as v}from"./assets/sptite-b91ddc2d.js";import{a as i}from"./assets/vend
         </div>
 
         <p class="modal-product-description" style="overflow-y:auto; max-height: 200px">
-         ${e}
+         ${a}
 
         </p>
       </div>
@@ -98,5 +98,5 @@ import{c as v}from"./assets/sptite-b91ddc2d.js";import{a as i}from"./assets/vend
   </div>
 </div>
     
-    `}function M(){const t=document.querySelector("[data-modal-close]"),o=document.querySelector("[data-modal]"),a=document.querySelector(".backdrop");t.addEventListener("click",e),a.addEventListener("click",c);function c(r){r.target===a&&(e(),a.removeEventListener("click",c))}document.addEventListener("keydown",s);function s(r){r.code==="Escape"&&e()}function e(){console.log("!!!!!!!"),o.remove(),document.removeEventListener("keydown",s),t.removeEventListener("click",e)}d.addEventListener("click",l)}
+    `}function j(){const t=document.querySelector("[data-modal-close]"),e=document.querySelector("[data-modal]"),o=document.querySelector(".backdrop");t.addEventListener("click",a),o.addEventListener("click",c);function c(r){r.target===o&&(a(),o.removeEventListener("click",c))}document.addEventListener("keydown",s);function s(r){r.code==="Escape"&&a()}function a(){console.log("!!!!!!!"),e.remove(),document.removeEventListener("keydown",s),t.removeEventListener("click",a)}d.addEventListener("click",l)}
 //# sourceMappingURL=commonHelpers2.js.map
