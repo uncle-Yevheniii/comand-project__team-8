@@ -33,7 +33,6 @@ async function productsGeneretor() {
 async function render(params) {
   try {
     limitChange(params);
-    console.log(params.limit);
     const data = await fetchData(params);
     container.innerHTML = createCardMarkup(data.results);
   } catch (error) {
