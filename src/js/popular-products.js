@@ -18,12 +18,12 @@ async function onReload(){
 
 async function generatePopularCardListMarkup(){
   try {
-     const popularCards = await popularProdact();
-     return popularCards.reduce((markup, productCard) => markup + renderPopularCards(productCard), '')
+    const popularCards = await popularProdact();
+    return popularCards.reduce((markup, productCard) => markup + renderPopularCards(productCard), '')
     } 
  catch(err) {     
      onError(err);
- }
+  }
 }
 
 function renderPopularCards({img, name, price, size, popularity}){
