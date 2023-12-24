@@ -1,4 +1,4 @@
-import"./assets/styles-9d3fbeab.js";const l="/comand-project__team-8/assets/yellow-shopping-basket@1x-fe591d80.png",m="/comand-project__team-8/assets/yellow-shopping-basket@2x-61cba68c.png",v=`
+import"./assets/styles-afd6f630.js";const l="/comand-project__team-8/assets/yellow-shopping-basket@1x-fe591d80.png",m="/comand-project__team-8/assets/yellow-shopping-basket@2x-61cba68c.png",v=`
     <picture class="empty-basket">
         <source srcset="${l} 1x, ${m} 2x" />
         <img src="${l}" alt="basket" class="basket-empty-img"/>
@@ -10,7 +10,7 @@ import"./assets/styles-9d3fbeab.js";const l="/comand-project__team-8/assets/yell
     <p class="empty-basket-text">
         Go to the main page to select your favorite products and add them to the cart.
     </p>
-`;function p(){const t=document.querySelector(".js-cart-info"),e=JSON.parse(localStorage.getItem("cart"));t&&(t.textContent=e.length)}function g(){const t=document.querySelector(".cart-delete-all-btn");if(t){const e=()=>{localStorage.setItem("cart","[]"),p(),r([]),t.removeEventListener("click",e)};t.addEventListener("click",e)}}function b(t){let e=0;for(const a of t)e+=a.price;return e.toFixed(2)}const n="/comand-project__team-8/assets/sptite-a7153163.svg";function f(t){return`
+`;function p(){const t=document.querySelector(".js-cart-info"),e=JSON.parse(localStorage.getItem("cart"))||0;t&&(t.textContent=e.length)}function g(){const t=document.querySelector(".cart-delete-all-btn");if(t){const e=()=>{localStorage.setItem("cart","[]"),p(),o([]),t.removeEventListener("click",e)};t.addEventListener("click",e)}}function b(t){let e=0;for(const a of t)e+=a.price;return e.toFixed(2)}const n="/comand-project__team-8/assets/sptite-a7153163.svg";function f(t){return`
         <div class="cart-with-items-container">
         
             <div class="cart-delete-all">
@@ -23,14 +23,14 @@ import"./assets/styles-9d3fbeab.js";const l="/comand-project__team-8/assets/yell
             </div>
 
             <ul class="cart-with-items-list">
-            ${t.map(({category:a,img:c,name:o,price:d,size:u,_id:s})=>`
-                <li class="cart-product-list" data-cart-product-id=${s}>
+            ${t.map(({category:a,img:s,name:c,price:d,size:u,_id:r})=>`
+                <li class="cart-product-list" data-cart-product-id=${r}>
                     <div class="cart-product-img-container">
-                        <img class="cart-product-img" src=${c} alt=${o}/>
+                        <img class="cart-product-img" src=${s} alt=${c}/>
                     </div>
                     <div class="cart-product-list-description">
                     <div class="cart-product-list-info">
-                        <p class="cart-product-name">${o}</p>
+                        <p class="cart-product-name">${c}</p>
                         <div class="cart-product-features">
                             <p class="cart-product-category">Category: <span class="cart-product-category-span">${a.replace(/_/g," ")}</span></p>
                             <p class="cart-product-size">Size: <span class="cart-product-size-span">${u}</span></p>
@@ -38,9 +38,9 @@ import"./assets/styles-9d3fbeab.js";const l="/comand-project__team-8/assets/yell
                         <p class="cart-product-info-price">$${d}</p>
                     </div>
                     <div class="cart-product-list-remove">
-                        <button class="cart-product-remove-btn" type="button" data-remove=${s}>
-                        <svg class="cart-product-remove-svg" data-remove=${s}>
-                            <use href="${n}#icon-close" data-remove=${s}></use>
+                        <button class="cart-product-remove-btn" type="button" data-remove=${r}>
+                        <svg class="cart-product-remove-svg" data-remove=${r}>
+                            <use href="${n}#icon-close" data-remove=${r}></use>
                         </svg>
                         </button>
                     </div>
@@ -68,5 +68,5 @@ import"./assets/styles-9d3fbeab.js";const l="/comand-project__team-8/assets/yell
                     <button type="submit" class="cart-form-btn">Checkout</button>
                 </form>
             </div>
-    `}const y=document.querySelector(".js-basket");function k(t){y.addEventListener("click",e=>{const a=t.filter(c=>c._id!==e.target.dataset.remove);localStorage.setItem("cart",JSON.stringify(a)),r(a)})}const i=document.querySelector(".js-basket"),$=JSON.parse(localStorage.getItem("cart"))||[];function r(t){p(),t.length===0?i.innerHTML=v:i.innerHTML=f(t),g(),k(t)}r($);
+    `}function y(t){const e=document.querySelector(".cart-with-items-list");e&&e.addEventListener("click",a=>{const s=t.filter(c=>c._id!==a.target.dataset.remove);localStorage.setItem("cart",JSON.stringify(s)),o(s)})}const i=document.querySelector(".js-basket"),k=JSON.parse(localStorage.getItem("cart"))||[];function o(t){p(),t.length===0?i.innerHTML=v:i.innerHTML=f(t),g(),y(t)}o(k);
 //# sourceMappingURL=commonHelpers.js.map
