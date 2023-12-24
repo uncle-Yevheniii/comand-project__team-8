@@ -8,8 +8,6 @@ const defaultParams = {
   page: 1,
   limit: 6,
 };
-
-productsGeneretor();
 // window.onresize = productsGeneretor;
 
 function limitChange(obj) {
@@ -23,7 +21,7 @@ function limitChange(obj) {
   return obj;
 }
 
-async function productsGeneretor() {
+export async function productsGeneretor() {
   if (localStorage.getItem('settings')) {
     return await render(JSON.parse(localStorage.getItem('settings')));
   }
