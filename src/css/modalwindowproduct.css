@@ -144,6 +144,9 @@
   max-width: 160px;
   height: 160px;
 }
+.modal-product-container-img {
+  height: fit-content;
+}
 @media only screen and (min-width: 767.98px) {
   .modal-product-img-text {
     display: flex;
