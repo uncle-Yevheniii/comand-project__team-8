@@ -86,8 +86,9 @@ function createMarkup(info) {
           </p>
         </div>
 
-        <p class="modal-product-description">
+        <p class="modal-product-description" style="overflow-y:auto; max-height: 200px">
          ${desc}
+
         </p>
       </div>
     </div>
