@@ -1,5 +1,5 @@
 import { popularProdact } from "../API.js";
-import { renderCards } from "../API.js";
+
 
 
 document.addEventListener("DOMContentLoaded", onReload);
@@ -14,6 +14,19 @@ async function onReload(){
   } catch(err) {
       onError(err);
   }
+}
+
+function renderCards({img, name, price, size, popularity}){
+  const rating = (popularity/10000).toFixed(0)
+  return `
+  <li class="list-item" data-id="">
+      <img class="img-popular" src="${img}" alt="">     
+          <h3 class="popular-title">${name}</h3>
+          <p class="popular-desc">${price}</p>
+          <p class="popular-desc">${size}</p>
+          <p class="popular-desc">${rating}</p>       
+  </li>
+  `
 }
 
 async function generatePopularCardListMarkup(){
