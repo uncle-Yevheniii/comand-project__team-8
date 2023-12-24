@@ -1,8 +1,9 @@
 import { renderCart } from '../cart.js';
 
-const cart = document.querySelector('.js-basket');
+
 
 export function cartRemoveItem(data) {
+    const cart = document.querySelector('.cart-with-items-list');
     cart.addEventListener('click', e => {
         const updatedCart = data.filter(
             item => item._id !== e.target.dataset.remove

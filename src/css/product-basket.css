@@ -416,7 +416,15 @@
     font-size: 14px;
     line-height: 1.28;
   }
+  .cart-product-category{
+    font-size: 14px;
+    line-height: 1.28;
+  }
   .cart-product-size-span{
+    font-size: 14px;
+    line-height: 1.28;
+  }
+  .cart-product-size{
     font-size: 14px;
     line-height: 1.28;
   }
@@ -470,5 +478,8 @@
   }
   .cart-with-items-list{
     max-height: 606px;
+  }
+  .cart-product-size-span{
+    overflow: visible;
   }
 }
