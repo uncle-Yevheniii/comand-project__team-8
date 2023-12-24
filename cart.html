@@ -6,8 +6,9 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     
     <title>🍓Food Boutique🥦</title>
-    <script type="module" crossorigin src="/comand-project__team-8/assets/styles-4e26aaff.js"></script>
-    <link rel="stylesheet" href="/comand-project__team-8/assets/styles-6ffd3be0.css">
+    <script type="module" crossorigin src="/comand-project__team-8/commonHelpers.js"></script>
+    <link rel="modulepreload" crossorigin href="/comand-project__team-8/assets/styles-0947779b.js">
+    <link rel="stylesheet" href="/comand-project__team-8/assets/styles-a10490e9.css">
   </head>
   <body>
     <header>
@@ -38,7 +39,19 @@
 
     </header>
     <main>
-      
+      <section class="basket container">
+    <div class="cart-info">
+        <div class="cart-icon">
+            <svg class="cart-svg-icon">
+                <use href="../img/sptite.svg#icon-cart"></use>
+            </svg>
+        </div>
+        <h2 class="cart-info-title">
+            CART (<span class="cart-info-span js-cart-info">0</span>)
+        </h2>
+    </div>
+    <div class="js-basket"></div>
+</section>
     </main>
     <footer>
       
