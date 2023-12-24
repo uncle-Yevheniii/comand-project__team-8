@@ -18,17 +18,17 @@ async function onReload(){
 
 async function generatePopularCardListMarkup(){
   try {
-     const popularCards = await popularProdact();
-     return popularCards.reduce((markup, productCard) => markup + renderPopularCards(productCard), '')
+    const popularCards = await popularProdact();
+    return popularCards.reduce((markup, productCard) => markup + renderPopularCards(productCard), '')
     } 
  catch(err) {     
      onError(err);
- }
+  }
 }
 
 function renderPopularCards({img, name, price, size, popularity}){
   return `
-  <li class="list-item" data-id="1">
+  <li class="list-item" data-id="">
       <img class="img-popular" src="${img}" alt="">     
           <h3 class="popular-title">${name}</h3>
           <p class="popular-desc">${price}</p>
