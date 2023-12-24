@@ -15,24 +15,24 @@
 
 // showProductCount();
 
-let productCount = 0;
-let cart = [];
+// let productCount = 0;
+// let cart = [];
 
-function addProduct() {
-  cart.push({
-    name: 'Product name',
-    price: 100,
-  });
+// function addProduct() {
+//   cart.push({
+//     name: 'Product name',
+//     price: 100,
+//   });
 
-  productCount = cart.length;
+//   productCount = cart.length;
 
-  showProductCount();
-}
+//   showProductCount();
+// }
 
-function showProductCount() {
-  document.querySelector('.header-cart span').textContent = productCount;
-}
+// function showProductCount() {
+//   document.querySelector('.header-cart span').textContent = productCount;
+// }
 
-document.querySelector('.header-home').addEventListener('click', addProduct);
+// document.querySelector('.header-home').addEventListener('click', addProduct);
 
-showProductCount();
+// showProductCount();
