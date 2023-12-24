@@ -51,7 +51,7 @@ const cart = document.querySelector('.js-basket');
   
 // localStorage.setItem('cart',JSON.stringify(data)) 
 
-const USER_CART = JSON.parse(localStorage.getItem('cart'));
+const USER_CART = JSON.parse(localStorage.getItem('cart'))|| [];
 // const USER_CART = [];
 
 export function renderCart(data) {

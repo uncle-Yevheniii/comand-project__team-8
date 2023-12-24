@@ -16,27 +16,30 @@ async function onReload(){
   }
 }
 
+function renderCards({img, name, price, size, popularity}){
+    return `
+    <li class="list-item" data-id="">
+      <img class="img-popular" src="${img}" alt="">     
+          <h3 class="popular-title">${name}</h3>
+          <p class="popular-desc">${price}</p>
+          <p class="popular-desc">${size}</p>
+          <p class="popular-desc">${popularity}</p>       
+    </li>
+  `
+}
+    
+
 async function generatePopularCardListMarkup(){
   try {
      const popularCards = await popularProdact();
-     return popularCards.reduce((markup, productCard) => markup + renderPopularCards(productCard), '')
+     return popularCards.reduce((markup, productCard) => markup + renderCards(productCard), '')
     } 
  catch(err) {     
      onError(err);
  }
 }
 
-function renderPopularCards({img, name, price, size, popularity}){
-  return `
-  <li class="list-item" data-id="">
-      <img class="img-popular" src="${img}" alt="">     
-          <h3 class="popular-title">${name}</h3>
-          <p class="popular-desc">${price}</p>
-          <p class="popular-desc">${size}</p>
-          <p class="popular-desc">${popularity}</p>       
-  </li>
-  `
-}
+
 function updateCardList(markup){
   popularList.insertAdjacentHTML('beforeend', markup);
 }

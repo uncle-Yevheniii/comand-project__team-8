@@ -1,0 +1,106 @@
+.filters-form {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    position: relative;
+    margin-bottom: 40px;
+}
+.filters-form-label {
+    display: flex;
+    position: absolute;
+    top: -25px;
+    font-size: 14px;
+    line-height: calc(18/14);
+    letter-spacing: 0em;
+    text-align: left;
+    color: var(--p_color-text-alfa30);
+}
+.filters-form-input {
+    box-sizing: border-box;
+    height: 48px;
+    padding: 14px 20px;
+    border-radius: 30px;
+    border: 1px solid var(--p_color-text-alfa30);
+    font-family: inherit;
+    font-size: 14px;
+    line-height: calc(18/14);
+    letter-spacing: 0em;
+    text-align: left;
+    color: inherit;
+    background-color: inherit;
+}
+.filters-form-input:focus,
+.filters-form-input:hover {
+    border-color: var(--p_color);
+    outline: 0;
+}
+.filters-form-input::placeholder {
+    color: inherit;
+    opacity: 1; /* Firefox */
+}
+.filters-form-input::-ms-input-placeholder {
+    color: inherit; /* Edge 12 -18 */
+}
+.filters-form-btn {
+    padding: 0;
+    border-width: 0;
+    position: absolute;
+    top: 14px;
+    right: 22px;
+    visibility: hidden;
+}
+.filters-form-btn-icon {
+    display: block;
+    visibility: visible;
+}
+.filters-form-select-category {
+    height: 48px;
+    /* padding: 14px 20px; */
+    --ss-spacing-s: 14px 20px;
+    /* border-radius: 30px; */
+    --ss-border-radius: 30px;
+    /* border: 1px solid var(--p_color-text-alfa30); */
+    --ss-border-color: var(--p_color-text-alfa30);
+    font-family: inherit;
+    font-size: 14px;
+    line-height: calc(18/14);
+    letter-spacing: 0em;
+    text-align: left;
+    /* color: inherit; */
+    --ss-font-color: var(--p_color-text);
+    /* background-color: inherit; */
+    --ss-bg-color: var(--background);
+    --ss-focus-color: rgba(0, 0, 0, 0);
+}
+.filters-form-select-category:focus,
+.filters-form-select-category:hover,
+.ss-open-below:focus,
+.ss-open-below:hover {
+    border: 1px solid var(--p_color);
+}
+@media screen and (min-width: 768px) {
+    .filters-form {
+        flex-direction: row;
+        gap: 8px;
+        height: 52px;
+    }
+    .filters-form-input {
+        height: 52px;
+        width: 269px;
+        font-size: 18px;
+        line-height: calc(24/18);
+    }
+    .filters-form-btn {
+        padding: 0;
+        border-width: 0;
+        position: absolute;
+        top: 16px;
+        left: 226px;
+    }
+    .filters-form-select-category {
+        height: 52px;
+        max-width: 189px;
+        font-size: 18px;
+        line-height: calc(24/18);
+    }
+}
