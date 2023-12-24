@@ -10,7 +10,7 @@ import{c as l}from"./assets/sptite-b91ddc2d.js";const n="/comand-project__team-8
     <p class="empty-basket-text">
         Go to the main page to select your favorite products and add them to the cart.
     </p>
-`;function p(){const t=document.querySelector(".js-cart-info"),e=JSON.parse(localStorage.getItem("cart"))||0;t&&(t.textContent=e.length)}function g(){const t=document.querySelector(".cart-delete-all-btn");if(t){const e=()=>{localStorage.setItem("cart","[]"),p(),o([]),t.removeEventListener("click",e)};t.addEventListener("click",e)}}function f(t){let e=0;for(const a of t)e+=a.price;return e.toFixed(2)}function b(t){return`
+`;function p(){const t=document.querySelector(".js-cart-info"),e=JSON.parse(localStorage.getItem("cart"))||[];t&&(t.textContent=e.length)}function g(){const t=document.querySelector(".cart-delete-all-btn");if(t){const e=()=>{localStorage.setItem("cart","[]"),p(),o([]),t.removeEventListener("click",e)};t.addEventListener("click",e)}}function f(t){let e=0;for(const a of t)e+=a.price;return e.toFixed(2)}function b(t){return`
         <div class="cart-with-items-container">
         
             <div class="cart-delete-all">
