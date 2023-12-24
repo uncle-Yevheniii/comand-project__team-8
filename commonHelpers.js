@@ -10,7 +10,7 @@ import{c as l}from"./assets/sptite-6e6a83f4.js";const n="/comand-project__team-8
     <p class="empty-basket-text">
         Go to the main page to select your favorite products and add them to the cart.
     </p>
-`;function p(){const t=document.querySelector(".js-cart-info"),e=JSON.parse(localStorage.getItem("cart"))||[];t&&(t.textContent=e.length)}function g(){const t=document.querySelector(".cart-delete-all-btn");if(t){const e=()=>{localStorage.setItem("cart","[]"),p(),o([]),t.removeEventListener("click",e)};t.addEventListener("click",e)}}function f(t){let e=0;for(const a of t)e+=a.price;return e.toFixed(2)}function b(t){return`
+`;function p(){const t=document.querySelector(".js-cart-info"),e=document.querySelector(".js-header-span"),a=JSON.parse(localStorage.getItem("cart"))||[];t&&(t.textContent=a.length),e&&(e.textContent=a.length)}function g(){const t=document.querySelector(".cart-delete-all-btn");if(t){const e=()=>{localStorage.setItem("cart","[]"),p(),o([]),t.removeEventListener("click",e)};t.addEventListener("click",e)}}function f(t){let e=0;for(const a of t)e+=a.price;return e.toFixed(2)}function b(t){return`
         <div class="cart-with-items-container">
         
             <div class="cart-delete-all">
@@ -23,14 +23,14 @@ import{c as l}from"./assets/sptite-6e6a83f4.js";const n="/comand-project__team-8
             </div>
 
             <ul class="cart-with-items-list">
-            ${t.map(({category:a,img:c,name:s,price:d,size:u,_id:r})=>`
-                <li class="cart-product-list" data-cart-product-id=${r}>
+            ${t.map(({category:a,img:c,name:r,price:d,size:u,_id:s})=>`
+                <li class="cart-product-list" data-cart-product-id=${s}>
                     <div class="cart-product-img-container">
-                        <img class="cart-product-img" src=${c} alt=${s}/>
+                        <img class="cart-product-img" src=${c} alt=${r}/>
                     </div>
                     <div class="cart-product-list-description">
                     <div class="cart-product-list-info">
-                        <p class="cart-product-name">${s}</p>
+                        <p class="cart-product-name">${r}</p>
                         <div class="cart-product-features">
                             <p class="cart-product-category">Category: <span class="cart-product-category-span">${a.replace(/_/g," ")}</span></p>
                             <p class="cart-product-size">Size: <span class="cart-product-size-span">${u}</span></p>
@@ -38,9 +38,9 @@ import{c as l}from"./assets/sptite-6e6a83f4.js";const n="/comand-project__team-8
                         <p class="cart-product-info-price">$${d}</p>
                     </div>
                     <div class="cart-product-list-remove">
-                        <button class="cart-product-remove-btn" type="button" data-remove=${r}>
-                        <svg class="cart-product-remove-svg" data-remove=${r}>
-                            <use href="${l}#icon-close" data-remove=${r}></use>
+                        <button class="cart-product-remove-btn" type="button" data-remove=${s}>
+                        <svg class="cart-product-remove-svg" data-remove=${s}>
+                            <use href="${l}#icon-close" data-remove=${s}></use>
                         </svg>
                         </button>
                     </div>
@@ -68,5 +68,5 @@ import{c as l}from"./assets/sptite-6e6a83f4.js";const n="/comand-project__team-8
                     <button type="submit" class="cart-form-btn">Checkout</button>
                 </form>
             </div>
-    `}function y(t){const e=document.querySelector(".cart-with-items-list");e&&e.addEventListener("click",a=>{const c=t.filter(s=>s._id!==a.target.dataset.remove);localStorage.setItem("cart",JSON.stringify(c)),o(c)})}const i=document.querySelector(".js-basket"),k=JSON.parse(localStorage.getItem("cart"))||[];function o(t){p(),t.length===0?i.innerHTML=v:i.innerHTML=b(t),g(),y(t)}o(k);
+    `}function y(t){const e=document.querySelector(".cart-with-items-list");e&&e.addEventListener("click",a=>{const c=t.filter(r=>r._id!==a.target.dataset.remove);localStorage.setItem("cart",JSON.stringify(c)),o(c)})}const i=document.querySelector(".js-basket"),h=JSON.parse(localStorage.getItem("cart"))||[];function o(t){p(),t.length===0?i.innerHTML=v:i.innerHTML=b(t),g(),y(t)}o(h);
 //# sourceMappingURL=commonHelpers.js.map
