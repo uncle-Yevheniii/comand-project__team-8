@@ -1,27 +1,47 @@
 import cartIcon from '../img/sptite.svg';
-import axios from 'axios';
+import { fetchData } from '../API.js';
 const container = document.querySelector('.products-list');
 
-async function fetchAPI() {
-  return await axios
-    .get('https://food-boutique.b.goit.study/api/products', {
-      params: {
-        perPage: 9,
-        page: 7,
-      },
-    })
-    .then(result => {
-      return result.data;
-    });
-}
-async function lala() {
-  const data = await fetchAPI();
-  container.insertAdjacentHTML('beforeend', createCardMarkUp(data.results));
+const defaultParams = {
+  keyword: null,
+  category: null,
+  page: 1,
+  limit: 6,
+};
+
+productsGeneretor();
+window.onresize = productsGeneretor;
+
+function limitChange(obj) {
+  if (window.innerWidth < 768) {
+    obj.limit = 6;
+  } else if (window.innerWidth >= 768 && window.innerWidth < 1440) {
+    obj.limit = 8;
+  } else {
+    obj.limit = 9;
+  }
+  return obj;
 }
 
-lala();
-function createCardMarkUp(arr) {
-  // filter надо
+async function productsGeneretor() {
+  if (localStorage.getItem('settings')) {
+    return await render(JSON.parse(localStorage.getItem('settings')));
+  }
+  return await render(defaultParams);
+}
+
+async function render(params) {
+  try {
+    limitChange(params);
+    console.log(params.limit);
+    const data = await fetchData(params);
+    container.innerHTML = createCardMarkup(data.results);
+  } catch (error) {
+    console.log(error.message);
+  }
+}
+
+function createCardMarkup(arr) {
   return arr
     .map(
       ({
@@ -32,17 +52,14 @@ function createCardMarkUp(arr) {
         popularity,
         price,
         is10PercentOff: discount,
+        _id,
       }) => {
         if (category.includes('_')) {
-          const rightCategory = category.split('');
-          while (rightCategory.includes('_')) {
-            rightCategory.splice(rightCategory.indexOf('_'), 1, ' ');
-          }
-          category = rightCategory.join('');
+          category = category.split('_').join(' ');
         }
 
         return `
-    <div class="productlist-card">
+    <div class="productlist-card" data-id="${_id}">
     <div class="productlist-card-img-wrapper">
         <img src="${img}" alt="${name}" class="productlist-card-img" width="140">
     </div>
@@ -61,7 +78,8 @@ function createCardMarkUp(arr) {
 
     <div class="productlist-card-bottom">
         <span class="productlist-card-price">$${price}</span>
-        <button type="button" class="productlist-card-btn"><svg class="productlist-card-icon-cart" width="18" height="18">
+        <button type="button" class="productlist-card-btn">
+            <svg class="productlist-card-icon-cart" width="18" height="18">
                 <use href="${cartIcon}#icon-cart"></use>
             </svg></button>
     </div>
