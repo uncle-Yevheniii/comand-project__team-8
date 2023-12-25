@@ -334,7 +334,6 @@
   transform: translate(-50%, -50%) scaleY(0);
 }
 
-
 .footer-modal-message {
   margin-bottom: 15px;
 }
@@ -381,3 +380,5 @@
     width: 560px;
   }
 }
+
+
