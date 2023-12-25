@@ -35,7 +35,7 @@ async function handleCardProductClick(event) {
 async function handleCardClick(event) {
   ul.removeEventListener('click', handleCardClick);
   const product = event.target.closest('li');
-  if (product === null || event.target.closest('.productlist-card-btn')) {
+  if (product === null || event.target.closest('.popular__products-button')) {
     ul.addEventListener('click', handleCardClick);
     return;
   }
@@ -75,7 +75,7 @@ function createMarkup(info) {
       height="22"
       data-modal-close
     >
-      <use href="${sprite}#icon-close"></use>
+      <use href="${cartIcon}#icon-close"></use>
     </svg>
     <div class="modal-product-img-text">
       <div class="modal-product-container-img">
@@ -136,7 +136,12 @@ function handleProductModal() {
   const closeModalBtn = document.querySelector('[data-modal-close]');
   const modal = document.querySelector('[data-modal]');
   const backdrop = document.querySelector('.backdrop');
-
+   function toggleModal() {
+      console.log('!!!!!!!');
+      modal.remove();
+      document.removeEventListener('keydown', handleKey);
+      closeModalBtn.removeEventListener('click', toggleModal);
+    }
   closeModalBtn.addEventListener('click', toggleModal);
   backdrop.addEventListener('click', handleBackdrop);
   function handleBackdrop(event) {
@@ -153,12 +158,7 @@ function handleProductModal() {
       toggleModal();
     }
 
-    function toggleModal() {
-      console.log('!!!!!!!');
-      modal.remove();
-      document.removeEventListener('keydown', handleKey);
-      closeModalBtn.removeEventListener('click', toggleModal);
-    }
+ 
     ul.addEventListener('click', handleCardClick);
     list.addEventListener('click', handleCardProductClick);
     // list.addEventListener("click", handleCardPopularClick);
