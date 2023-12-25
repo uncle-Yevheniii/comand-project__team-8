@@ -7,7 +7,7 @@ const cardDiscountProd = document.querySelector('.card-discount-prod');
 function createMarkupDiscountProd(data) {
   return data
     .map(({ _id, img, name, price }) => {
-      return `<div class="discount-prod-item slide" data-idcard="${_id}">
+      return `<li class="discount-prod-item slide">
     <div class="wrap-img-discount-prod">
       <img class="discount-img" src="${img}" alt="${name}">
     </div>
@@ -27,7 +27,7 @@ function createMarkupDiscountProd(data) {
         <use href="${svgIcon}#icon-discount"></use>
       </svg>
   </div>
-</div>`;
+</li>`;
     })
     .join('');
 }
