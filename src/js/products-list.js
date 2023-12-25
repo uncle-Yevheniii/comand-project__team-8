@@ -1,4 +1,4 @@
-import cartIcon from '../img/sptite.svg';
+import sprite from '../img/sptite.svg';
 import { fetchData } from '../API.js';
 const container = document.querySelector('.products-list');
 
@@ -77,13 +77,13 @@ function createCardMarkup(arr) {
         <span class="productlist-card-price">$${price}</span>
         <button type="button" class="productlist-card-btn">
             <svg class="productlist-card-icon-cart" width="18" height="18">
-                <use href="${cartIcon}#icon-cart"></use>
+                <use href="${sprite}#icon-cart"></use>
             </svg></button>
     </div>
     ${
       discount
         ? `<svg class="productlist-dicount" width="60" height="60">
-      <use href="../img/sptite.svg#icon-discount"></use>
+      <use href="${sprite}#icon-discount"></use>
     </svg>`
         : ``
     }
