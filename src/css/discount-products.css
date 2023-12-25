@@ -47,8 +47,6 @@
 
   transition-duration: 2s;
   animation-direction: alternate;
-
-  /* padding-bottom: 80px; */
 }
 
 @media only screen and (min-width: 768px) {
@@ -137,6 +135,10 @@
   font-size: 18px;
   font-weight: 500;
   line-height: 1.11;
+
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
 }
 
 @media only screen and (min-width: 768px) {
@@ -171,6 +173,10 @@
 
 .icon-cart-svg {
   fill: var(--background);
+}
+
+.hidden {
+  display: none;
 }
 
 .discount-svg {
