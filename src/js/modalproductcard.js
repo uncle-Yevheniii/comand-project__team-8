@@ -139,7 +139,7 @@ function createMarkup(info) {
 //    function toggleModal() {
 //       console.log('!!!!!!!');
 //      modal.remove();
-//       //  modal.parentElement.removeChild(modal); 
+//       //  modal.parentElement.removeChild(modal);
 //       // document.removeEventListener('keydown', handleKey);
 //       closeModalBtn.removeEventListener('click', toggleModal);
 //     }
@@ -160,7 +160,6 @@ function createMarkup(info) {
 //             document.removeEventListener('keydown', handleKey);
 //     }
 
- 
 //     ul.addEventListener('click', handleCardClick);
 //     list.addEventListener('click', handleCardProductClick);
 //     // list.addEventListener("click", handleCardPopularClick);
@@ -174,7 +173,6 @@ function createMarkup(info) {
 // function hideLoader(span) {
 //   span.style.display = 'none';
 // }
-
 
 function handleProductModal() {
   const closeModalBtn = document.querySelector('[data-modal-close]');
@@ -203,10 +201,9 @@ function handleProductModal() {
       toggleModal();
       document.removeEventListener('keydown', handleKey);
     }
-
-    ul.addEventListener('click', handleCardClick);
-    list.addEventListener('click', handleCardProductClick);
   }
+  ul.addEventListener('click', handleCardClick);
+  list.addEventListener('click', handleCardProductClick);
 
   closeModalBtn.addEventListener('click', toggleModal);
   backdrop.addEventListener('click', handleBackdrop);
