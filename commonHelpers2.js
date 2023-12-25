@@ -1,41 +1,64 @@
-import{c as v}from"./assets/sptite-6e6a83f4.js";import{S as f,a as i}from"./assets/vendor-3d334923.js";new f({select:"#single"});const h=document.querySelector(".filters-form");h.addEventListener("submit",t=>{t.preventDefault()});async function y({keyword:t,category:e,page:o,limit:c}){const s="https://food-boutique.b.goit.study/api/products";return(await i.get(s,{params:{keyword:t,category:e,page:o,limit:c}})).data}async function w(){const t="https://food-boutique.b.goit.study/api/products/popular";return(await i.get(t)).data}const $=document.querySelector(".products-list"),b={keyword:null,category:null,page:1,limit:6};L();async function L(){return localStorage.getItem("settings")?await u(JSON.parse(localStorage.getItem("settings"))):await u(b)}async function u(t){try{const e=await y(t);$.innerHTML=k(e.results)}catch(e){console.log(e.message)}}function k(t){return t.map(({name:e,img:o,category:c,size:s,popularity:a,price:r,is10PercentOff:n,_id:g})=>(c.includes("_")&&(c=c.split("_").join(" ")),`
+import{s as n}from"./assets/sptite-38d11adb.js";import{S as v,a as u}from"./assets/vendor-3d334923.js";new v({select:"#single"});const f=document.querySelector(".filters-form");f.addEventListener("submit",t=>{t.preventDefault()});async function h({keyword:t,category:s,page:a,limit:o}){const r="https://food-boutique.b.goit.study/api/products";return(await u.get(r,{params:{keyword:t,category:s,page:a,limit:o}})).data}async function y(){const t="https://food-boutique.b.goit.study/api/products/popular";return(await u.get(t)).data}const $=document.querySelector(".products-list"),b={keyword:null,category:null,page:1,limit:6};async function w(){return localStorage.getItem("settings")?await p(JSON.parse(localStorage.getItem("settings"))):await p(b)}async function p(t){try{const s=await h(t);$.innerHTML=_(s.results)}catch(s){console.log(s.message)}}function _(t){return t.map(({name:s,img:a,category:o,size:r,popularity:c,price:e,is10PercentOff:l,_id:g})=>(o.includes("_")&&(o=o.split("_").join(" ")),`
     <div class="productlist-card" data-id="${g}">
     <div class="productlist-card-img-wrapper">
-        <img src="${o}" alt="${e}" class="productlist-card-img" width="140">
+        <img src="${a}" alt="${s}" class="productlist-card-img" width="140">
     </div>
-    <h3 class="productlist-card-header">${e}</h3>
+    <h3 class="productlist-card-header">${s}</h3>
     <div class="productlist-card-text-wrapper">
         <p class="productlist-card-text">
-          Category: <span class="productlist-card-text-span">${c}</span>
+          Category: <span class="productlist-card-text-span">${o}</span>
         </p>
         <p class="productlist-card-text">
-          Size: <span class="productlist-card-text-span">${s}</span>
+          Size: <span class="productlist-card-text-span">${r}</span>
         </p>
         <p class="productlist-card-text">
-          Popularity: <span class="productlist-card-text-span">${a}</span>
+          Popularity: <span class="productlist-card-text-span">${c}</span>
         </p>
     </div>
 
     <div class="productlist-card-bottom">
-        <span class="productlist-card-price">$${r}</span>
+        <span class="productlist-card-price">$${e}</span>
         <button type="button" class="productlist-card-btn">
             <svg class="productlist-card-icon-cart" width="18" height="18">
-                <use href="${v}#icon-cart"></use>
+                <use href="${n}#icon-cart"></use>
             </svg></button>
     </div>
-    ${n?`<svg class="productlist-dicount" width="60" height="60">
-      <use href="../img/sptite.svg#icon-discount"></use>
+    ${l?`<svg class="productlist-dicount" width="60" height="60">
+      <use href="${n}#icon-discount"></use>
     </svg>`:""}
 </div>
-  `)).join("")}document.addEventListener("DOMContentLoaded",E);const p=document.querySelector(".wrapperPopularProduct");async function E(){try{const t=await x();if(t===void 0)throw new Error;P(t)}catch{m()}}function S({img:t,name:e,price:o,size:c,popularity:s}){return`
-    <li class="list-item" data-id="">
-      <img class="img-popular" src="${t}" alt="">     
-          <h3 class="popular-title">${e}</h3>
-          <p class="popular-desc">${o}</p>
-          <p class="popular-desc">${c}</p>
-          <p class="popular-desc">${s}</p>       
-    </li>
-  `}async function x(){try{return(await w()).reduce((e,o)=>e+S(o),"")}catch{m()}}function P(t){p.insertAdjacentHTML("beforeend",t)}function m(){console.error("Error:",err),p.innerHTML=""}const d=document.querySelector(".wrapperPopularProduct");console.log(d);const q=document.querySelector("body");d.addEventListener("click",l);async function l(t){d.removeEventListener("click",l);const o=t.target.closest("li").dataset.id,c=await C(o);console.log(c),q.insertAdjacentHTML("beforeend",M(c)),j()}async function C(t){const e="https://food-boutique.b.goit.study/api/products/";return i.get(`${e}${t}`).then(o=>o.data).catch(o=>{throw new Error(o)})}function M(t){const{name:e,category:o,size:c,popularity:s,desc:a,price:r,img:n}=t;return`
+  `)).join("")}const S={keyword:null,category:null,page:1,limit:6},k=[];function L(){localStorage.setItem("settings",JSON.stringify(S))}function x(){localStorage.setItem("cart",JSON.stringify(k))}const d=document.querySelector(".wrapperPopularProduct"),E=document.querySelector("body");document.addEventListener("DOMContentLoaded",C);async function C(){try{const t=await M();if(t===void 0)throw new Error;q(t)}catch{m()}}function P({category:t,img:s,name:a,popularity:o,size:r,_id:c}){return`
+  <li data-id='${c}' class="popular__products-items  ">
+  <div class="img-box">
+    <img
+      class="popular__products-img"
+      src="${s}"
+      alt="${a}"
+    />
+  </div>
+  <div class="info-box">
+    <h3 class="popular__products-name">${a}</h3>
+    <p class="popular__products-text">
+      Category:
+      <span class="js-popular__products-category">${t}</span>
+    </p>
+    <div class="add-ifo-box">
+      <p class="popular__products-text">
+        Size: <span class="js-popular__products-size">${r}</span>
+      </p>
+      <p class="popular__products-text">
+        Popularity:
+        <span class="js-popular__products-popularity">${o}</span>
+      </p>
+    </div>
+  </div>
+  <button class="popular__products-button">
+    <svg class="popular__products-svg" width="12" height="12">
+      <use href="${n}#icon-cart"></use>
+    </svg>
+  </button>
+</li>
+  `}async function M(){try{return(await y()).reduce((s,a)=>s+P(a),"")}catch{m()}}function q(t){d.insertAdjacentHTML("beforeend",t)}function m(){console.error("Error:",err),d.innerHTML=""}d.addEventListener("click",i);async function i(t){if(d.removeEventListener("click",i),t.target.closest("button"))return d.addEventListener("click",i);const a=t.target.closest("li").dataset.id,o=await j(a);E.insertAdjacentHTML("beforeend",z(o)),I()}async function j(t){const s="https://food-boutique.b.goit.study/api/products/";return u.get(`${s}${t}`).then(a=>a.data).catch(a=>{throw new Error(a)})}function z(t){const{name:s,category:a,size:o,popularity:r,desc:c,price:e,img:l}=t;return`
     <div class="backdrop" data-modal>
   <div class="modal-container" data-modal>
     <svg
@@ -44,59 +67,59 @@ import{c as v}from"./assets/sptite-6e6a83f4.js";import{S as f,a as i}from"./asse
       height="22"
       data-modal-close
     >
-      <use href="../img/sptite.svg#icon-close"></use>
+      <use href="${n}#icon-close"></use>
     </svg>
     <div class="modal-product-img-text">
       <div class="modal-product-container-img">
         <img
           class="modal-product-img"
-          src="${n}"
-          alt="${e}"
+          src="${l}"
+          alt="${s}"
           width="160"
           height="160"
         />
       </div>
       <div class="modal-product-text">
-        <p class="modal-product modal-product-name">${e}</p>
+        <p class="modal-product modal-product-name">${s}</p>
         <div class="modal-container-descs">
           <p class="modal-product modal-product-desc">
             Category:
             <span class="modal-product-desc modal-product-desc-value"
-              >${o}</span
+              >${a}</span
             >
           </p>
 
           <p class="modal-product modal-product-desc">
             Size:
             <span class="modal-product-desc modal-product-desc-value"
-              >${c}</span
+              >${o}</span
             >
           </p>
 
           <p class="modal-product modal-product-desc">
             Popularity:
-            <span class="modal-product-desc modal-product-desc-value">${s}</span>
+            <span class="modal-product-desc modal-product-desc-value">${r}</span>
           </p>
         </div>
 
         <p class="modal-product-description" style="overflow-y:auto; max-height: 200px">
-         ${a}
+         ${c}
 
         </p>
       </div>
     </div>
 
     <div class="container-cost-button">
-      <p class="modal-product-cost">$${r}</p>
+      <p class="modal-product-cost">$${e}</p>
       <button class="modal-wimdow-add-to-cart-btn">
         Add to
         <svg class="modal-product-addtocart" width="18" height="18">
-          <use href="../img/sptite.svg#icon-cart"></use>
+          <use href="${n}#icon-cart"></use>
         </svg>
       </button>
     </div>
   </div>
 </div>
     
-    `}function j(){const t=document.querySelector("[data-modal-close]"),e=document.querySelector("[data-modal]"),o=document.querySelector(".backdrop");t.addEventListener("click",a),o.addEventListener("click",c);function c(r){r.target===o&&(a(),o.removeEventListener("click",c))}document.addEventListener("keydown",s);function s(r){r.code==="Escape"&&a()}function a(){console.log("!!!!!!!"),e.remove(),document.removeEventListener("keydown",s),t.removeEventListener("click",a)}d.addEventListener("click",l)}
+    `}function I(){const t=document.querySelector("[data-modal-close]"),s=document.querySelector("[data-modal]"),a=document.querySelector(".backdrop");t.addEventListener("click",c),a.addEventListener("click",o);function o(e){e.target===a&&(c(),a.removeEventListener("click",o))}document.addEventListener("keydown",r);function r(e){e.code==="Escape"&&c()}function c(){s.remove(),document.removeEventListener("keydown",r),t.removeEventListener("click",c)}d.addEventListener("click",i)}L();x();w();
 //# sourceMappingURL=commonHelpers2.js.map

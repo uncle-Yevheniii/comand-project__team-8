@@ -1,4 +1,4 @@
-import{c as l}from"./assets/sptite-6e6a83f4.js";const n="/comand-project__team-8/assets/yellow-shopping-basket@1x-fe591d80.png",m="/comand-project__team-8/assets/yellow-shopping-basket@2x-61cba68c.png",v=`
+import{s as l}from"./assets/sptite-38d11adb.js";const n="/comand-project__team-8/assets/yellow-shopping-basket@1x-fe591d80.png",m="/comand-project__team-8/assets/yellow-shopping-basket@2x-61cba68c.png",v=`
     <picture class="empty-basket">
         <source srcset="${n} 1x, ${m} 2x" />
         <img src="${n}" alt="basket" class="basket-empty-img"/>
@@ -23,14 +23,14 @@ import{c as l}from"./assets/sptite-6e6a83f4.js";const n="/comand-project__team-8
             </div>
 
             <ul class="cart-with-items-list">
-            ${t.map(({category:a,img:c,name:r,price:d,size:u,_id:s})=>`
-                <li class="cart-product-list" data-cart-product-id=${s}>
+            ${t.map(({category:a,img:s,name:c,price:d,size:u,_id:r})=>`
+                <li class="cart-product-list" data-cart-product-id=${r}>
                     <div class="cart-product-img-container">
-                        <img class="cart-product-img" src=${c} alt=${r}/>
+                        <img class="cart-product-img" src=${s} alt=${c}/>
                     </div>
                     <div class="cart-product-list-description">
                     <div class="cart-product-list-info">
-                        <p class="cart-product-name">${r}</p>
+                        <p class="cart-product-name">${c}</p>
                         <div class="cart-product-features">
                             <p class="cart-product-category">Category: <span class="cart-product-category-span">${a.replace(/_/g," ")}</span></p>
                             <p class="cart-product-size">Size: <span class="cart-product-size-span">${u}</span></p>
@@ -38,9 +38,9 @@ import{c as l}from"./assets/sptite-6e6a83f4.js";const n="/comand-project__team-8
                         <p class="cart-product-info-price">$${d}</p>
                     </div>
                     <div class="cart-product-list-remove">
-                        <button class="cart-product-remove-btn" type="button" data-remove=${s}>
-                        <svg class="cart-product-remove-svg" data-remove=${s}>
-                            <use href="${l}#icon-close" data-remove=${s}></use>
+                        <button class="cart-product-remove-btn" type="button" data-remove=${r}>
+                        <svg class="cart-product-remove-svg" data-remove=${r}>
+                            <use href="${l}#icon-close" data-remove=${r}></use>
                         </svg>
                         </button>
                     </div>
@@ -68,5 +68,5 @@ import{c as l}from"./assets/sptite-6e6a83f4.js";const n="/comand-project__team-8
                     <button type="submit" class="cart-form-btn">Checkout</button>
                 </form>
             </div>
-    `}function y(t){const e=document.querySelector(".cart-with-items-list");e&&e.addEventListener("click",a=>{const c=t.filter(r=>r._id!==a.target.dataset.remove);localStorage.setItem("cart",JSON.stringify(c)),o(c)})}const i=document.querySelector(".js-basket"),h=JSON.parse(localStorage.getItem("cart"))||[];function o(t){p(),t.length===0?i.innerHTML=v:i.innerHTML=b(t),g(),y(t)}o(h);
+    `}function y(t){const e=document.querySelector(".cart-with-items-list");e&&e.addEventListener("click",a=>{const s=t.filter(c=>c._id!==a.target.dataset.remove);localStorage.setItem("cart",JSON.stringify(s)),o(s)})}const i=document.querySelector(".js-basket"),h=JSON.parse(localStorage.getItem("cart"))||[];function o(t){p(),t.length===0?i.innerHTML=v:i.innerHTML=b(t),g(),y(t)}o(h);
 //# sourceMappingURL=commonHelpers.js.map
