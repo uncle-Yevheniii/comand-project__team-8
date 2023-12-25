@@ -132,18 +132,64 @@ function createMarkup(info) {
     `;
 }
 
+// function handleProductModal() {
+//   const closeModalBtn = document.querySelector('[data-modal-close]');
+//   const modal = document.querySelector('[data-modal]');
+//   const backdrop = document.querySelector('.backdrop');
+//    function toggleModal() {
+//       console.log('!!!!!!!');
+//      modal.remove();
+//       //  modal.parentElement.removeChild(modal); 
+//       // document.removeEventListener('keydown', handleKey);
+//       closeModalBtn.removeEventListener('click', toggleModal);
+//     }
+//   closeModalBtn.addEventListener('click', toggleModal);
+//   backdrop.addEventListener('click', handleBackdrop);
+//   function handleBackdrop(event) {
+//     if (event.target !== backdrop) {
+//       return;
+//     }
+//     toggleModal();
+//     backdrop.removeEventListener('click', handleBackdrop);
+//   }
+//   document.addEventListener('keydown', handleKey);
+
+//   function handleKey(event) {
+//     if (event.code === 'Escape') {
+//       toggleModal();
+//             document.removeEventListener('keydown', handleKey);
+//     }
+
+ 
+//     ul.addEventListener('click', handleCardClick);
+//     list.addEventListener('click', handleCardProductClick);
+//     // list.addEventListener("click", handleCardPopularClick);
+//   }
+// }
+
+// function showLoader(span) {
+//   span.style.visibility = 'visible';
+// }
+
+// function hideLoader(span) {
+//   span.style.display = 'none';
+// }
+
+
 function handleProductModal() {
   const closeModalBtn = document.querySelector('[data-modal-close]');
-  const modal = document.querySelector('[data-modal]');
   const backdrop = document.querySelector('.backdrop');
-   function toggleModal() {
-      console.log('!!!!!!!');
+
+  function toggleModal() {
+    const modal = document.querySelector('[data-modal]');
+    if (modal) {
       modal.remove();
-      document.removeEventListener('keydown', handleKey);
       closeModalBtn.removeEventListener('click', toggleModal);
+      document.removeEventListener('keydown', handleKey);
+      backdrop.removeEventListener('click', handleBackdrop);
     }
-  closeModalBtn.addEventListener('click', toggleModal);
-  backdrop.addEventListener('click', handleBackdrop);
+  }
+
   function handleBackdrop(event) {
     if (event.target !== backdrop) {
       return;
@@ -151,24 +197,23 @@ function handleProductModal() {
     toggleModal();
     backdrop.removeEventListener('click', handleBackdrop);
   }
-  document.addEventListener('keydown', handleKey);
 
   function handleKey(event) {
     if (event.code === 'Escape') {
       toggleModal();
+      document.removeEventListener('keydown', handleKey);
     }
 
- 
     ul.addEventListener('click', handleCardClick);
     list.addEventListener('click', handleCardProductClick);
-    // list.addEventListener("click", handleCardPopularClick);
   }
-}
 
-function showLoader(span) {
-  span.style.visibility = 'visible';
-}
+  closeModalBtn.addEventListener('click', toggleModal);
+  backdrop.addEventListener('click', handleBackdrop);
+  document.addEventListener('keydown', handleKey);
 
-function hideLoader(span) {
-  span.style.display = 'none';
+  // Prevent attaching multiple listeners to the same modal
+  if (!document.querySelector('[data-modal]')) {
+    body.insertAdjacentHTML('beforeend', createMarkup(info));
+  }
 }
