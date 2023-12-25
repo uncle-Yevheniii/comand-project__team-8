@@ -1,48 +1,48 @@
-import axios from "axios";
+import axios from 'axios';
+import sprite from '../img/sptite.svg';
+import { popular_products_ul, body } from '../refs';
 // import { handleModal } from "./modal";
-const ul = document.querySelector(".wrapperPopularProduct");
-console.log(ul);
-const body = document.querySelector("body")
-ul.addEventListener("click", handleCardClick);
-
-
-
+// const ul = document.querySelector('.wrapperPopularProduct');
+// const body = document.querySelector('body');
+popular_products_ul.addEventListener('click', handleCardClick);
 
 async function handleCardClick(event) {
-    ul.removeEventListener("click", handleCardClick);
-    const product = event.target.closest("li");
-    // delete later for button
-    // delete if click is not li
-    const id = product.dataset.id;
+  popular_products_ul.removeEventListener('click', handleCardClick);
 
-    const info = await serviceProductInfo(id);
-    console.log(info);
-    // createMarkup(info);
-    // console.log(createMarkup(info));
-    body.insertAdjacentHTML("beforeend", createMarkup(info))
-    // handleModal();
-handleProductModal() 
+  if (event.target.closest('button')) {
+    return popular_products_ul.addEventListener('click', handleCardClick);
+  }
+  const product = event.target.closest('li');
+
+  // delete later for button
+  // delete if click is not li
+  const id = product.dataset.id;
+
+  const info = await serviceProductInfo(id);
+  // console.log(info);
+  // createMarkup(info);
+  // console.log(createMarkup(info));
+  body.insertAdjacentHTML('beforeend', createMarkup(info));
+  // handleModal();
+  handleProductModal();
 }
 
-
-
 async function serviceProductInfo(id) {
-    const BASE_URL = "https://food-boutique.b.goit.study/api/products/";
+  const BASE_URL = 'https://food-boutique.b.goit.study/api/products/';
 
-
-
-    return axios.get(`${BASE_URL}${id}`)
-        .then(resp => {
-            return resp.data
-        })
-        .catch(error => {
-            throw new Error(error)
-        })
+  return axios
+    .get(`${BASE_URL}${id}`)
+    .then(resp => {
+      return resp.data;
+    })
+    .catch(error => {
+      throw new Error(error);
+    });
 }
 
 function createMarkup(info) {
-    const { name, category, size, popularity, desc, price, img } = info;
-    return `
+  const { name, category, size, popularity, desc, price, img } = info;
+  return `
     <div class="backdrop" data-modal>
   <div class="modal-container" data-modal>
     <svg
@@ -51,7 +51,7 @@ function createMarkup(info) {
       height="22"
       data-modal-close
     >
-      <use href="../img/sptite.svg#icon-close"></use>
+      <use href="${sprite}#icon-close"></use>
     </svg>
     <div class="modal-product-img-text">
       <div class="modal-product-container-img">
@@ -98,43 +98,42 @@ function createMarkup(info) {
       <button class="modal-wimdow-add-to-cart-btn">
         Add to
         <svg class="modal-product-addtocart" width="18" height="18">
-          <use href="../img/sptite.svg#icon-cart"></use>
+          <use href="${sprite}#icon-cart"></use>
         </svg>
       </button>
     </div>
   </div>
 </div>
     
-    `
+    `;
 }
 
 function handleProductModal() {
-    const closeModalBtn = document.querySelector("[data-modal-close]");
-    const modal = document.querySelector("[data-modal]");
-     const backdrop= document.querySelector(".backdrop");
+  const closeModalBtn = document.querySelector('[data-modal-close]');
+  const modal = document.querySelector('[data-modal]');
+  const backdrop = document.querySelector('.backdrop');
 
-closeModalBtn.addEventListener("click", toggleModal);
-    backdrop.addEventListener("click", handleBackdrop);
-      function handleBackdrop(event) {
+  closeModalBtn.addEventListener('click', toggleModal);
+  backdrop.addEventListener('click', handleBackdrop);
+  function handleBackdrop(event) {
     if (event.target !== backdrop) {
       return;
     }
-          toggleModal();
-              backdrop.removeEventListener("click", handleBackdrop);
-      }
-       document.addEventListener("keydown", handleKey);
+    toggleModal();
+    backdrop.removeEventListener('click', handleBackdrop);
+  }
+  document.addEventListener('keydown', handleKey);
 
-      function handleKey(event) {
-        if (event.code === "Escape") {
-          toggleModal();
- 
-        }
+  function handleKey(event) {
+    if (event.code === 'Escape') {
+      toggleModal();
     }
- function toggleModal() {
-     console.log("!!!!!!!");
-     modal.remove();
-     document.removeEventListener("keydown", handleKey);
-     closeModalBtn.removeEventListener("click", toggleModal);
- }
-    ul.addEventListener("click", handleCardClick);
+  }
+  function toggleModal() {
+    // console.log('!!!!!!!');
+    modal.remove();
+    document.removeEventListener('keydown', handleKey);
+    closeModalBtn.removeEventListener('click', toggleModal);
+  }
+  popular_products_ul.addEventListener('click', handleCardClick);
 }
