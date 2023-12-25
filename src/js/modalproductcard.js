@@ -55,26 +55,21 @@ async function handleCardClick(event) {
 handleProductModal() 
 }
 
-
-
 async function serviceProductInfo(id) {
-    const BASE_URL = "https://food-boutique.b.goit.study/api/products/";
+  const BASE_URL = 'https://food-boutique.b.goit.study/api/products/';
 
-
-
-    return axios.get(`${BASE_URL}${id}`)
-        .then(resp => {
-            return resp.data
-        })
-        .catch(error => {
-            throw new Error(error)
-        })
+  return axios
+    .get(`${BASE_URL}${id}`)
+    .then(resp => {
+      return resp.data;
+    })
+    .catch(error => {
+      throw new Error(error);
+    });
 }
 
-function createMarkup(info) {
-    const { name, category, size, popularity, desc, price, img } = info;
+function createMarkup(info) {    const { name, category, size, popularity, desc, price, img } = info;
     return `
-
     <div class="backdrop" data-modal>
   <div class="modal-container modal-product" data-modal">
     <svg
@@ -83,7 +78,7 @@ function createMarkup(info) {
       height="22"
       data-modal-close
     >
-      <use href="../img/sptite.svg#icon-close"></use>
+      <use href="${sprite}#icon-close"></use>
     </svg>
     <div class="modal-product-img-text">
       <div class="modal-product-container-img">
@@ -137,32 +132,31 @@ function createMarkup(info) {
   </div>
 </div>
     
-    `
+    `;
 }
 
 function handleProductModal() {
-    const closeModalBtn = document.querySelector("[data-modal-close]");
-    const modal = document.querySelector("[data-modal]");
-     const backdrop= document.querySelector(".backdrop");
+  const closeModalBtn = document.querySelector('[data-modal-close]');
+  const modal = document.querySelector('[data-modal]');
+  const backdrop = document.querySelector('.backdrop');
 
-closeModalBtn.addEventListener("click", toggleModal);
-    backdrop.addEventListener("click", handleBackdrop);
-      function handleBackdrop(event) {
+  closeModalBtn.addEventListener('click', toggleModal);
+  backdrop.addEventListener('click', handleBackdrop);
+  function handleBackdrop(event) {
     if (event.target !== backdrop) {
       return;
     }
-          toggleModal();
-              backdrop.removeEventListener("click", handleBackdrop);
-      }
-       document.addEventListener("keydown", handleKey);
+    toggleModal();
+    backdrop.removeEventListener('click', handleBackdrop);
+  }
+  document.addEventListener('keydown', handleKey);
 
-      function handleKey(event) {
-        if (event.code === "Escape") {
-          toggleModal();
- 
-        }
+  function handleKey(event) {
+    if (event.code === 'Escape') {
+      toggleModal();
     }
- function toggleModal() {
+    
+    function toggleModal() {
      console.log("!!!!!!!");
      modal.remove();
      document.removeEventListener("keydown", handleKey);
@@ -183,4 +177,5 @@ function hideLoader(span) {
 
     
     span.style.display = "none";
+
 }

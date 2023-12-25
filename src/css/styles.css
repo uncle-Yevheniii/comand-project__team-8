@@ -167,3 +167,10 @@ body {
   font-family: var(--main-font);
   color: var(--p_color-text);
 }
+
+@media only screen and (min-width: 1440px) {
+  .wrapper {
+    display: flex;
+    gap: 40px;
+  }
+}
