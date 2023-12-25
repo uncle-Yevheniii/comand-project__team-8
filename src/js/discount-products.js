@@ -3,20 +3,6 @@ import svgIcon from '../img/sptite.svg';
 import { discountProduct } from '../API';
 const cardDiscountProd = document.querySelector('.card-discount-prod');
 
-//запит
-// async function fetchDiscountProd() {
-//   try {
-//     const response = await axios.get(
-//       'https://food-boutique.b.goit.study/api/products/discount'
-//     );
-//     console.log('data', response.data);
-//     return response.data;
-//   } catch (error) {
-//     console.log(error.message);
-//   }
-// }
-// console.log(fetchDiscountProd());
-
 //розмітка
 function createMarkupDiscountProd(data) {
   return data
@@ -85,5 +71,5 @@ function slider() {
 }
 
 function autoSlider() {
-  timer = setTimeout(slider, 3500);
+  timer = setTimeout(slider, 4000);
 }
