@@ -483,3 +483,35 @@
     overflow: visible;
   }
 }
+
+@media screen and (min-width: 1280px) {
+  .cart-info{
+    padding-top: 81px;
+  }
+  /* Empty basket */
+  .basket-empty-img{
+    margin-top: 150px;
+  }
+  .empty-basket-text{
+    width: 387px;
+    padding-bottom: 150px;
+  }
+  /* Basket with items */
+  .cart-delete-all{
+    margin-top: 14px;
+    margin-bottom: 44px;
+  }
+  .cart-product-list::after{
+    width: 500px;
+  }
+  .js-basket .basket-full-container{
+    display: flex;
+    gap: 101px;
+  }
+  .cart-with-items-container{
+    width: 100%;
+  }
+  .basket-full-container{
+    margin-bottom: 100px;
+  }
+}

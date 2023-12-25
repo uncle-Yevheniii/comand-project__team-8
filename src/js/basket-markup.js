@@ -3,6 +3,7 @@ import icons from '../img/sptite.svg';
 
 export function basketMarkup(USER_CART) {
     const cart = `
+    <div class="basket-full-container">
         <div class="cart-with-items-container">
         
             <div class="cart-delete-all">
@@ -62,6 +63,7 @@ export function basketMarkup(USER_CART) {
                     <button type="submit" class="cart-form-btn">Checkout</button>
                 </form>
             </div>
+    </div>
     `;
     return cart
 };
