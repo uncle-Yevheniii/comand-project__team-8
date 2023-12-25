@@ -1,8 +1,8 @@
 import { popularProdact } from '../API.js';
+import { popular_products_ul } from '../refs';
 import cartIcon from '../img/sptite.svg';
 
 document.addEventListener('DOMContentLoaded', onReload);
-const popularList = document.querySelector(`.wrapperPopularProduct`);
 async function onReload() {
   try {
     const markup = await generatePopularCardListMarkup();
@@ -16,7 +16,7 @@ async function onReload() {
 
 function renderCards({ category, img, name, popularity, size, _id }) {
   return `
-  <li class="popular__products-items data-itemId =${_id}">
+  <li data-id='${_id}' class="popular__products-items  ">
   <div class="img-box">
     <img
       class="popular__products-img"
@@ -52,7 +52,7 @@ function renderCards({ category, img, name, popularity, size, _id }) {
 async function generatePopularCardListMarkup() {
   try {
     const popularCards = await popularProdact();
-    console.log(popularCards);
+    // console.log(popularCards);
     return popularCards.reduce(
       (markup, productCard) => markup + renderCards(productCard),
       ''
@@ -63,10 +63,10 @@ async function generatePopularCardListMarkup() {
 }
 
 function updateCardList(markup) {
-  popularList.insertAdjacentHTML('beforeend', markup);
+  popular_products_ul.insertAdjacentHTML('beforeend', markup);
 }
 
 function onError() {
   console.error('Error:', err);
-  popularList.innerHTML = '';
+  popular_products_ul.innerHTML = '';
 }
