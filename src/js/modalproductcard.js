@@ -1,58 +1,54 @@
-import axios from "axios";
+import axios from 'axios';
 import cartIcon from '../img/sptite.svg';
 // import { handleModal } from "./modal";
-const ul = document.querySelector(".wrapperPopularProduct");
+const ul = document.querySelector('.wrapperPopularProduct');
 console.log(ul);
-const body = document.querySelector("body")
-ul.addEventListener("click", handleCardClick);
+const body = document.querySelector('body');
+ul.addEventListener('click', handleCardClick);
 
-const list = document.querySelector(".products-list");
+const list = document.querySelector('.products-list');
 console.log(list);
-list.addEventListener("click", handleCardProductClick )
-
+list.addEventListener('click', handleCardProductClick);
 
 async function handleCardProductClick(event) {
-    list.removeEventListener("click", handleCardProductClick);
+  list.removeEventListener('click', handleCardProductClick);
 
+  const product = event.target.closest('.productlist-card');
 
-  
-       const product = event.target.closest(".productlist-card");
+  if (product === null || event.target.closest('.productlist-card-btn')) {
+    list.addEventListener('click', handleCardProductClick);
+    return;
+  }
+  console.log(product);
+  // delete later for button
 
+  const id = product.dataset.id;
 
-    if (product === null||event.target.closest(".productlist-card-btn")) {
-    list.addEventListener("click", handleCardProductClick )
-        return;
- }
-    console.log(product);
-    // delete later for button
+  const info = await serviceProductInfo(id);
+  console.log(info);
 
-    const id = product.dataset.id;
+  body.insertAdjacentHTML('beforeend', createMarkup(info));
 
-    const info = await serviceProductInfo(id);
-    console.log(info);
-
-    body.insertAdjacentHTML("beforeend", createMarkup(info))
-
-handleProductModal() 
+  handleProductModal();
 }
 
 async function handleCardClick(event) {
-    ul.removeEventListener("click", handleCardClick);
-    const product = event.target.closest("li");
-        if (product === null||event.target.closest(".productlist-card-btn")) {
-     ul.addEventListener("click", handleCardClick);
-        return;
- }
-    // delete later for button
-    // delete if click is not li
-    const id = product.dataset.id;
+  ul.removeEventListener('click', handleCardClick);
+  const product = event.target.closest('li');
+  if (product === null || event.target.closest('.productlist-card-btn')) {
+    ul.addEventListener('click', handleCardClick);
+    return;
+  }
+  // delete later for button
+  // delete if click is not li
+  const id = product.dataset.id;
 
-    const info = await serviceProductInfo(id);
-    console.log(info);
+  const info = await serviceProductInfo(id);
+  console.log(info);
 
-    body.insertAdjacentHTML("beforeend", createMarkup(info))
+  body.insertAdjacentHTML('beforeend', createMarkup(info));
 
-handleProductModal() 
+  handleProductModal();
 }
 
 async function serviceProductInfo(id) {
@@ -68,8 +64,9 @@ async function serviceProductInfo(id) {
     });
 }
 
-function createMarkup(info) {    const { name, category, size, popularity, desc, price, img } = info;
-    return `
+function createMarkup(info) {
+  const { name, category, size, popularity, desc, price, img } = info;
+  return `
     <div class="backdrop" data-modal>
   <div class="modal-container modal-product" data-modal">
     <svg
@@ -155,27 +152,23 @@ function handleProductModal() {
     if (event.code === 'Escape') {
       toggleModal();
     }
-    
+
     function toggleModal() {
-     console.log("!!!!!!!");
-     modal.remove();
-     document.removeEventListener("keydown", handleKey);
-     closeModalBtn.removeEventListener("click", toggleModal);
- }
-    ul.addEventListener("click", handleCardClick);
-    list.addEventListener("click", handleCardProductClick )
+      console.log('!!!!!!!');
+      modal.remove();
+      document.removeEventListener('keydown', handleKey);
+      closeModalBtn.removeEventListener('click', toggleModal);
+    }
+    ul.addEventListener('click', handleCardClick);
+    list.addEventListener('click', handleCardProductClick);
     // list.addEventListener("click", handleCardPopularClick);
+  }
 }
 
-
 function showLoader(span) {
-    
-    span.style.visibility = "visible";
+  span.style.visibility = 'visible';
 }
 
 function hideLoader(span) {
-
-    
-    span.style.display = "none";
-
+  span.style.display = 'none';
 }
