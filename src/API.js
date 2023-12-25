@@ -2,6 +2,7 @@ import axios from 'axios'
 
 
 
+
 export async function fetchCategories() {
     const url = 'https://food-boutique.b.goit.study/api/products/categories';
     try {
@@ -44,3 +45,60 @@ export async function discountProduct() {
     const res = await axios.get(url);
     return res.data;   
 }
+
+export async function findProductCard(id) {
+  const url = `https://food-boutique.b.goit.study/api/products/${id}`;
+  const res = await axios.get(url);
+  return res.data;
+  }
+
+
+
+export async function postSubscribe(email){
+  const url='https://food-boutique.b.goit.study/api/subscription';
+  const emailData ={
+    email:email
+  };
+  try {
+    const res = await axios.post(url,emailData);
+  alert(res.data.message);
+  console.log(res.data);
+  return res.data; 
+}  catch(error){    
+      alert('Oops! Something went wrong');
+      console.error('Произошла ошибка при отправке:', error);
+      throw error;     
+  }
+}
+
+
+export async function postOrders({email, products}){
+  const url='https://food-boutique.b.goit.study/api/orders';
+  const order ={
+    email:email,
+    products:products
+  };
+  try {
+    const res = await axios.post(url,order);
+  alert(res.data.message);
+  console.log(res.data);
+  return res.data; 
+}  catch(error){    
+      alert('Oops! Something went wrong');
+      console.error('Произошла ошибка при отправке:', error);
+      throw error;     
+  }
+}
+//То что должно прилететь как параметр в postOrder
+// const orderData = {
+//   email: 'examp@email5799.com',
+//   products: [
+//     { productId: "640c2dd963a319ea671e383b",
+//      amount: 2 }   
+//   ]
+// };
+
+
+
+ 
+
