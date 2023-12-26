@@ -115,18 +115,26 @@
   border: none;
   transition: background var(--animation);
 }
-.productlist-card-btn:active {
+.productlist-card-btn:disabled {
+  cursor: default;
+}
+.productlist-card-btn:active:not([disabled]) {
   background: var(--c_color);
 }
 
 @media (hover: hover) {
-  .productlist-card-btn:hover,
-  .productlist-card-btn:focus {
+  .productlist-card-btn:hover:not([disabled]),
+  .productlist-card-btn:focus:not([disabled]) {
     background: var(--c_color);
   }
 }
 .productlist-card-icon-cart {
   fill: var(--background);
+  stroke: none;
+}
+.productlist-card-icon-check {
+  stroke: var(--background);
+  fill: none;
 }
 
 .productlist-dicount {
