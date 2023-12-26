@@ -3,6 +3,7 @@ import icons from '../img/sptite.svg';
 
 export function basketMarkup(USER_CART) {
     const cart = `
+    <div class="basket-full-container">
         <div class="cart-with-items-container">
         
             <div class="cart-delete-all">
@@ -16,7 +17,7 @@ export function basketMarkup(USER_CART) {
 
             <ul class="cart-with-items-list">
             ${USER_CART.map(
-                ({ category, img, name, price, size, _id }) => `
+                ({ category, img, name, price, size, _id, quantity }) => `
                 <li class="cart-product-list" data-cart-product-id=${_id}>
                     <div class="cart-product-img-container">
                         <img class="cart-product-img" src=${img} alt=${name}/>
@@ -36,6 +37,19 @@ export function basketMarkup(USER_CART) {
                             <use href="${icons}#icon-close" data-remove=${_id}></use>
                         </svg>
                         </button>
+                        <div class="cart-product-count-container">
+                            <button class="cart-product-count-decrease" type="button" data-decrease=${_id}>
+                                <svg class="cart-product-count-decrease-svg" data-decrease=${_id} hidden>
+                                    <use href="${icons}#icon-" data-decrease=${_id}></use>
+                                </svg>
+                            </button>
+                            <p class="cart-product-count-text" data-count="${_id}">${quantity}</p>
+                            <button class="cart-product-count-increase" type="button" data-increase=${_id}>
+                                <svg class="cart-product-count-increase-svg" data-increase=${_id} hidden>
+                                    <use href="${icons}#icon-" data-increase=${_id}></use>
+                                </svg>
+                            </button>
+                        </div>
                     </div>
                 </div>
                 </li>
@@ -62,6 +76,7 @@ export function basketMarkup(USER_CART) {
                     <button type="submit" class="cart-form-btn">Checkout</button>
                 </form>
             </div>
+    </div>
     `;
     return cart
 };
