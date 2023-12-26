@@ -4,7 +4,7 @@ import { discountProduct } from '../API';
 const cardDiscountProd = document.querySelector('.card-discount-prod');
 
 import { localStorageSettings, localStorageCart } from '../local-storage.js';
-import 
+import '../js/modalproductcard.js';
 
 localStorageSettings();
 localStorageCart();
@@ -56,9 +56,6 @@ function cardDrawing() {
 }
 
 cardDrawing();
-
-const btn = document.querySelector('.btn-icon-cart')
-btn.addEventListener('click', )
 
 //випадкові картинки
 // function swap(data) {
