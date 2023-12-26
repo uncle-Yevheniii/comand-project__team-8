@@ -1,6 +1,7 @@
 import SlimSelect from 'slim-select';
 import '../../node_modules/slim-select/dist/slimselect.css';
 import { fetchCategories, fetchData } from '../API';
+import { productsGeneretor } from './products-list';
 
 const searchForm = document.querySelector('.filters-form');
 const searchInput = document.querySelector('.filters-form-input');
@@ -35,11 +36,6 @@ const renderSelects = async () => {
 
 renderSelects();
 
-const renderProducts = async query => {
-  const data = await fetchData(query);
-  console.log(data.results);
-};
-
 const onForm = event => {
   event.preventDefault();
   const currentValue = searchInput.value.trim();
@@ -47,8 +43,8 @@ const onForm = event => {
   const query = { 
     keyword: currentValue || null, 
     category: currentCategory === 'Show all' ? null : currentCategory.trim() || null };
-  localStorage.setItem('LS_QUERY_KEY', JSON.stringify(query));
-  renderProducts(query);
+  localStorage.setItem('settings', JSON.stringify(query));
+  productsGeneretor(query);
 };
 
 const onSearchField = event => {
@@ -57,8 +53,8 @@ const onSearchField = event => {
     const query = { 
       keyword: null, 
       category: currentCategory === 'Show all' ? null : currentCategory.trim() || null };
-    localStorage.setItem('LS_QUERY_KEY', JSON.stringify(query));
-    renderProducts(query);
+    localStorage.setItem('settings', JSON.stringify(query));
+    productsGeneretor(query);
   }
 };
 
@@ -68,16 +64,16 @@ const onCategoryField = event => {
   const query = { 
     keyword: currentValue || null, 
     category: currentCategory.trim() || null };
-  localStorage.setItem('LS_QUERY_KEY', JSON.stringify(query));
-  renderProducts(query);
+  localStorage.setItem('settings', JSON.stringify(query));
+  productsGeneretor(query);
 };
 
 window.addEventListener('load', () => {
-  const savedFilters = JSON.parse(localStorage.getItem('LS_QUERY_KEY')) || { keyword: null, category: null };
+  const savedFilters = JSON.parse(localStorage.getItem('settings')) || { keyword: null, category: null };
   searchInput.value = savedFilters.keyword;
   categorySelect.value = savedFilters.category;
 
-  renderProducts(savedFilters);
+  productsGeneretor(savedFilters);
 
   searchForm.addEventListener('submit', onForm);
   categorySelect.addEventListener('change', onCategoryField);
