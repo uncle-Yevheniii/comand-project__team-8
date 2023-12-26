@@ -2,6 +2,7 @@ import axios from 'axios';
 import svgIcon from '../img/sptite.svg';
 import { discountProduct } from '../API';
 const cardDiscountProd = document.querySelector('.card-discount-prod');
+
 import { localStorageSettings, localStorageCart } from '../local-storage.js';
 localStorageSettings();
 localStorageCart();
