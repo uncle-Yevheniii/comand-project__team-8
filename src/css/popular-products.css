@@ -1,0 +1,108 @@
+/* .wrapperPopularProduct{
+    display: flex;
+    flex-direction: column;
+} */
+
+.popular__products-title {
+  font-size: 28px;
+  font-weight: 500;
+  line-height: 1.14; /* 114.286% */
+
+  margin-bottom: 20px;
+}
+@media only screen and (min-width: 768px) {
+  .wrapperPopularProduct {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 13px;
+  }
+}
+@media only screen and (min-width: 1440px) {
+  .wrapperPopularProduct {
+    display: block;
+  }
+}
+
+.popular__products-items {
+  position: relative;
+
+  margin-bottom: 20px;
+  display: flex;
+  gap: 10px;
+
+  max-width: 311px;
+  padding: 12px;
+  border-radius: 10px;
+  background: var(--current-white);
+}
+@media only screen and (min-width: 768px) {
+  .popular__products-items {
+    width: 275px;
+    margin: 0;
+  }
+}
+@media only screen and (min-width: 1440px) {
+  .popular__products-items {
+    margin-bottom: 13px;
+  }
+}
+.img-box {
+  padding: 9px;
+  max-width: 65px;
+  max-height: 65px;
+  border-radius: 10px;
+  background: var(--background);
+}
+.popular__products-name {
+  font-size: 18px;
+  font-weight: 500;
+  line-height: 1.11; /* 111.111% */
+
+  margin-bottom: 12px;
+}
+@media only screen and (min-width: 768px) {
+  .popular__products-name {
+    font-size: 20px;
+    line-height: 1.2; /* 120% */
+  }
+}
+.popular__products-text {
+  color: var(--p_color-text-alfa30);
+  font-size: 12px;
+  line-height: 1.16; /* 116.667% */
+}
+
+.js-popular__products-category,
+.js-popular__products-size,
+.js-popular__products-popularity {
+  color: var(--p_color-text);
+  margin-left: 4px;
+}
+.add-ifo-box {
+  margin-top: 9px;
+  display: flex;
+  gap: 9px;
+}
+.popular__products-button {
+  position: absolute;
+  top: 12px;
+  right: 12px;
+
+  padding: 4px;
+  max-width: 20px;
+  max-height: 20px;
+  border-radius: 30px;
+  color: var(--p_color);
+  background: var(--background);
+  border: none;
+
+  transition: var(--animation);
+}
+.popular__products-button:hover,
+.popular__products-button:active {
+  color: var(--background);
+  background: var(--p_color);
+}
+.popular__products-svg {
+  fill: currentColor;
+}

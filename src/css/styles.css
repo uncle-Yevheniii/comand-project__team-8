@@ -1,4 +1,4 @@
-/**
+/*
   |============================
   | include css partials with
   | default @import url()
@@ -12,6 +12,12 @@
 @import url('./discount-products.css');
 @import url('./products-list.css');
 @import url('./footer.css');
+
+@import url('./modalwindowproduct.css');
+@import url('./modalwindow-subscribing.css');
+@import url('./modalwindowemail.css');
+@import url('./cartmodal.css');
+
 @import url('./product-basket.css');
 
 :root {
@@ -45,7 +51,7 @@
 /* phone screen*/
 .container {
   min-width: 320px;
-  max-width: 375px;
+  max-width: 335px;
 
   margin-left: auto;
   margin-right: auto;
@@ -56,8 +62,7 @@
 /* tablet screen */
 @media only screen and (min-width: 768px) {
   .container {
-    max-width: 768px;
-
+    max-width: 704px;
     padding-left: 32px;
     padding-right: 32px;
   }
@@ -144,9 +149,28 @@
   font-weight: 700;
   font-style: italic;
 }
+/* Regular - звичайний */
+@font-face {
+  font-family: 'Fontspring-DEMO-quincycf';
+  src: url('./fonts/Fontspring-DEMO-quincycf-regular.otf') format('opentype');
+  font-weight: 400;
+}
+/* Black - чорний */
+@font-face {
+  font-family: 'Fontspring-DEMO-quincycf';
+  src: url('./fonts/Fontspring-DEMO-quincycf-black.otf') format('opentype');
+  font-weight: 900;
+}
 
 body {
   background-color: var(--background);
   font-family: var(--main-font);
   color: var(--p_color-text);
+}
+
+@media only screen and (min-width: 1440px) {
+  .wrapper {
+    display: flex;
+    gap: 40px;
+  }
 }
