@@ -47,7 +47,7 @@ const onForm = event => {
   const query = { 
     keyword: currentValue || null, 
     category: currentCategory === 'Show all' ? null : currentCategory.trim() || null };
-  localStorage.setItem('LS_QUERY_KEY', JSON.stringify(query));
+  localStorage.setItem('settings', JSON.stringify(query));
   renderProducts(query);
 };
 
@@ -57,7 +57,7 @@ const onSearchField = event => {
     const query = { 
       keyword: null, 
       category: currentCategory === 'Show all' ? null : currentCategory.trim() || null };
-    localStorage.setItem('LS_QUERY_KEY', JSON.stringify(query));
+    localStorage.setItem('settings', JSON.stringify(query));
     renderProducts(query);
   }
 };
@@ -68,12 +68,12 @@ const onCategoryField = event => {
   const query = { 
     keyword: currentValue || null, 
     category: currentCategory.trim() || null };
-  localStorage.setItem('LS_QUERY_KEY', JSON.stringify(query));
+  localStorage.setItem('settings', JSON.stringify(query));
   renderProducts(query);
 };
 
 window.addEventListener('load', () => {
-  const savedFilters = JSON.parse(localStorage.getItem('LS_QUERY_KEY')) || { keyword: null, category: null };
+  const savedFilters = JSON.parse(localStorage.getItem('settings')) || { keyword: null, category: null };
   searchInput.value = savedFilters.keyword;
   categorySelect.value = savedFilters.category;
 
