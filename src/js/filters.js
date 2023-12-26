@@ -21,14 +21,13 @@ let categories = [];
 
 const renderSelects = async () => {
   const data = await fetchCategories();
-  categories = [...data, 'Show all'];
+  categories = [...data];
   const markup = createCategoryMarkup(categories);
   categorySelect.insertAdjacentHTML('beforeend', markup);
 
   new SlimSelect({
     select: '#category',
     settings: {
-      placeholderText: 'Categories',
       showSearch: false,
     },
   });
