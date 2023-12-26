@@ -35,8 +35,8 @@
     min-width: 275px;
     max-width: 275px;
     max-height: 484px;
-    /* overflow: hidden;
-        animation-direction: alternate; */
+    /* transition-duration: 2s;
+    animation-direction: alternate; */
     /* border: 2px solid #161515; */
   }
 }
@@ -46,7 +46,7 @@
   position: relative;
 
   transition-duration: 2s;
-  animation-direction: alternate;
+  /* animation-direction: alternate; */
 }
 
 @media only screen and (min-width: 768px) {
@@ -66,7 +66,7 @@
     display: flex;
     flex-wrap: wrap;
     flex-direction: column;
-    gap: 21.5px;
+    gap: 21px;
   }
 }
 
