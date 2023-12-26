@@ -4,7 +4,6 @@ import { discountProduct } from '../API';
 const cardDiscountProd = document.querySelector('.card-discount-prod');
 
 import { localStorageSettings, localStorageCart } from '../local-storage.js';
-import '../js/modalproductcard.js';
 
 localStorageSettings();
 localStorageCart();
@@ -20,7 +19,7 @@ function createMarkupDiscountProd(data) {
     <div class="info-discount-prod">
       <p class="text-discount-prod">${name}</p>
       <div class="price-discount-prod">
-        <p class="text-discount-prod">$${price}</p>
+        <p class="text-discount-prod price-text-disc">$${price}</p>
         <button type="button" class="btn-icon-cart">
           <svg class="icon-cart-svg" width="18" height="18">
             <use href="${svgIcon}#icon-cart"></use>
@@ -44,7 +43,6 @@ function cardDrawing() {
   discountProduct()
     .then(data => {
       // console.log(data.length);
-
       // swap(data);
 
       cardDiscountProd.insertAdjacentHTML(
@@ -108,3 +106,57 @@ function autoSlider() {
 }
 
 /////////////////////////////////////////
+window.addEventListener('load', updateHeaderCartText);
+cardDiscountProd.addEventListener('click', handleProductClick);
+
+// Функція для обробки кліку на картці товару
+function handleProductClick(event) {
+  const target = event.target;
+  const addToCartButton = target.closest('.btn-icon-cart');
+
+  if (addToCartButton) {
+    const productCard = addToCartButton.closest('.discount-prod-item');
+    const productId = productCard.dataset.id;
+
+    // Отримуємо інформацію про товар для зберігання в localStorage
+    const productInfo = {
+      id: productId,
+      name: productCard.querySelector('.text-discount-prod').textContent,
+      price: productCard.querySelector('.price-text-disc').textContent,
+      category: productCard.dataset.category,
+      img: productCard.querySelector('.discount-img').src,
+      size: productCard.dataset.size,
+    };
+    addToCart(productInfo, addToCartButton);
+  }
+}
+
+// Функція для додавання товару в кошик
+function addToCart(productInfo, button) {
+  let cartItems = JSON.parse(localStorage.getItem('cart')) || [];
+  const existingProduct = cartItems.find(item => item.id === productInfo.id);
+
+  if (existingProduct) {
+    // Змінюємо іконку на кнопці
+    const useElement = button.querySelector('.icon-cart-svg use');
+    useElement.setAttribute(
+      'style',
+      'stroke: var(--background); fill: var(--p_color);'
+    );
+    useElement.setAttribute('href', `${svgIcon}#icon-check`);
+  } else {
+    // Якщо товар ще не доданий в кошик, додаємо його та оновлюємо localStorage
+    cartItems.push(productInfo);
+    localStorage.setItem('cart', JSON.stringify(cartItems));
+  }
+  updateHeaderCartText();
+}
+
+function updateHeaderCartText() {
+  const cartItems = JSON.parse(localStorage.getItem('cart')) || [];
+  const headerSpan = document.querySelector('.js-header-span');
+
+  if (headerSpan) {
+    headerSpan.textContent = cartItems.length;
+  }
+}
