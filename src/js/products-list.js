@@ -1,6 +1,8 @@
 import sprite from '../img/sptite.svg';
 import { fetchData } from '../API.js';
 const container = document.querySelector('.products-list');
+const noProducts = document.querySelector('.products-list-none');
+let limit = 6;
 
 const defaultParams = {
   keyword: null,
@@ -8,7 +10,7 @@ const defaultParams = {
   page: 1,
   limit: 6,
 };
-// window.onresize = productsGeneretor;
+window.addEventListener('resize', windowChange);
 
 function limitChange(obj) {
   if (window.innerWidth < 768) {
@@ -30,11 +32,41 @@ export async function productsGeneretor() {
 
 async function render(params) {
   try {
-    // limitChange(params);
+    params = limitChange(params);
+    const settings = JSON.parse(localStorage.getItem('settings'));
+    settings.limit = params.limit;
+    localStorage.setItem('settings', JSON.stringify(settings));
+
     const data = await fetchData(params);
-    container.innerHTML = createCardMarkup(data.results);
+
+    if (data.results.length === 0) {
+      noProducts.classList.remove('hidden');
+      container.classList.add('hidden');
+    } else {
+      if (container.classList.contains('hidden')) {
+        noProducts.classList.add('hidden');
+        container.classList.remove('hidden');
+      }
+      container.innerHTML = createCardMarkup(data.results);
+    }
   } catch (error) {
     console.log(error.message);
+  }
+}
+function windowChange() {
+  const settings = JSON.parse(localStorage.getItem('settings'));
+
+  if (
+    (window.innerWidth < 768 && settings.limit === 6) ||
+    (window.innerWidth >= 768 &&
+      window.innerWidth < 1440 &&
+      settings.limit === 8) ||
+    (window.innerWidth >= 1440 && settings.limit === 9)
+  ) {
+    return;
+  } else {
+    console.log(`windowChange ${limit}`);
+    productsGeneretor();
   }
 }
 
@@ -93,6 +125,7 @@ function createCardMarkup(arr) {
     )
     .join('');
 }
+
 window.addEventListener('load', updateHeaderCartText);
 container.addEventListener('click', handleProductClick);
 
