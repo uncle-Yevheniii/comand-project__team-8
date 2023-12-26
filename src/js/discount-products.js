@@ -4,6 +4,8 @@ import { discountProduct } from '../API';
 const cardDiscountProd = document.querySelector('.card-discount-prod');
 
 import { localStorageSettings, localStorageCart } from '../local-storage.js';
+import 
+
 localStorageSettings();
 localStorageCart();
 
@@ -11,7 +13,7 @@ localStorageCart();
 function createMarkupDiscountProd(data) {
   return data
     .map(({ img, name, price, _id }) => {
-      return `<li class="discount-prod-item slide" data-id='${_id}' data-modal>
+      return `<li class="discount-prod-item slide" data-id='${_id}'>
     <div class="wrap-img-discount-prod">
       <img class="discount-img" src="${img}" alt="${name}">
     </div>
@@ -54,6 +56,9 @@ function cardDrawing() {
 }
 
 cardDrawing();
+
+const btn = document.querySelector('.btn-icon-cart')
+btn.addEventListener('click', )
 
 //випадкові картинки
 // function swap(data) {
