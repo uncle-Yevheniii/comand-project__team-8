@@ -1,5 +1,6 @@
 import sprite from '../img/sptite.svg';
 import { fetchData } from '../API.js';
+import { serviceProductInfo } from '../js/modalproductcard.js';
 const container = document.querySelector('.products-list');
 const noProducts = document.querySelector('.products-list-none');
 let limit = 6;
@@ -130,23 +131,18 @@ window.addEventListener('load', updateHeaderCartText);
 container.addEventListener('click', handleProductClick);
 
 // Функція для обробки кліку на картці товару
-function handleProductClick(event) {
+async function handleProductClick(event) {
   const target = event.target;
   const addToCartButton = target.closest('.productlist-card-btn');
 
+  // console.dir(document.querySelector('.productlist-card'));
   if (addToCartButton) {
     const productCard = addToCartButton.closest('.productlist-card');
     const productId = productCard.dataset.id;
 
     // Отримуємо інформацію про товар для зберігання в localStorage
-    const productInfo = {
-      id: productId,
-      name: productCard.querySelector('.productlist-card-header').textContent,
-      price: productCard.querySelector('.productlist-card-price').textContent,
-      category: productCard.dataset.category,
-      img: productCard.querySelector('.productlist-card-img').src,
-      size: productCard.dataset.size,
-    };
+    const productInfo = await serviceProductInfo(productId);
+    productInfo.quantity = 1;
     addToCart(productInfo, addToCartButton);
   }
 }
@@ -154,7 +150,7 @@ function handleProductClick(event) {
 // Функція для додавання товару в кошик
 function addToCart(productInfo, button) {
   let cartItems = JSON.parse(localStorage.getItem('cart')) || [];
-  const existingProduct = cartItems.find(item => item.id === productInfo.id);
+  const existingProduct = cartItems.find(item => item._id === productInfo._id);
 
   if (existingProduct) {
     // Змінюємо іконку на кнопці

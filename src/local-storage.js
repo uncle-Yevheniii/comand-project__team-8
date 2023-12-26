@@ -8,8 +8,16 @@ const basedParameters = {
 const cart = [];
 
 export function localStorageSettings() {
-  localStorage.setItem('settings', JSON.stringify(basedParameters));
+  //
+  if (!localStorage.getItem('settings')) {
+    return localStorage.setItem('settings', JSON.stringify(basedParameters));
+  }
+  return;
 }
 export function localStorageCart() {
-  localStorage.setItem('cart', JSON.stringify(cart));
+  //
+  if (!localStorage.getItem('cart')) {
+    return localStorage.setItem('cart', JSON.stringify(cart));
+  }
+  return;
 }

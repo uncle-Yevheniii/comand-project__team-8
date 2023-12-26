@@ -51,7 +51,7 @@ async function handleCardClick(event) {
   handleProductModal();
 }
 
-async function serviceProductInfo(id) {
+export async function serviceProductInfo(id) {
   const BASE_URL = 'https://food-boutique.b.goit.study/api/products/';
 
   return axios
