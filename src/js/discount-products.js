@@ -44,7 +44,7 @@ function cardDrawing() {
   discountProduct()
     .then(data => {
       // console.log(data.length);
-      // swap(data);
+      // randomPictures(data);
 
       cardDiscountProd.insertAdjacentHTML(
         'beforeend',
@@ -57,7 +57,7 @@ function cardDrawing() {
 cardDrawing();
 
 //випадкові картинки
-// function swap(data) {
+// function randomPictures(data) {
 //   let x = Math.floor(Math.random() * data.length);
 //   let y = Math.floor(Math.random() * data.length);
 
@@ -68,7 +68,7 @@ cardDrawing();
 //     return;
 //   }
 
-//   console.log('=', data);
+//   // console.log('=', data);
 //   let b = data[y];
 //   data[y] = data[x];
 //   data[x] = b;
