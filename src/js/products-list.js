@@ -93,3 +93,57 @@ function createCardMarkup(arr) {
     )
     .join('');
 }
+window.addEventListener('load', updateHeaderCartText);
+container.addEventListener('click', handleProductClick);
+
+// Функція для обробки кліку на картці товару
+function handleProductClick(event) {
+  const target = event.target;
+  const addToCartButton = target.closest('.productlist-card-btn');
+
+  if (addToCartButton) {
+    const productCard = addToCartButton.closest('.productlist-card');
+    const productId = productCard.dataset.id;
+
+    // Отримуємо інформацію про товар для зберігання в localStorage
+    const productInfo = {
+      id: productId,
+      name: productCard.querySelector('.productlist-card-header').textContent,
+      price: productCard.querySelector('.productlist-card-price').textContent,
+      category: productCard.dataset.category,
+      img: productCard.querySelector('.productlist-card-img').src,
+      size: productCard.dataset.size,
+    };
+    addToCart(productInfo, addToCartButton);
+  }
+}
+
+// Функція для додавання товару в кошик
+function addToCart(productInfo, button) {
+  let cartItems = JSON.parse(localStorage.getItem('cart')) || [];
+  const existingProduct = cartItems.find(item => item.id === productInfo.id);
+
+  if (existingProduct) {
+    // Змінюємо іконку на кнопці
+    const useElement = button.querySelector('.productlist-card-icon-cart use');
+    useElement.setAttribute(
+      'style',
+      'stroke: var(--background); fill: var(--p_color);'
+    );
+    useElement.setAttribute('href', `${sprite}#icon-check`);
+  } else {
+    // Якщо товар ще не доданий в кошик, додаємо його та оновлюємо localStorage
+    cartItems.push(productInfo);
+    localStorage.setItem('cart', JSON.stringify(cartItems));
+    console.log('Товар доданий в кошик!');
+  }
+  updateHeaderCartText();
+}
+function updateHeaderCartText() {
+  const cartItems = JSON.parse(localStorage.getItem('cart')) || [];
+  const headerSpan = document.querySelector('.js-header-span');
+
+  if (headerSpan) {
+    headerSpan.textContent = cartItems.length;
+  }
+}
