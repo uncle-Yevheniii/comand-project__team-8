@@ -87,6 +87,8 @@ function createCardMarkup(arr) {
         if (category.includes('_')) {
           category = category.split('_').join(' ');
         }
+        let cartItems = JSON.parse(localStorage.getItem('cart')) || [];
+        const existingProduct = cartItems.find(item => item._id === _id);
 
         return `
     <div class="productlist-card" data-id="${_id}">
@@ -108,9 +110,15 @@ function createCardMarkup(arr) {
 
     <div class="productlist-card-bottom">
         <span class="productlist-card-price">$${price}</span>
-        <button type="button" class="productlist-card-btn">
-            <svg class="productlist-card-icon-cart" width="18" height="18">
-                <use href="${sprite}#icon-cart"></use>
+        <button type="button" class="productlist-card-btn" ${
+          existingProduct ? 'disabled' : ''
+        }>
+            <svg class="productlist-card-icon-${
+              existingProduct ? 'check' : 'cart'
+            }" width="18" height="18">
+                <use href="${sprite}#icon-${
+          existingProduct ? 'check' : 'cart'
+        }"></use>
             </svg></button>
     </div>
     ${
@@ -155,11 +163,14 @@ function addToCart(productInfo, button) {
   if (existingProduct) {
     // Змінюємо іконку на кнопці
     const useElement = button.querySelector('.productlist-card-icon-cart use');
-    useElement.setAttribute(
-      'style',
-      'stroke: var(--background); fill: var(--p_color);'
+    const svgElement = button.querySelector('.productlist-card-icon-cart');
+    console.log(svgElement);
+    svgElement.classList.replace(
+      'productlist-card-icon-cart',
+      'productlist-card-icon-check'
     );
     useElement.setAttribute('href', `${sprite}#icon-check`);
+    button.setAttribute('disabled', 'disabled');
   } else {
     // Якщо товар ще не доданий в кошик, додаємо його та оновлюємо localStorage
     cartItems.push(productInfo);
