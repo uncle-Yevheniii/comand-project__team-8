@@ -248,7 +248,7 @@
     color: #010101;
   }
 
-  .footer-rights-policy-terms a{
+  .footer-rights-policy-terms {
     display: flex;
     justify-content: space-between;
     align-items: center;
