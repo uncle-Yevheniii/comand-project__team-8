@@ -66,9 +66,9 @@ export function renderCart(data) {
     } else {
         cart.innerHTML = basketMarkup(data);
     };
-    cartProductQuantity(data);
     cartDeleteAll();
     cartRemoveItem(data);
+    cartProductQuantity(data);
 };
 
 renderCart(USER_CART);
