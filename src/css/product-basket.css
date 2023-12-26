@@ -522,6 +522,10 @@
   .cart-product-size-span{
     overflow: visible;
   }
+  .cart-product-count-container{
+    bottom: 40px;
+    right: 39px;
+  }
 }
 
 @media screen and (min-width: 1280px) {
