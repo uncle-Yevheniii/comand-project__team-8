@@ -37,16 +37,18 @@ renderSelects();
 
 const renderProducts = async query => {
   const data = await fetchData(query);
-  console.log(data.results);
+  // console.log(data.results);
 };
 
 const onForm = event => {
   event.preventDefault();
   const currentValue = searchInput.value.trim();
   const currentCategory = categorySelect.value;
-  const query = { 
-    keyword: currentValue || null, 
-    category: currentCategory === 'Show all' ? null : currentCategory.trim() || null };
+  const query = {
+    keyword: currentValue || null,
+    category:
+      currentCategory === 'Show all' ? null : currentCategory.trim() || null,
+  };
   localStorage.setItem('LS_QUERY_KEY', JSON.stringify(query));
   renderProducts(query);
 };
@@ -54,9 +56,11 @@ const onForm = event => {
 const onSearchField = event => {
   if (event.target.value === '') {
     const currentCategory = categorySelect.value;
-    const query = { 
-      keyword: null, 
-      category: currentCategory === 'Show all' ? null : currentCategory.trim() || null };
+    const query = {
+      keyword: null,
+      category:
+        currentCategory === 'Show all' ? null : currentCategory.trim() || null,
+    };
     localStorage.setItem('LS_QUERY_KEY', JSON.stringify(query));
     renderProducts(query);
   }
@@ -65,15 +69,19 @@ const onSearchField = event => {
 const onCategoryField = event => {
   const currentValue = searchInput.value.trim();
   const currentCategory = event.target.value;
-  const query = { 
-    keyword: currentValue || null, 
-    category: currentCategory.trim() || null };
+  const query = {
+    keyword: currentValue || null,
+    category: currentCategory.trim() || null,
+  };
   localStorage.setItem('LS_QUERY_KEY', JSON.stringify(query));
   renderProducts(query);
 };
 
 window.addEventListener('load', () => {
-  const savedFilters = JSON.parse(localStorage.getItem('LS_QUERY_KEY')) || { keyword: null, category: null };
+  const savedFilters = JSON.parse(localStorage.getItem('LS_QUERY_KEY')) || {
+    keyword: null,
+    category: null,
+  };
   searchInput.value = savedFilters.keyword;
   categorySelect.value = savedFilters.category;
 

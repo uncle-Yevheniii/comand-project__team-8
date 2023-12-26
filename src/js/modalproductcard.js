@@ -2,12 +2,12 @@ import axios from 'axios';
 import cartIcon from '../img/sptite.svg';
 // import { handleModal } from "./modal";
 const ul = document.querySelector('.wrapperPopularProduct');
-console.log(ul);
+// console.log(ul);
 const body = document.querySelector('body');
 ul.addEventListener('click', handleCardClick);
 
 const list = document.querySelector('.products-list');
-console.log(list);
+// console.log(list);
 list.addEventListener('click', handleCardProductClick);
 
 async function handleCardProductClick(event) {
@@ -19,13 +19,13 @@ async function handleCardProductClick(event) {
     list.addEventListener('click', handleCardProductClick);
     return;
   }
-  console.log(product);
+  // console.log(product);
   // delete later for button
 
   const id = product.dataset.id;
 
   const info = await serviceProductInfo(id);
-  console.log(info);
+  // console.log(info);
 
   body.insertAdjacentHTML('beforeend', createMarkup(info));
 
@@ -44,7 +44,7 @@ async function handleCardClick(event) {
   const id = product.dataset.id;
 
   const info = await serviceProductInfo(id);
-  console.log(info);
+  // console.log(info);
 
   body.insertAdjacentHTML('beforeend', createMarkup(info));
 

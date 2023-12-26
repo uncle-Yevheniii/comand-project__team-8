@@ -66,7 +66,7 @@ function windowChange() {
   ) {
     return;
   } else {
-    console.log(`windowChange ${limit}`);
+    // console.log(`windowChange ${limit}`);
     productsGeneretor();
   }
 }
