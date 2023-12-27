@@ -28,7 +28,16 @@ async function handleCardProductClick(event) {
   console.log(info);
 
   body.insertAdjacentHTML('beforeend', createMarkup(info));
+   const button = document.querySelector('.modal-wimdow-add-to-cart-btn');
+  let cartItems = JSON.parse(localStorage.getItem('cart')) || [];
+  const existingProduct = cartItems.find(item => item._id === info._id);
 
+  if (existingProduct) {
+    // Змінюємо іконку на кнопці
+
+    button.style.background = "#6d8434";
+    button.textContent="Added to";
+  } 
   handleProductModal();
 }
 
@@ -47,7 +56,17 @@ async function handleCardClick(event) {
   console.log(info);
 
   body.insertAdjacentHTML('beforeend', createMarkup(info));
+    const button = document.querySelector('.modal-wimdow-add-to-cart-btn');
+    
+  let cartItems = JSON.parse(localStorage.getItem('cart')) || [];
+  const existingProduct = cartItems.find(item => item._id === info._id);
 
+  if (existingProduct) {
+    // Змінюємо іконку на кнопці
+
+    button.style.background = "#6d8434";
+    button.textContent="Added to";
+  } 
   handleProductModal();
 }
 
@@ -65,10 +84,14 @@ export async function serviceProductInfo(id) {
 }
 
 function createMarkup(info) {
-  const { name, category, size, popularity, desc, price, img } = info;
+  let category_;
+  const { _id, name, category, size, popularity, desc, price, img } = info;
+          if (category.includes('_')) {
+          category_ = category.split('_').join(' ');
+        }
   return `
     <div class="backdrop" data-modal>
-  <div class="modal-container modal-product" data-modal">
+  <div class="modal-container modal-product" data-id="${_id}" data-modal">
     <svg
       class="modal-product-close-icon"
       width="22"
@@ -93,7 +116,7 @@ function createMarkup(info) {
           <p class="modal-product modal-product-desc">
             Category:
             <span class="modal-product-desc modal-product-desc-value"
-              >${category}</span
+              >${category_}</span
             >
           </p>
 
@@ -177,7 +200,8 @@ function createMarkup(info) {
 function handleProductModal() {
   const closeModalBtn = document.querySelector('[data-modal-close]');
   const backdrop = document.querySelector('.backdrop');
-
+  const modal = document.querySelector('[data-modal]');
+  modal.addEventListener("click", handleProductClick);
   function toggleModal() {
     const modal = document.querySelector('[data-modal]');
     if (modal) {
@@ -212,5 +236,54 @@ function handleProductModal() {
   // Prevent attaching multiple listeners to the same modal
   if (!document.querySelector('[data-modal]')) {
     body.insertAdjacentHTML('beforeend', createMarkup(info));
+  }
+}
+
+
+
+
+async function handleProductClick(event) {
+  const target = event.target;
+  const addToCartButton = target.closest('.modal-wimdow-add-to-cart-btn');
+console.log(addToCartButton);
+  // console.dir(document.querySelector('.productlist-card'));
+  if (addToCartButton) {
+    const productCard = addToCartButton.closest('.modal-container');
+    console.log(productCard);
+    const productId = productCard.dataset.id;
+console.log(productId);
+    // Отримуємо інформацію про товар для зберігання в localStorage
+    const productInfo = await serviceProductInfo(productId);
+    productInfo.quantity = 1;
+    addToCart(productInfo, addToCartButton);
+  }
+}
+
+// Функція для додавання товару в кошик
+function addToCart(productInfo, button) {
+  let cartItems = JSON.parse(localStorage.getItem('cart')) || [];
+  const existingProduct = cartItems.find(item => item._id === productInfo._id);
+
+  if (existingProduct) {
+    // Змінюємо іконку на кнопці
+
+    button.style.background = "#6d8434";
+    button.textContent="Added to";
+  } else {
+    // Якщо товар ще не доданий в кошик, додаємо його та оновлюємо localStorage
+    cartItems.push(productInfo);
+    localStorage.setItem('cart', JSON.stringify(cartItems));
+        button.style.background = "#6d8434";
+    button.textContent="Added to";
+    console.log('Товар доданий в кошик!');
+  }
+  updateHeaderCartText();
+}
+function updateHeaderCartText() {
+  const cartItems = JSON.parse(localStorage.getItem('cart')) || [];
+  const headerSpan = document.querySelector('.js-header-span');
+
+  if (headerSpan) {
+    headerSpan.textContent = cartItems.length;
   }
 }
