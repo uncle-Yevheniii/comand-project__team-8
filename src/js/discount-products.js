@@ -8,7 +8,7 @@ import '../js/modalproductcard.js';
 
 localStorageSettings();
 localStorageCart();
-
+//
 //розмітка
 function createMarkupDiscountProd(data) {
   return data
