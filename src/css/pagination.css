@@ -53,7 +53,7 @@
 /* Колір виділеної кнопки */
 .tui-pagination .tui-is-selected,
 .tui-pagination strong {
-  /* color: var(--current-white); */
+  color: var(--current-white);
   background: var(--p_color);
   border-color: var(--p_color);
   cursor: pointer;
@@ -77,7 +77,7 @@
 
 .tui-pagination .tui-last-child,
 .tui-pagination .tui-next-is-ellip {
-  background-color: var(--background);
+  /* background-color: var(--background); */
   /* border-right: 1px solid #ddd;8 */
 }
 
@@ -134,9 +134,6 @@
   display: inline-block;
   vertical-align: middle;
   font-size: 0px;
-}
-.tui-ico-ellip {
-  background: none;
 }
 
 .tui-pagination .tui-prev-is-ellip,

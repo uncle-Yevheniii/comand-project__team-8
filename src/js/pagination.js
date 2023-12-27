@@ -1,9 +1,9 @@
 import Pagination from 'tui-pagination';
 
 const pagination = new Pagination('pagination', {
-  totalItems: 500,
-  itemsPerPage: 10,
-  visiblePages: 5,
+  totalItems: 480,
+  itemsPerPage: 6,
+  visiblePages: 2,
   template: {
     page: '<a href="#" class="tui-page-btn">{{page}}</a>',
     currentPage:
