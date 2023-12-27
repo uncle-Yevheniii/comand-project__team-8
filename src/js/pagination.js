@@ -1,6 +1,9 @@
 import Pagination from 'tui-pagination';
+const container = document.querySelector('.tui-pagination');
+console.dir(container);
+let page = 1;
 
-const pagination = new Pagination('pagination', {
+const pagination = new Pagination(container, {
   totalItems: 480,
   itemsPerPage: 6,
   visiblePages: 2,
@@ -22,3 +25,8 @@ const pagination = new Pagination('pagination', {
       '</a>',
   },
 });
+
+container.addEventListener('click', searchCurrentPage);
+function searchCurrentPage(event) {
+  console.dir(event.curentTarget);
+}
