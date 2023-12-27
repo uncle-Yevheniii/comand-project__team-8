@@ -2,7 +2,7 @@ import axios from 'axios';
 import cartIcon from '../img/sptite.svg';
 // import { handleModal } from "./modal";
 const ul = document.querySelector('.wrapperPopularProduct');
-console.log(ul);
+// console.log(ul);
 const body = document.querySelector('body');
 ul.addEventListener('click', handleCardClick);
 
@@ -28,16 +28,17 @@ async function handleCardProductClick(event) {
   console.log(info);
 
   body.insertAdjacentHTML('beforeend', createMarkup(info));
-   const button = document.querySelector('.modal-wimdow-add-to-cart-btn');
+  const button = document.querySelector('.modal-wimdow-add-to-cart-btn');
   let cartItems = JSON.parse(localStorage.getItem('cart')) || [];
   const existingProduct = cartItems.find(item => item._id === info._id);
 
   if (existingProduct) {
     // Змінюємо іконку на кнопці
 
-    button.style.background = "#6d8434";
-    button.textContent="Added to";
-  } 
+    button.style.background = '#6d8434';
+    // button.textContent="Added to ";
+    button.childNodes[0].nodeValue = 'Added to';
+  }
   handleProductModal();
 }
 
@@ -53,20 +54,21 @@ async function handleCardClick(event) {
   const id = product.dataset.id;
 
   const info = await serviceProductInfo(id);
-  console.log(info);
+  // console.log(info);
 
   body.insertAdjacentHTML('beforeend', createMarkup(info));
-    const button = document.querySelector('.modal-wimdow-add-to-cart-btn');
-    
+  const button = document.querySelector('.modal-wimdow-add-to-cart-btn');
+
   let cartItems = JSON.parse(localStorage.getItem('cart')) || [];
   const existingProduct = cartItems.find(item => item._id === info._id);
 
   if (existingProduct) {
     // Змінюємо іконку на кнопці
 
-    button.style.background = "#6d8434";
-    button.textContent="Added to";
-  } 
+    button.style.background = '#6d8434';
+    // button.textContent="Added to";
+    button.childNodes[0].nodeValue = 'Added to';
+  }
   handleProductModal();
 }
 
@@ -86,9 +88,9 @@ export async function serviceProductInfo(id) {
 function createMarkup(info) {
   let category_;
   const { _id, name, category, size, popularity, desc, price, img } = info;
-          if (category.includes('_')) {
-          category_ = category.split('_').join(' ');
-        }
+  if (category.includes('_')) {
+    category_ = category.split('_').join(' ');
+  }
   return `
     <div class="backdrop" data-modal>
   <div class="modal-container modal-product" data-id="${_id}" data-modal">
@@ -201,7 +203,7 @@ function handleProductModal() {
   const closeModalBtn = document.querySelector('[data-modal-close]');
   const backdrop = document.querySelector('.backdrop');
   const modal = document.querySelector('[data-modal]');
-  modal.addEventListener("click", handleProductClick);
+  modal.addEventListener('click', handleProductClick);
   function toggleModal() {
     const modal = document.querySelector('[data-modal]');
     if (modal) {
@@ -239,19 +241,16 @@ function handleProductModal() {
   }
 }
 
-
-
-
 async function handleProductClick(event) {
   const target = event.target;
   const addToCartButton = target.closest('.modal-wimdow-add-to-cart-btn');
-console.log(addToCartButton);
+  console.log(addToCartButton);
   // console.dir(document.querySelector('.productlist-card'));
   if (addToCartButton) {
     const productCard = addToCartButton.closest('.modal-container');
     console.log(productCard);
     const productId = productCard.dataset.id;
-console.log(productId);
+    console.log(productId);
     // Отримуємо інформацію про товар для зберігання в localStorage
     const productInfo = await serviceProductInfo(productId);
     productInfo.quantity = 1;
@@ -267,14 +266,15 @@ function addToCart(productInfo, button) {
   if (existingProduct) {
     // Змінюємо іконку на кнопці
 
-    button.style.background = "#6d8434";
-    button.textContent="Added to";
+    button.style.background = '#6d8434';
+    button.textContent = 'Added to';
   } else {
     // Якщо товар ще не доданий в кошик, додаємо його та оновлюємо localStorage
     cartItems.push(productInfo);
     localStorage.setItem('cart', JSON.stringify(cartItems));
-        button.style.background = "#6d8434";
-    button.textContent="Added to";
+    button.style.background = '#6d8434';
+    // button.textContent="Added to";
+    button.childNodes[0].nodeValue = 'Added to';
     console.log('Товар доданий в кошик!');
   }
   updateHeaderCartText();

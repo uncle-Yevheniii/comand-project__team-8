@@ -8,4 +8,5 @@ import { productsGeneretor } from './js/products-list.js';
 productsGeneretor();
 import './js/popular-products.js';
 import './js/modalproductcard.js';
+import './js/modalfooter.js';
 

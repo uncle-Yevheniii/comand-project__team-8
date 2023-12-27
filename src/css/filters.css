@@ -53,29 +53,57 @@
     display: block;
     visibility: visible;
 }
-.filters-form-select-category {
+.filters-form-select-category,
+.ss-main.filters-form-select-category {
     height: 48px;
-    /* padding: 14px 20px; */
-    --ss-spacing-s: 14px 19px;
-    /* border-radius: 30px; */
-    --ss-border-radius: 30px;
-    /* border: 1px solid var(--p_color-text-alfa30); */
-    --ss-border-color: var(--p_color-text-alfa30);
+    width: 100%;
+    padding: 14px 20px;
+    border-radius: 30px;
+    border: 1px solid var(--p_color-text-alfa30);
     font-family: inherit;
     font-size: 14px;
     line-height: calc(18/14);
     letter-spacing: 0em;
     text-align: left;
-    /* color: inherit; */
-    --ss-font-color: var(--p_color-text);
-    /* background-color: inherit; */
-    --ss-bg-color: var(--background);
-    --ss-focus-color: rgba(0, 0, 0, 0);
+    color: inherit;
+    background-color: inherit;
 }
-.filters-form-select-category:focus,
-.filters-form-select-category:hover,
-.ss-open-below:focus,
-.ss-open-below:hover {
+.ss-main.filters-form-select-category.ss-open-above, 
+.ss-main.filters-form-select-category.ss-open-below {
+    border-radius: 30px;
+}
+.ss-main.filters-form-select-category:focus,
+.ss-main.filters-form-select-category:hover {
+    box-shadow: none;
+}
+.ss-main.filters-form-select-category .ss-values .ss-placeholder {
+    color: var(--p_color-text);
+}
+.ss-content.filters-form-select-category {
+    padding-left: 20px;
+    border: none;
+}
+.ss-content.filters-form-select-category.ss-open-above,
+.ss-content.filters-form-select-category.ss-open-below {
+    border-radius: 15px;
+}
+.ss-content.filters-form-select-category .ss-list .ss-option.ss-highlighted,
+.ss-content.filters-form-select-category .ss-list .ss-option:not(.ss-disabled).ss-selected {
+    color: var(--p_color-text);
+    background-color: inherit;
+}
+.ss-content.filters-form-select-category .ss-list .ss-option {
+    font-size: 14px;
+    line-height: calc(18/14);
+    color: rgba(1, 1, 1, 0.50);
+}
+.ss-content.filters-form-select-category .ss-list .ss-option:focus, 
+.ss-content.filters-form-select-category .ss-list .ss-option:hover {
+    color: var(--p_color-text);
+    background-color: inherit;
+}
+.ss-main.filters-form-select-category:focus,
+.ss-main.filters-form-select-category:hover {
     border: 1px solid var(--p_color);
 }
 @media screen and (min-width: 768px) {
@@ -97,9 +125,14 @@
         top: 16px;
         left: 226px;
     }
-    .filters-form-select-category {
+    .filters-form-select-category,
+    .ss-main.filters-form-select-category {
         height: 52px;
         max-width: 189px;
+        font-size: 18px;
+        line-height: calc(24/18);
+    }
+    .ss-content.filters-form-select-category .ss-list .ss-option {
         font-size: 18px;
         line-height: calc(24/18);
     }
