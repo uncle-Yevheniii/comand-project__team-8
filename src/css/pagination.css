@@ -6,7 +6,6 @@
   margin-top: 40px;
   margin-bottom: 80px;
 
-  height: 28px;
   line-height: normal;
   text-align: center;
   font-size: 0;
@@ -23,40 +22,47 @@
 .tui-ico-last,
 .tui-ico-next,
 .tui-ico-prev {
-  overflow: hidden;
+  overflow: visible;
 }
 
 .tui-pagination .tui-page-btn {
   display: inline-block;
   position: relative;
-  width: 28px;
+  width: 26px;
   padding: 8px 0 6px;
   margin-left: 0;
-  color: #333;
+  color: var(--p_color-text);
   font-size: 12px;
   font-weight: normal;
   line-height: 1;
   text-decoration: none;
   vertical-align: middle;
-  border: 1px solid #ddd;
-  border-width: 1px 0;
+  /* margin-right: 5px; */
+  /* border: none; */
+  border-radius: 50%;
+  /* border-width: 1px 0; */
+  margin-right: 5px;
 }
 
 .tui-pagination .tui-page-btn:hover {
-  background-color: #f4f4f4;
+  color: var(--current-white);
+  background: var(--p_color);
+  border-color: var(--p_color);
 }
 
 /* Колір виділеної кнопки */
 .tui-pagination .tui-is-selected,
 .tui-pagination strong {
-  color: var(--current-white);
+  /* color: var(--current-white); */
   background: var(--p_color);
   border-color: var(--p_color);
   cursor: pointer;
 }
 
 .tui-pagination .tui-is-selected:hover {
-  background-color: #4b96e6;
+  color: var(--current-white);
+  background: var(--p_color);
+  border-color: var(--p_color);
 }
 
 .tui-pagination .tui-first-child.tui-is-selected,
@@ -66,22 +72,27 @@
 
 .tui-pagination .tui-first-child,
 .tui-pagination .tui-prev-is-ellip {
-  border-left: 1px solid #ddd;
+  /* border-left: 1px solid #ddd; */
 }
 
 .tui-pagination .tui-last-child,
 .tui-pagination .tui-next-is-ellip {
-  border-right: 1px solid #ddd;
+  background-color: var(--background);
+  /* border-right: 1px solid #ddd;8 */
 }
 
 .tui-pagination .tui-first-child.tui-is-selected {
-  border-left: 1px solid #4b96e6;
+  /* border-left: 1px solid #4b96e6; */
 }
 
 .tui-pagination .tui-last-child.tui-is-selected {
-  border-right: 1px solid #4b96e6;
+  /* border-right: 1px solid #4b96e6; */
 }
 
+.tui-pagination .tui-first,
+.tui-pagination .tui-last {
+  background-color: var(--current-white);
+}
 .tui-pagination .tui-first,
 .tui-pagination .tui-prev,
 .tui-pagination .tui-next,
@@ -95,20 +106,22 @@
   line-height: 26px;
   white-space: nowrap;
   font-weight: normal;
-  border: 1px solid #ddd;
+  /* border: 1px solid #ddd; */
+  /* background-color: var(--current-white); */
 }
 
 .tui-pagination .tui-prev-is-ellip {
-  border-right: 0;
+  /* border-right: 0; */
 }
 
 .tui-pagination .tui-next-is-ellip {
-  border-left: 0;
+  /* border-left: 0; */
 }
 
 .tui-pagination .tui-first + .tui-prev,
 .tui-pagination .tui-next + .tui-last {
-  border-left: 0;
+  /* border-left: 0; */
+  /* background-color: var(--current-white); */
 }
 
 .tui-pagination .tui-ico-first,
@@ -122,6 +135,9 @@
   vertical-align: middle;
   font-size: 0px;
 }
+.tui-ico-ellip {
+  background: none;
+}
 
 .tui-pagination .tui-prev-is-ellip,
 .tui-pagination .tui-next-is-ellip {
@@ -130,11 +146,15 @@
 }
 
 .tui-pagination .tui-prev {
-  margin-right: 10px;
+  margin-right: 8px;
+  margin-left: 4px;
+  background-color: var(--current-white);
 }
 
 .tui-pagination .tui-next {
-  margin-left: 10px;
+  margin-left: 8px;
+  margin-right: 4px;
+  background-color: var(--current-white);
 }
 
 .tui-pagination .tui-ico-first {
@@ -170,8 +190,9 @@
 }
 
 .tui-pagination .tui-is-disabled:hover {
-  background: #fff;
-  cursor: default;
+  color: var(--current-white);
+  background-color: var(--p_color);
+  cursor: pointer;
 }
 
 .tui-pagination .tui-is-disabled .tui-ico-prev {
@@ -202,8 +223,8 @@
   padding: 8px 0 6px;
   font-size: 12px;
   text-align: center;
-  color: #333;
-  border: 0;
+  color: var(--p_color-text);
+  /* border: 0; */
   outline: none;
 }
 
