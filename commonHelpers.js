@@ -1,4 +1,4 @@
-import{c as d}from"./assets/sptite-3a8ceaf5.js";const i="/comand-project__team-8/assets/yellow-shopping-basket@1x-fe591d80.png",f="/comand-project__team-8/assets/yellow-shopping-basket@2x-61cba68c.png",y=`
+import{c as d}from"./assets/sptite-426d194a.js";const i="/comand-project__team-8/assets/yellow-shopping-basket@1x-fe591d80.png",f="/comand-project__team-8/assets/yellow-shopping-basket@2x-61cba68c.png",y=`
     <picture class="empty-basket">
         <source srcset="${i} 1x, ${f} 2x" />
         <img src="${i}" alt="basket" class="basket-empty-img"/>
@@ -47,13 +47,13 @@ import{c as d}from"./assets/sptite-3a8ceaf5.js";const i="/comand-project__team-8
                         <div class="cart-product-count-container">
                             <button class="cart-product-count-decrease" type="button" data-decrease=${c}>
                                 <svg class="cart-product-count-decrease-svg" data-decrease=${c} hidden>
-                                    <use href="${d}#icon-" data-decrease=${c}></use>
+                                    <use href="${d}#icon-minus" data-decrease=${c}></use>
                                 </svg>
                             </button>
                             <p class="cart-product-count-text" data-count="${c}">${v}</p>
                             <button class="cart-product-count-increase" type="button" data-increase=${c}>
                                 <svg class="cart-product-count-increase-svg" data-increase=${c} hidden>
-                                    <use href="${d}#icon-" data-increase=${c}></use>
+                                    <use href="${d}#icon-plus" data-increase=${c}></use>
                                 </svg>
                             </button>
                         </div>
