@@ -37,7 +37,7 @@
 }
 @media only screen and (min-width: 768px) {
   .popular__products-items {
-    width: 275px;
+    max-width: 251px;
     margin: 0;
   }
 }
