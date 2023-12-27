@@ -36,8 +36,8 @@
 //   }
   
 // })();  
-console.log("!!!!");
-      
+// console.log("!!!!");
+import { renderCart } from "../cart";
 
 
 
@@ -54,9 +54,10 @@ console.log("!!!!");
 
   refs.openModal.addEventListener("submit", function (event) {
     event.preventDefault(); // Prevent the default form submission behavior
-        refs.openModal.reset();
+    refs.openModal.reset();
+    localStorage.setItem('cart', JSON.stringify([]));
+    renderCart([]);
     toggleModal();
-
   });
 
   refs.closeModalBtn.addEventListener("click", toggleModal);
@@ -80,6 +81,6 @@ console.log("!!!!");
 
   function toggleModal() {
     refs.modal.classList.toggle("is-hidden");
-    console.log("!!!!");
+    // console.log("!!!!");
   }
 })();
