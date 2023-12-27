@@ -36,7 +36,8 @@ async function handleCardProductClick(event) {
     // Змінюємо іконку на кнопці
 
     button.style.background = "#6d8434";
-    button.textContent="Added to";
+    // button.textContent="Added to ";
+    button.childNodes[0].nodeValue = "Added to";
   } 
   handleProductModal();
 }
@@ -65,7 +66,8 @@ async function handleCardClick(event) {
     // Змінюємо іконку на кнопці
 
     button.style.background = "#6d8434";
-    button.textContent="Added to";
+    // button.textContent="Added to";
+       button.childNodes[0].nodeValue = "Added to";
   } 
   handleProductModal();
 }
@@ -274,7 +276,8 @@ function addToCart(productInfo, button) {
     cartItems.push(productInfo);
     localStorage.setItem('cart', JSON.stringify(cartItems));
         button.style.background = "#6d8434";
-    button.textContent="Added to";
+    // button.textContent="Added to";
+       button.childNodes[0].nodeValue = "Added to";
     console.log('Товар доданий в кошик!');
   }
   updateHeaderCartText();
@@ -287,3 +290,4 @@ function updateHeaderCartText() {
     headerSpan.textContent = cartItems.length;
   }
 }
+
