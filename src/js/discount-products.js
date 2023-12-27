@@ -1,6 +1,7 @@
 import axios from 'axios';
 import svgIcon from '../img/sptite.svg';
 import { discountProduct } from '../API';
+import { serviceProductInfo } from '../js/modalproductcard.js';
 const cardDiscountProd = document.querySelector('.card-discount-prod');
 
 import { localStorageSettings, localStorageCart } from '../local-storage.js';
@@ -111,7 +112,7 @@ window.addEventListener('load', updateHeaderCartText);
 cardDiscountProd.addEventListener('click', handleProductClick);
 
 // Функція для обробки кліку на картці товару
-function handleProductClick(event) {
+async function handleProductClick(event) {
   const target = event.target;
   const addToCartButton = target.closest('.btn-icon-cart');
 
@@ -120,14 +121,17 @@ function handleProductClick(event) {
     const productId = productCard.dataset.id;
 
     // Отримуємо інформацію про товар для зберігання в localStorage
-    const productInfo = {
-      id: productId,
-      name: productCard.querySelector('.text-discount-prod').textContent,
-      price: productCard.querySelector('.price-text-disc').textContent,
-      category: productCard.dataset.category,
-      img: productCard.querySelector('.discount-img').src,
-      size: productCard.dataset.size,
-    };
+    const productInfo = await serviceProductInfo(productId);
+    productInfo.quantity = 1;
+
+    // const productInfo = {
+    //   id: productId,
+    //   name: productCard.querySelector('.text-discount-prod').textContent,
+    //   price: productCard.querySelector('.price-text-disc').textContent,
+    //   category: productCard.dataset.category,
+    //   img: productCard.querySelector('.discount-img').src,
+    //   size: productCard.dataset.size,
+    // };
     addToCart(productInfo, addToCartButton);
   }
 }
@@ -135,7 +139,7 @@ function handleProductClick(event) {
 // Функція для додавання товару в кошик
 function addToCart(productInfo, button) {
   let cartItems = JSON.parse(localStorage.getItem('cart')) || [];
-  const existingProduct = cartItems.find(item => item.id === productInfo.id);
+  const existingProduct = cartItems.find(item => item._id === productInfo._id);
 
   if (existingProduct) {
     // Змінюємо іконку на кнопці
