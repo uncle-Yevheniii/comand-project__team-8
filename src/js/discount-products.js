@@ -4,7 +4,7 @@ import { discountProduct } from '../API';
 const cardDiscountProd = document.querySelector('.card-discount-prod');
 
 import { localStorageSettings, localStorageCart } from '../local-storage.js';
-import '../js/modalproductcard.js';
+import './js/modalproductcard.js';
 
 localStorageSettings();
 localStorageCart();
