@@ -44,7 +44,7 @@ function cardDrawing() {
   discountProduct()
     .then(data => {
       // console.log(data.length);
-      // randomPictures(data);
+      randomPictures(data);
 
       cardDiscountProd.insertAdjacentHTML(
         'beforeend',
@@ -57,54 +57,54 @@ function cardDrawing() {
 cardDrawing();
 
 //випадкові картинки
-// function randomPictures(data) {
-//   let x = Math.floor(Math.random() * data.length);
-//   let y = Math.floor(Math.random() * data.length);
+function randomPictures(data) {
+  let oneCard = Math.floor(Math.random() * data.length);
+  let twoCard = Math.floor(Math.random() * data.length);
 
-//   console.log('x', x);
-//   console.log('y', y);
+  // console.log('x', oneCard);
+  // console.log('y', twoCard);
 
-//   if (x === y) {
-//     return;
-//   }
+  if (oneCard === twoCard) {
+    return;
+  }
 
-//   // console.log('=', data);
-//   let b = data[y];
-//   data[y] = data[x];
-//   data[x] = b;
-// }
+  // console.log('=', data);
+  let b = data[twoCard];
+  data[twoCard] = data[oneCard];
+  data[oneCard] = b;
+}
 
 // слайдер//////////////////
 
-let slide = 0;
-const cardHeigth = 252;
-const oneSlider = 1260;
-let allCards = 1260;
-let timer;
+// let slide = 0;
+// const cardHeigth = 252;
+// const oneSlider = 1260;
+// let allCards = 1260;
+// let timer;
 
-autoSlider();
+// autoSlider();
 
-// const availableScreenWidth = window.screen.availWidth;
-const cardDiv = document.querySelector('.slider-col');
+// // const availableScreenWidth = window.screen.availWidth;
+// const cardDiv = document.querySelector('.slider-col');
 
-function slider() {
-  // if (availableScreenWidth <= 767.98 || availableScreenWidth >= 1440) {
-  slide += cardHeigth;
+// function slider() {
+//   // if (availableScreenWidth <= 767.98 || availableScreenWidth >= 1440) {
+//   slide += cardHeigth;
 
-  if (slide >= oneSlider) {
-    slide = 0;
-    clearTimeout(timer);
-    // allCards += oneSlider;
-    // cardDrawing();
-  }
+//   if (slide >= oneSlider) {
+//     slide = 0;
+//     clearTimeout(timer);
+//     // allCards += oneSlider;
+//     // cardDrawing();
+//   }
 
-  autoSlider();
-  cardDiv.style.bottom = slide + 'px';
-}
+//   autoSlider();
+//   cardDiv.style.bottom = slide + 'px';
+// }
 
-function autoSlider() {
-  timer = setTimeout(slider, 4000);
-}
+// function autoSlider() {
+//   timer = setTimeout(slider, 4000);
+// }
 
 /////////////////////////////////////////
 window.addEventListener('load', updateHeaderCartText);
