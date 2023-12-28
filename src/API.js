@@ -54,15 +54,28 @@ export async function postSubscribe(email) {
   };
   try {
     const res = await axios.post(url, emailData);
-    alert(res.data.message);
-    console.log(res.data);
-    return res.data;
+    return {
+      success: true,
+      data: res.data,
+    };
   } catch (error) {
-    alert('Oops! Something went wrong');
-    console.error('Произошла ошибка при отправке:', error);
-    throw error;
+    if (error.response && error.response.status === 409) {      
+      return {
+        success: false,
+        status: 409,
+        message: 'Email already subscribed',
+      };
+    } else {      
+      console.error('Произошла ошибка при отправке:', error);
+      return {
+        success: false,
+        status: error.response ? error.response.status : null,
+        message: 'Oops! Something went wrong',
+      };
+    }
   }
 }
+
 
 export async function postOrders({ email, products }) {
   const url = 'https://food-boutique.b.goit.study/api/orders';
