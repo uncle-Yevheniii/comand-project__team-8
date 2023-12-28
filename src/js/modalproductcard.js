@@ -13,7 +13,8 @@ list.addEventListener('click', handleCardProductClick);
 ul2.addEventListener("click", handleDiscountCardClick)
 async function handleCardProductClick(event) {
   list.removeEventListener('click', handleCardProductClick);
-
+ul.removeEventListener('click', handleCardClick);
+  ul2.removeEventListener("click", handleDiscountCardClick);
   const product = event.target.closest('.productlist-card');
 
   if (product === null || event.target.closest('.productlist-card-btn')) {
@@ -44,7 +45,9 @@ async function handleCardProductClick(event) {
 }
 
 async function handleCardClick(event) {
-  ul.removeEventListener('click', handleCardClick);
+  list.removeEventListener('click', handleCardProductClick);
+ul.removeEventListener('click', handleCardClick);
+  ul2.removeEventListener("click", handleDiscountCardClick);
   const product = event.target.closest('li');
   if (product === null || event.target.closest('.popular__products-button')) {
     ul.addEventListener('click', handleCardClick);
@@ -76,6 +79,9 @@ async function handleCardClick(event) {
 
 async function handleDiscountCardClick(event) {
   ul2.removeEventListener('click', handleCardClick);
+    list.removeEventListener('click', handleCardProductClick);
+ul.removeEventListener('click', handleCardClick);
+
   const product = event.target.closest('li');
   if (product === null || event.target.closest('.btn-icon-cart')) {
     ul2.addEventListener('click', handleCardClick);
@@ -262,7 +268,7 @@ function handleProductModal() {
   }
   ul.addEventListener('click', handleCardClick);
   list.addEventListener('click', handleCardProductClick);
-
+  ul2.addEventListener("click", handleDiscountCardClick);
   closeModalBtn.addEventListener('click', toggleModal);
   backdrop.addEventListener('click', handleBackdrop);
   document.addEventListener('keydown', handleKey);
