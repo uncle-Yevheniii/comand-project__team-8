@@ -44,7 +44,6 @@ function createMarkupDiscountProd(data) {
 function cardDrawing() {
   discountProduct()
     .then(data => {
-      // console.log(data.length);
       randomPictures(data);
 
       cardDiscountProd.insertAdjacentHTML(
@@ -62,14 +61,10 @@ function randomPictures(data) {
   let oneCard = Math.floor(Math.random() * data.length);
   let twoCard = Math.floor(Math.random() * data.length);
 
-  // console.log('x', oneCard);
-  // console.log('y', twoCard);
-
   if (oneCard === twoCard) {
     return;
   }
 
-  // console.log('=', data);
   let b = data[twoCard];
   data[twoCard] = data[oneCard];
   data[oneCard] = b;

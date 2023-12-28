@@ -549,14 +549,20 @@
   .cart-product-list::after {
     width: 500px;
   }
-  .js-basket .basket-full-container {
+  /* .js-basket .basket-full-container {
     display: flex;
     gap: 101px;
-  }
+  } */
   .cart-with-items-container {
     width: 100%;
   }
   .basket-full-container {
     margin-bottom: 100px;
+  }
+}
+@media screen and (min-width: 1440px) {
+  .js-basket .basket-full-container {
+    display: flex;
+    gap: 101px;
   }
 }

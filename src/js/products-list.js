@@ -66,7 +66,7 @@ function windowChange() {
   ) {
     return;
   } else {
-    console.log(`windowChange ${limit}`);
+    // console.log(`windowChange ${limit}`);
     productsGeneretor();
   }
 }
@@ -143,7 +143,6 @@ async function handleProductClick(event) {
   const target = event.target;
   const addToCartButton = target.closest('.productlist-card-btn');
 
-  // console.dir(document.querySelector('.productlist-card'));
   if (addToCartButton) {
     const productCard = addToCartButton.closest('.productlist-card');
     const productId = productCard.dataset.id;
@@ -164,7 +163,6 @@ function addToCart(productInfo, button) {
     // Змінюємо іконку на кнопці
     const useElement = button.querySelector('.productlist-card-icon-cart use');
     const svgElement = button.querySelector('.productlist-card-icon-cart');
-    console.log(svgElement);
     svgElement.classList.replace(
       'productlist-card-icon-cart',
       'productlist-card-icon-check'
@@ -175,7 +173,6 @@ function addToCart(productInfo, button) {
     // Якщо товар ще не доданий в кошик, додаємо його та оновлюємо localStorage
     cartItems.push(productInfo);
     localStorage.setItem('cart', JSON.stringify(cartItems));
-    console.log('Товар доданий в кошик!');
   }
   updateHeaderCartText();
 }

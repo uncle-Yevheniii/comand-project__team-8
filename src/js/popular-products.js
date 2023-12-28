@@ -52,7 +52,6 @@ function renderCards({ category, img, name, popularity, size, _id }) {
 async function generatePopularCardListMarkup() {
   try {
     const popularCards = await popularProdact();
-    // console.log(popularCards);
     return popularCards.reduce(
       (markup, productCard) => markup + renderCards(productCard),
       ''

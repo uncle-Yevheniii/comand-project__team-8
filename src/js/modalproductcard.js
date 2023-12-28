@@ -2,32 +2,28 @@ import axios from 'axios';
 import cartIcon from '../img/sptite.svg';
 // import { handleModal } from "./modal";
 const ul = document.querySelector('.wrapperPopularProduct');
-// console.log(ul);
 const body = document.querySelector('body');
 ul.addEventListener('click', handleCardClick);
-const ul2 = document.querySelector(".card-discount-prod");
+const ul2 = document.querySelector('.card-discount-prod');
 
 const list = document.querySelector('.products-list');
-console.log(list);
 list.addEventListener('click', handleCardProductClick);
-ul2.addEventListener("click", handleDiscountCardClick)
+ul2.addEventListener('click', handleDiscountCardClick);
 async function handleCardProductClick(event) {
   list.removeEventListener('click', handleCardProductClick);
-ul.removeEventListener('click', handleCardClick);
-  ul2.removeEventListener("click", handleDiscountCardClick);
+  ul.removeEventListener('click', handleCardClick);
+  ul2.removeEventListener('click', handleDiscountCardClick);
   const product = event.target.closest('.productlist-card');
 
   if (product === null || event.target.closest('.productlist-card-btn')) {
     list.addEventListener('click', handleCardProductClick);
     return;
   }
-  console.log(product);
   // delete later for button
 
   const id = product.dataset.id;
 
   const info = await serviceProductInfo(id);
-  console.log(info);
 
   body.insertAdjacentHTML('beforeend', createMarkup(info));
   const button = document.querySelector('.modal-wimdow-add-to-cart-btn');
@@ -46,8 +42,8 @@ ul.removeEventListener('click', handleCardClick);
 
 async function handleCardClick(event) {
   list.removeEventListener('click', handleCardProductClick);
-ul.removeEventListener('click', handleCardClick);
-  ul2.removeEventListener("click", handleDiscountCardClick);
+  ul.removeEventListener('click', handleCardClick);
+  ul2.removeEventListener('click', handleDiscountCardClick);
   const product = event.target.closest('li');
   if (product === null || event.target.closest('.popular__products-button')) {
     ul.addEventListener('click', handleCardClick);
@@ -58,7 +54,6 @@ ul.removeEventListener('click', handleCardClick);
   const id = product.dataset.id;
 
   const info = await serviceProductInfo(id);
-  // console.log(info);
 
   body.insertAdjacentHTML('beforeend', createMarkup(info));
   const button = document.querySelector('.modal-wimdow-add-to-cart-btn');
@@ -76,11 +71,10 @@ ul.removeEventListener('click', handleCardClick);
   handleProductModal();
 }
 
-
 async function handleDiscountCardClick(event) {
   ul2.removeEventListener('click', handleCardClick);
-    list.removeEventListener('click', handleCardProductClick);
-ul.removeEventListener('click', handleCardClick);
+  list.removeEventListener('click', handleCardProductClick);
+  ul.removeEventListener('click', handleCardClick);
 
   const product = event.target.closest('li');
   if (product === null || event.target.closest('.btn-icon-cart')) {
@@ -92,7 +86,6 @@ ul.removeEventListener('click', handleCardClick);
   const id = product.dataset.id;
 
   const info = await serviceProductInfo(id);
-  // console.log(info);
 
   body.insertAdjacentHTML('beforeend', createMarkup(info));
   const button = document.querySelector('.modal-wimdow-add-to-cart-btn');
@@ -268,7 +261,7 @@ function handleProductModal() {
   }
   ul.addEventListener('click', handleCardClick);
   list.addEventListener('click', handleCardProductClick);
-  ul2.addEventListener("click", handleDiscountCardClick);
+  ul2.addEventListener('click', handleDiscountCardClick);
   closeModalBtn.addEventListener('click', toggleModal);
   backdrop.addEventListener('click', handleBackdrop);
   document.addEventListener('keydown', handleKey);
@@ -282,13 +275,10 @@ function handleProductModal() {
 async function handleProductClick(event) {
   const target = event.target;
   const addToCartButton = target.closest('.modal-wimdow-add-to-cart-btn');
-  console.log(addToCartButton);
-  // console.dir(document.querySelector('.productlist-card'));
   if (addToCartButton) {
     const productCard = addToCartButton.closest('.modal-container');
-    console.log(productCard);
     const productId = productCard.dataset.id;
-    console.log(productId);
+
     // Отримуємо інформацію про товар для зберігання в localStorage
     const productInfo = await serviceProductInfo(productId);
     productInfo.quantity = 1;
@@ -313,7 +303,6 @@ function addToCart(productInfo, button) {
     button.style.background = '#6d8434';
     // button.textContent="Added to";
     button.childNodes[0].nodeValue = 'Added to';
-    console.log('Товар доданий в кошик!');
   }
   updateHeaderCartText();
 }
