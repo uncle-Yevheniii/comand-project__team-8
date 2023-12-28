@@ -9,4 +9,4 @@ productsGeneretor();
 import './js/popular-products.js';
 import './js/modalproductcard.js';
 import './js/modalfooter.js';
-
+import './js/footer.js';
