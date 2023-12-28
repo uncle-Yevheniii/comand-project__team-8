@@ -1,6 +1,10 @@
 import { popularProdact } from '../API.js';
 import { popular_products_ul } from '../refs';
+import { serviceProductInfo } from '../js/modalproductcard.js';
 import cartIcon from '../img/sptite.svg';
+
+const ul = document.querySelector('.wrapperPopularProduct');
+const btn = document.querySelector('.popular__products-button');
 
 document.addEventListener('DOMContentLoaded', onReload);
 async function onReload() {
@@ -14,9 +18,27 @@ async function onReload() {
   }
 }
 
-function renderCards({ category, img, name, popularity, size, _id }) {
-  return `
-  <li data-id='${_id}' class="popular__products-items  ">
+function renderCards(arr) {
+  return arr
+    .map(
+      ({
+        name,
+        img,
+        category,
+        size,
+        popularity,
+        price,
+        is10PercentOff: discount,
+        _id,
+      }) => {
+        if (category.includes('_')) {
+          category = category.split('_').join(' ');
+        }
+        let cartItems = JSON.parse(localStorage.getItem('cart')) || [];
+        const existingProduct = cartItems.find(item => item._id === _id);
+
+        return `
+  <li data-id='${_id}' class="popular__products-items">
   <div class="img-box">
     <img
       class="popular__products-img"
@@ -40,32 +62,86 @@ function renderCards({ category, img, name, popularity, size, _id }) {
       </p>
     </div>
   </div>
-  <button class="popular__products-button">
-    <svg class="popular__products-svg" width="12" height="12">
-      <use href="${cartIcon}#icon-cart"></use>
+  <button class="popular__products-button" ${existingProduct ? 'disabled' : ''}>
+    <svg class="popular__products-svg${
+      existingProduct ? 'check' : 'cart'
+    }" width="12" height="12">
+      <use href="${cartIcon}#icon-${existingProduct ? 'check' : 'cart'}"></use>
     </svg>
   </button>
 </li>
   `;
+      }
+    )
+    .join('');
 }
 
 async function generatePopularCardListMarkup() {
   try {
     const popularCards = await popularProdact();
-    return popularCards.reduce(
-      (markup, productCard) => markup + renderCards(productCard),
-      ''
-    );
+    return renderCards(popularCards);
   } catch (err) {
     onError(err);
   }
 }
 
 function updateCardList(markup) {
-  popular_products_ul.insertAdjacentHTML('beforeend', markup);
+  ul.innerHTML = markup;
 }
 
 function onError() {
   console.error('Error:', err);
-  popular_products_ul.innerHTML = '';
+  ul.innerHTML = '';
+}
+//
+//
+//
+//
+ul.addEventListener('click', handleProductClick);
+
+async function handleProductClick(event) {
+  const target = event.target;
+  const addToCartButton = target.closest('.popular__products-button');
+
+  if (addToCartButton) {
+    const productCard = addToCartButton.closest('.popular__products-items');
+    const productId = productCard.dataset.id;
+
+    // Отримуємо інформацію про товар для зберігання в localStorage
+    const productInfo = await serviceProductInfo(productId);
+    productInfo.quantity = 1;
+    addToCart(productInfo, addToCartButton);
+    location.reload();
+  }
+}
+
+// Функція для додавання товару в кошик
+function addToCart(productInfo, button) {
+  let cartItems = JSON.parse(localStorage.getItem('cart')) || [];
+  const existingProduct = cartItems.find(item => item._id === productInfo._id);
+
+  if (existingProduct) {
+    // Змінюємо іконку на кнопці
+    const useElement = button.querySelector('.popular__products-svgcart use');
+    const svgElement = button.querySelector('.popular__products-svg');
+    svgElement.classList.replace(
+      'popular__products-svgcart',
+      'popular__products-svgcheck'
+    );
+    useElement.setAttribute('href', `${sprite}#icon-check`);
+    button.setAttribute('disabled', 'disabled');
+  } else {
+    // Якщо товар ще не доданий в кошик, додаємо його та оновлюємо localStorage
+    cartItems.push(productInfo);
+    localStorage.setItem('cart', JSON.stringify(cartItems));
+  }
+  updateHeaderCartText();
+}
+function updateHeaderCartText() {
+  const cartItems = JSON.parse(localStorage.getItem('cart')) || [];
+  const headerSpan = document.querySelector('.js-header-span');
+
+  if (headerSpan) {
+    headerSpan.textContent = cartItems.length;
+  }
 }

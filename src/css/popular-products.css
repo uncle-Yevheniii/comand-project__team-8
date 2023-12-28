@@ -102,9 +102,18 @@
 }
 .popular__products-button:hover,
 .popular__products-button:active {
-  color: var(--background);
-  background: var(--p_color);
+  color: var(--p_color);
+  background: var(--background);
 }
 .popular__products-svg {
   fill: currentColor;
+}
+.popular__products-svgcheck {
+  fill: none;
+  stroke: var(--p_color);
+}
+
+.popular__products-svgcart {
+  stroke: none;
+  fill: var(--p_color);
 }

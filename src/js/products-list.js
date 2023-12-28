@@ -1,8 +1,10 @@
 import sprite from '../img/sptite.svg';
 import { fetchData } from '../API.js';
 import { serviceProductInfo } from '../js/modalproductcard.js';
+import { renderPagination } from '../js/pagination.js';
 const container = document.querySelector('.products-list');
 const noProducts = document.querySelector('.products-list-none');
+const pagination = document.querySelector('.pagination-block');
 let limit = 6;
 
 const defaultParams = {
@@ -43,12 +45,18 @@ async function render(params) {
     if (data.results.length === 0) {
       noProducts.classList.remove('hidden');
       container.classList.add('hidden');
+      pagination.classList.add('hidden');
     } else {
       if (container.classList.contains('hidden')) {
         noProducts.classList.add('hidden');
         container.classList.remove('hidden');
+        pagination.classList.remove('hidden');
       }
       container.innerHTML = createCardMarkup(data.results);
+
+      if (data.totalPages > 1) {
+        renderPagination(data, data.perPage, data.page);
+      }
     }
   } catch (error) {
     console.log(error.message);

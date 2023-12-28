@@ -177,7 +177,8 @@
 }
 @media only screen and (min-width: 1440px) {
   .products-list-none {
-    margin: 160px auto 0;
+    margin: 160px 347px 0;
+    width: 370px;
   }
 }
 
