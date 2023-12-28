@@ -5,11 +5,12 @@ const ul = document.querySelector('.wrapperPopularProduct');
 // console.log(ul);
 const body = document.querySelector('body');
 ul.addEventListener('click', handleCardClick);
+const ul2 = document.querySelector(".card-discount-prod");
 
 const list = document.querySelector('.products-list');
 console.log(list);
 list.addEventListener('click', handleCardProductClick);
-
+ul2.addEventListener("click", handleDiscountCardClick)
 async function handleCardProductClick(event) {
   list.removeEventListener('click', handleCardProductClick);
 
@@ -47,6 +48,37 @@ async function handleCardClick(event) {
   const product = event.target.closest('li');
   if (product === null || event.target.closest('.popular__products-button')) {
     ul.addEventListener('click', handleCardClick);
+    return;
+  }
+  // delete later for button
+  // delete if click is not li
+  const id = product.dataset.id;
+
+  const info = await serviceProductInfo(id);
+  // console.log(info);
+
+  body.insertAdjacentHTML('beforeend', createMarkup(info));
+  const button = document.querySelector('.modal-wimdow-add-to-cart-btn');
+
+  let cartItems = JSON.parse(localStorage.getItem('cart')) || [];
+  const existingProduct = cartItems.find(item => item._id === info._id);
+
+  if (existingProduct) {
+    // Змінюємо іконку на кнопці
+
+    button.style.background = '#6d8434';
+    // button.textContent="Added to";
+    button.childNodes[0].nodeValue = 'Added to';
+  }
+  handleProductModal();
+}
+
+
+async function handleDiscountCardClick(event) {
+  ul2.removeEventListener('click', handleCardClick);
+  const product = event.target.closest('li');
+  if (product === null || event.target.closest('.btn-icon-cart')) {
+    ul2.addEventListener('click', handleCardClick);
     return;
   }
   // delete later for button
