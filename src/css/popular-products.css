@@ -1,7 +1,6 @@
-/* .wrapperPopularProduct{
-    display: flex;
-    flex-direction: column;
-} */
+.wrapperPopularProduct {
+  margin-bottom: 80px;
+}
 
 .popular__products-title {
   font-size: 28px;
@@ -15,6 +14,7 @@
     display: flex;
     flex-wrap: wrap;
     gap: 13px;
+    margin-bottom: 64px;
   }
 }
 @media only screen and (min-width: 1440px) {
@@ -37,7 +37,7 @@
 }
 @media only screen and (min-width: 768px) {
   .popular__products-items {
-    max-width: 251px;
+    width: 251px;
     margin: 0;
   }
 }
