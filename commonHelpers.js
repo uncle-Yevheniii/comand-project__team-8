@@ -1,4 +1,4 @@
-import{c as d}from"./assets/sptite-426d194a.js";const i="/comand-project__team-8/assets/yellow-shopping-basket@1x-fe591d80.png",f="/comand-project__team-8/assets/yellow-shopping-basket@2x-61cba68c.png",y=`
+import{c as d}from"./assets/sptite-946c84de.js";const i="/comand-project__team-8/assets/yellow-shopping-basket@1x-fe591d80.png",f="/comand-project__team-8/assets/yellow-shopping-basket@2x-61cba68c.png",y=`
     <picture class="empty-basket">
         <source srcset="${i} 1x, ${f} 2x" />
         <img src="${i}" alt="basket" class="basket-empty-img"/>
