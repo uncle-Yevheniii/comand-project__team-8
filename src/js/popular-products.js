@@ -111,7 +111,9 @@ async function handleProductClick(event) {
     const productInfo = await serviceProductInfo(productId);
     productInfo.quantity = 1;
     addToCart(productInfo, addToCartButton);
-    location.reload();
+    // location.reload();
+    const popularCards = await generatePopularCardListMarkup()
+    updateCardList(popularCards);
   }
 }
 
