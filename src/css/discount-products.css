@@ -184,8 +184,12 @@
   background-color: var(--c_color);
 }
 
-.icon-cart-svg {
+.icon-cart-svgcart {
   fill: var(--background);
+}
+.icon-cart-svgcheck {
+  stroke: var(--background);
+  fill: var(--p_color)
 }
 
 .hidden {
