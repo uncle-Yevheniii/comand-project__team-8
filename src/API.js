@@ -72,8 +72,8 @@ export async function postOrders({ email, products }) {
   };
   try {
     const res = await axios.post(url, order);
-    alert(res.data.message);
-    console.log(res.data);
+    // alert(res.data.message);
+    // console.log(res.data);
     return res.data;
   } catch (error) {
     alert('Oops! Something went wrong');
