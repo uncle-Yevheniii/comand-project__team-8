@@ -1,6 +1,8 @@
+
 import img from '../img/subscribing-modal@1x.png'
 import img2x from '../img/subscribing-modal@2x.png'
 import cartIcon from '../img/sptite.svg';
+
 export function showModalEmail() {
   const body = document.querySelector('body');
 
