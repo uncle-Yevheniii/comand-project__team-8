@@ -76,7 +76,7 @@ function renderCards(arr) {
     .join('');
 }
 
-async function generatePopularCardListMarkup() {
+export async function generatePopularCardListMarkup() {
   try {
     const popularCards = await popularProdact();
     return renderCards(popularCards);
@@ -85,7 +85,7 @@ async function generatePopularCardListMarkup() {
   }
 }
 
-function updateCardList(markup) {
+export function updateCardList(markup) {
   ul.innerHTML = markup;
 }
 
@@ -112,7 +112,7 @@ async function handleProductClick(event) {
     productInfo.quantity = 1;
     addToCart(productInfo, addToCartButton);
     // location.reload();
-    const popularCards = await generatePopularCardListMarkup()
+    const popularCards = await generatePopularCardListMarkup();
     updateCardList(popularCards);
   }
 }

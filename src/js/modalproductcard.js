@@ -1,6 +1,10 @@
 import axios from 'axios';
 import cartIcon from '../img/sptite.svg';
-// import { handleModal } from "./modal";
+import {
+  generatePopularCardListMarkup,
+  updateCardList,
+} from '../js/popular-products';
+import { productsGeneretor } from '../js/products-list';
 const ul = document.querySelector('.wrapperPopularProduct');
 const body = document.querySelector('body');
 ul.addEventListener('click', handleCardClick);
@@ -35,7 +39,7 @@ async function handleCardProductClick(event) {
 
     button.style.background = '#6d8434';
     // button.textContent="Added to ";
-    button.childNodes[0].nodeValue = 'Added to';
+    button.childNodes[0].nodeValue = 'Remove from';
   }
   handleProductModal();
 }
@@ -66,7 +70,7 @@ async function handleCardClick(event) {
 
     button.style.background = '#6d8434';
     // button.textContent="Added to";
-    button.childNodes[0].nodeValue = 'Added to';
+    button.childNodes[0].nodeValue = 'Remove from';
   }
   handleProductModal();
 }
@@ -98,7 +102,7 @@ async function handleDiscountCardClick(event) {
 
     button.style.background = '#6d8434';
     // button.textContent="Added to";
-    button.childNodes[0].nodeValue = 'Added to';
+    button.childNodes[0].nodeValue = 'Remove from';
   }
   handleProductModal();
 }
@@ -283,6 +287,13 @@ async function handleProductClick(event) {
     const productInfo = await serviceProductInfo(productId);
     productInfo.quantity = 1;
     addToCart(productInfo, addToCartButton);
+    //
+    //
+    //
+    //
+    const popularCards = await generatePopularCardListMarkup();
+    updateCardList(popularCards);
+    productsGeneretor();
   }
 }
 
@@ -295,14 +306,14 @@ function addToCart(productInfo, button) {
     // Змінюємо іконку на кнопці
 
     button.style.background = '#6d8434';
-    button.textContent = 'Added to';
+    button.textContent = 'Remove from';
   } else {
     // Якщо товар ще не доданий в кошик, додаємо його та оновлюємо localStorage
     cartItems.push(productInfo);
     localStorage.setItem('cart', JSON.stringify(cartItems));
     button.style.background = '#6d8434';
     // button.textContent="Added to";
-    button.childNodes[0].nodeValue = 'Added to';
+    button.childNodes[0].nodeValue = 'Remove from';
   }
   updateHeaderCartText();
 }
