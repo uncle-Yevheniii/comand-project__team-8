@@ -5,11 +5,11 @@ import { postOrders } from '../API';
   const refs = {
     // openModal: document.querySelector(".cart-form-btn"),
     openModal: document.querySelector('.cart-form-order-input'),
-    closeModalBtn: document.querySelector('[data-modal-close]'),
-    modal: document.querySelector('[data-modal]'),
+    closeModalBtn: document.querySelector('.modal-product-close-icon'),
+    modal: document.querySelector('.backdrop-cart '),
   };
 
-  const backdrop = document.querySelector('.backdrop');
+  const backdrop = document.querySelector('.backdrop-cart');
   if (refs.openModal) {
     refs.openModal.addEventListener('submit', async function (event) {
       event.preventDefault();
