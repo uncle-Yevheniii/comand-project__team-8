@@ -14,6 +14,8 @@ localStorageCart();
 function createMarkupDiscountProd(data) {
   return data
     .map(({ img, name, price, _id }) => {
+        let cartItems = JSON.parse(localStorage.getItem('cart')) || [];
+  const existingProduct = cartItems.find(item => item._id === _id);
       return `<li class="discount-prod-item slide" data-id='${_id}'>
     <div class="wrap-img-discount-prod">
       <img class="discount-img" src="${img}" alt="${name}">
@@ -22,9 +24,9 @@ function createMarkupDiscountProd(data) {
       <p class="text-discount-prod">${name}</p>
       <div class="price-discount-prod">
         <p class="text-discount-prod price-text-disc">$${price}</p>
-        <button type="button" class="btn-icon-cart">
-          <svg class="icon-cart-svg" width="18" height="18">
-            <use href="${svgIcon}#icon-cart"></use>
+        <button type="button" class="btn-icon-cart" ${existingProduct ? 'disabled' : ''}>
+          <svg class="icon-cart-svg${existingProduct ? 'check' : 'cart'}" width="18" height="18">
+            <use href="${svgIcon}#icon-${existingProduct ? 'check' : 'cart'}"></use>
           </svg>
         </button>
       </div>
@@ -45,11 +47,7 @@ function cardDrawing() {
   discountProduct()
     .then(data => {
       randomPictures(data);
-
-      cardDiscountProd.insertAdjacentHTML(
-        'beforeend',
-        createMarkupDiscountProd(data)
-      );
+      cardDiscountProd.innerHTML = createMarkupDiscountProd(data);
     })
     .catch(error => console.log(error.message));
 }
@@ -129,21 +127,26 @@ async function handleProductClick(event) {
     // };
     addToCart(productInfo, addToCartButton);
   }
+  cardDrawing();
 }
 
 // Функція для додавання товару в кошик
 function addToCart(productInfo, button) {
   let cartItems = JSON.parse(localStorage.getItem('cart')) || [];
   const existingProduct = cartItems.find(item => item._id === productInfo._id);
-
   if (existingProduct) {
     // Змінюємо іконку на кнопці
-    const useElement = button.querySelector('.icon-cart-svg use');
-    useElement.setAttribute(
-      'style',
-      'stroke: var(--background); fill: var(--p_color);'
+    const useElement = button.querySelector('.icon-cart-svgcart use');
+    const svgElement = button.querySelector('.icon-cart-svg');
+    if (svgElement) {
+      svgElement.classList.replace(
+      'icon-cart-svgcart',
+      'icon-cart-svgcheck'
     );
+    }
+    
     useElement.setAttribute('href', `${svgIcon}#icon-check`);
+    button.setAttribute('disabled', 'disabled');
   } else {
     // Якщо товар ще не доданий в кошик, додаємо його та оновлюємо localStorage
     cartItems.push(productInfo);

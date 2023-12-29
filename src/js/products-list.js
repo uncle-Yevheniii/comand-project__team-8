@@ -159,6 +159,7 @@ async function handleProductClick(event) {
     const productInfo = await serviceProductInfo(productId);
     productInfo.quantity = 1;
     addToCart(productInfo, addToCartButton);
+    productsGeneretor()
   }
 }
 
