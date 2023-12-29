@@ -55,7 +55,13 @@ async function render(params) {
       container.innerHTML = createCardMarkup(data.results);
 
       if (data.totalPages > 1) {
+        if (pagination.classList.contains('hidden')) {
+          pagination.classList.remove('hidden');
+        }
+
         renderPagination(data, data.perPage, data.page);
+      } else {
+        pagination.classList.add('hidden');
       }
     }
   } catch (error) {
@@ -159,7 +165,7 @@ async function handleProductClick(event) {
     const productInfo = await serviceProductInfo(productId);
     productInfo.quantity = 1;
     addToCart(productInfo, addToCartButton);
-    productsGeneretor()
+    productsGeneretor();
   }
 }
 
