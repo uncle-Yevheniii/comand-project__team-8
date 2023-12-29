@@ -4,6 +4,7 @@
   | default @import url()
   |============================
 */
+@import url('./tui-paination.css');
 @import url('./reset.css');
 @import url('./header.css');
 @import url('./hero.css');
@@ -172,5 +173,9 @@ body {
   .wrapper {
     display: flex;
     gap: 40px;
+    justify-content: space-between;
   }
+}
+.footer {
+  max-width: 100%;
 }

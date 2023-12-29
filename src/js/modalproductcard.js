@@ -2,38 +2,48 @@ import axios from 'axios';
 import cartIcon from '../img/sptite.svg';
 // import { handleModal } from "./modal";
 const ul = document.querySelector('.wrapperPopularProduct');
-console.log(ul);
 const body = document.querySelector('body');
 ul.addEventListener('click', handleCardClick);
+const ul2 = document.querySelector('.card-discount-prod');
 
 const list = document.querySelector('.products-list');
-console.log(list);
 list.addEventListener('click', handleCardProductClick);
-
+ul2.addEventListener('click', handleDiscountCardClick);
 async function handleCardProductClick(event) {
   list.removeEventListener('click', handleCardProductClick);
-
+  ul.removeEventListener('click', handleCardClick);
+  ul2.removeEventListener('click', handleDiscountCardClick);
   const product = event.target.closest('.productlist-card');
 
   if (product === null || event.target.closest('.productlist-card-btn')) {
     list.addEventListener('click', handleCardProductClick);
     return;
   }
-  console.log(product);
   // delete later for button
 
   const id = product.dataset.id;
 
   const info = await serviceProductInfo(id);
-  console.log(info);
 
   body.insertAdjacentHTML('beforeend', createMarkup(info));
+  const button = document.querySelector('.modal-wimdow-add-to-cart-btn');
+  let cartItems = JSON.parse(localStorage.getItem('cart')) || [];
+  const existingProduct = cartItems.find(item => item._id === info._id);
 
+  if (existingProduct) {
+    // Змінюємо іконку на кнопці
+
+    button.style.background = '#6d8434';
+    // button.textContent="Added to ";
+    button.childNodes[0].nodeValue = 'Added to';
+  }
   handleProductModal();
 }
 
 async function handleCardClick(event) {
+  list.removeEventListener('click', handleCardProductClick);
   ul.removeEventListener('click', handleCardClick);
+  ul2.removeEventListener('click', handleDiscountCardClick);
   const product = event.target.closest('li');
   if (product === null || event.target.closest('.popular__products-button')) {
     ul.addEventListener('click', handleCardClick);
@@ -44,10 +54,52 @@ async function handleCardClick(event) {
   const id = product.dataset.id;
 
   const info = await serviceProductInfo(id);
-  console.log(info);
 
   body.insertAdjacentHTML('beforeend', createMarkup(info));
+  const button = document.querySelector('.modal-wimdow-add-to-cart-btn');
 
+  let cartItems = JSON.parse(localStorage.getItem('cart')) || [];
+  const existingProduct = cartItems.find(item => item._id === info._id);
+
+  if (existingProduct) {
+    // Змінюємо іконку на кнопці
+
+    button.style.background = '#6d8434';
+    // button.textContent="Added to";
+    button.childNodes[0].nodeValue = 'Added to';
+  }
+  handleProductModal();
+}
+
+async function handleDiscountCardClick(event) {
+  ul2.removeEventListener('click', handleCardClick);
+  list.removeEventListener('click', handleCardProductClick);
+  ul.removeEventListener('click', handleCardClick);
+
+  const product = event.target.closest('li');
+  if (product === null || event.target.closest('.btn-icon-cart')) {
+    ul2.addEventListener('click', handleCardClick);
+    return;
+  }
+  // delete later for button
+  // delete if click is not li
+  const id = product.dataset.id;
+
+  const info = await serviceProductInfo(id);
+
+  body.insertAdjacentHTML('beforeend', createMarkup(info));
+  const button = document.querySelector('.modal-wimdow-add-to-cart-btn');
+
+  let cartItems = JSON.parse(localStorage.getItem('cart')) || [];
+  const existingProduct = cartItems.find(item => item._id === info._id);
+
+  if (existingProduct) {
+    // Змінюємо іконку на кнопці
+
+    button.style.background = '#6d8434';
+    // button.textContent="Added to";
+    button.childNodes[0].nodeValue = 'Added to';
+  }
   handleProductModal();
 }
 
@@ -65,10 +117,14 @@ export async function serviceProductInfo(id) {
 }
 
 function createMarkup(info) {
-  const { name, category, size, popularity, desc, price, img } = info;
+  let category_;
+  const { _id, name, category, size, popularity, desc, price, img } = info;
+  if (category.includes('_')) {
+    category_ = category.split('_').join(' ');
+  }
   return `
     <div class="backdrop" data-modal>
-  <div class="modal-container modal-product" data-modal">
+  <div class="modal-container modal-product" data-id="${_id}" data-modal">
     <svg
       class="modal-product-close-icon"
       width="22"
@@ -93,7 +149,7 @@ function createMarkup(info) {
           <p class="modal-product modal-product-desc">
             Category:
             <span class="modal-product-desc modal-product-desc-value"
-              >${category}</span
+              >${category_}</span
             >
           </p>
 
@@ -177,7 +233,8 @@ function createMarkup(info) {
 function handleProductModal() {
   const closeModalBtn = document.querySelector('[data-modal-close]');
   const backdrop = document.querySelector('.backdrop');
-
+  const modal = document.querySelector('[data-modal]');
+  modal.addEventListener('click', handleProductClick);
   function toggleModal() {
     const modal = document.querySelector('[data-modal]');
     if (modal) {
@@ -204,7 +261,7 @@ function handleProductModal() {
   }
   ul.addEventListener('click', handleCardClick);
   list.addEventListener('click', handleCardProductClick);
-
+  ul2.addEventListener('click', handleDiscountCardClick);
   closeModalBtn.addEventListener('click', toggleModal);
   backdrop.addEventListener('click', handleBackdrop);
   document.addEventListener('keydown', handleKey);
@@ -212,5 +269,48 @@ function handleProductModal() {
   // Prevent attaching multiple listeners to the same modal
   if (!document.querySelector('[data-modal]')) {
     body.insertAdjacentHTML('beforeend', createMarkup(info));
+  }
+}
+
+async function handleProductClick(event) {
+  const target = event.target;
+  const addToCartButton = target.closest('.modal-wimdow-add-to-cart-btn');
+  if (addToCartButton) {
+    const productCard = addToCartButton.closest('.modal-container');
+    const productId = productCard.dataset.id;
+
+    // Отримуємо інформацію про товар для зберігання в localStorage
+    const productInfo = await serviceProductInfo(productId);
+    productInfo.quantity = 1;
+    addToCart(productInfo, addToCartButton);
+  }
+}
+
+// Функція для додавання товару в кошик
+function addToCart(productInfo, button) {
+  let cartItems = JSON.parse(localStorage.getItem('cart')) || [];
+  const existingProduct = cartItems.find(item => item._id === productInfo._id);
+
+  if (existingProduct) {
+    // Змінюємо іконку на кнопці
+
+    button.style.background = '#6d8434';
+    button.textContent = 'Added to';
+  } else {
+    // Якщо товар ще не доданий в кошик, додаємо його та оновлюємо localStorage
+    cartItems.push(productInfo);
+    localStorage.setItem('cart', JSON.stringify(cartItems));
+    button.style.background = '#6d8434';
+    // button.textContent="Added to";
+    button.childNodes[0].nodeValue = 'Added to';
+  }
+  updateHeaderCartText();
+}
+function updateHeaderCartText() {
+  const cartItems = JSON.parse(localStorage.getItem('cart')) || [];
+  const headerSpan = document.querySelector('.js-header-span');
+
+  if (headerSpan) {
+    headerSpan.textContent = cartItems.length;
   }
 }
