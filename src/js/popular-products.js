@@ -1,6 +1,7 @@
 import { popularProdact } from '../API.js';
 import { popular_products_ul } from '../refs';
 import { serviceProductInfo } from '../js/modalproductcard.js';
+import { productsGeneretor } from '../js/products-list.js';
 import cartIcon from '../img/sptite.svg';
 
 const ul = document.querySelector('.wrapperPopularProduct');
@@ -114,6 +115,7 @@ async function handleProductClick(event) {
     // location.reload();
     const popularCards = await generatePopularCardListMarkup();
     updateCardList(popularCards);
+    productsGeneretor();
   }
 }
 
