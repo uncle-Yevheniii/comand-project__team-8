@@ -67,7 +67,7 @@ function createMarkupEmail() {
 function createMarkupSubscr() {
  
   return `
-   <div class="backdrop back-drop-sub" data-modal>
+   <div class="backdrop" data-modal>
   <div class="modal-container subscribing-container modal-product" data-modal>
     <svg
       class="modal-product-close-icon sub-icon"
