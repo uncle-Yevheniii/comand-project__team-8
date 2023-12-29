@@ -2,6 +2,10 @@ import sprite from '../img/sptite.svg';
 import { fetchData } from '../API.js';
 import { serviceProductInfo } from '../js/modalproductcard.js';
 import { renderPagination } from '../js/pagination.js';
+import {
+  generatePopularCardListMarkup,
+  updateCardList,
+} from '../js/popular-products';
 const container = document.querySelector('.products-list');
 const noProducts = document.querySelector('.products-list-none');
 const pagination = document.querySelector('.pagination-block');
@@ -166,6 +170,9 @@ async function handleProductClick(event) {
     productInfo.quantity = 1;
     addToCart(productInfo, addToCartButton);
     productsGeneretor();
+    const popularCards = await generatePopularCardListMarkup();
+    updateCardList(popularCards);
+
   }
 }
 
