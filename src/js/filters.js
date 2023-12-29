@@ -67,6 +67,7 @@ const onCategoryField = event => {
   const currentCategory = event.target.value;
     settings.keyword = currentValue || null;
     settings.category = currentCategory === 'Show all' ? null : currentCategory.trim() || null;
+    settings.page = 1;
     localStorage.setItem('settings', JSON.stringify(settings));
   productsGeneretor();
 };
@@ -78,6 +79,6 @@ window.addEventListener('load', () => {
   productsGeneretor(savedFilters);
 
   searchForm.addEventListener('submit', onForm);
-  categorySelect.addEventListener('change', onCategoryField);
   searchInput.addEventListener('input', onSearchField);
+  categorySelect.addEventListener('change', onCategoryField);
 });
