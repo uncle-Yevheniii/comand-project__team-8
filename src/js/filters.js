@@ -41,38 +41,38 @@ renderSelects();
 
 const onForm = event => {
   event.preventDefault();
+  let settings = JSON.parse(localStorage.getItem('settings')) || { keyword: null, category: null };
   const currentValue = searchInput.value.trim();
   const currentCategory = categorySelect.value;
-  const query = { 
-    keyword: currentValue || null, 
-    category: currentCategory === 'Show all' ? null : currentCategory.trim() || null };
-  localStorage.setItem('settings', JSON.stringify(query));
-  productsGeneretor(query);
+    settings.keyword = currentValue || null;
+    settings.category = currentCategory === 'Show all' ? null : currentCategory.trim() || null;
+    localStorage.setItem('settings', JSON.stringify(settings));
+  productsGeneretor();
 };
 
 const onSearchField = event => {
   if (event.target.value === '') {
+    let settings = JSON.parse(localStorage.getItem('settings')) || { keyword: null, category: null };
     const currentCategory = categorySelect.value;
-    const query = { 
-      keyword: null, 
-      category: currentCategory === 'Show all' ? null : currentCategory.trim() || null };
-    localStorage.setItem('settings', JSON.stringify(query));
-    productsGeneretor(query);
+      settings.keyword = null;
+      settings.category = currentCategory === 'Show all' ? null : currentCategory.trim() || null;
+      localStorage.setItem('settings', JSON.stringify(settings));
+    productsGeneretor();
   }
 };
 
 const onCategoryField = event => {
+  let settings = JSON.parse(localStorage.getItem('settings')) || { keyword: null, category: null };
   const currentValue = searchInput.value.trim();
   const currentCategory = event.target.value;
-  const query = { 
-    keyword: currentValue || null, 
-    category: currentCategory === 'Show all' ? null : currentCategory.trim() || null };
-  localStorage.setItem('settings', JSON.stringify(query));
-  productsGeneretor(query);
+    settings.keyword = currentValue || null;
+    settings.category = currentCategory === 'Show all' ? null : currentCategory.trim() || null;
+    localStorage.setItem('settings', JSON.stringify(settings));
+  productsGeneretor();
 };
 
 window.addEventListener('load', () => {
-  const savedFilters = JSON.parse(localStorage.getItem('settings')) || { keyword: null, category: null };
+  const savedFilters = JSON.parse(localStorage.getItem('settings')) || { keyword: null, category: null};
   searchInput.value = savedFilters.keyword;
 
   productsGeneretor(savedFilters);
@@ -81,20 +81,3 @@ window.addEventListener('load', () => {
   categorySelect.addEventListener('change', onCategoryField);
   searchInput.addEventListener('input', onSearchField);
 });
-
-// const sortSelect = [
-//   { value: 'alphabetical', label: 'A to Z' },
-//   { value: 'reverse-alphabetical', label: 'Z to A' },
-//   { value: 'cheap', label: 'Cheap' },
-//   { value: 'expensive', label: 'Expensive' },
-//   { value: 'popular', label: 'Popular' },
-//   { value: 'not-popular', label: 'Not popular' },
-//   { value: '', label: 'Show all' },
-// ];
-
-// new SlimSelect({
-//   select: '#sort',
-//   settings: {
-//     showSearch: false,
-//   },
-// });
