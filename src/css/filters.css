@@ -53,7 +53,7 @@
     display: block;
     visibility: visible;
 }
-.filters-form-select-category,
+/* .filters-form-select-category, */
 .ss-main.filters-form-select-category {
     height: 48px;
     width: 100%;
@@ -128,7 +128,7 @@
         top: 16px;
         left: 226px;
     }
-    .filters-form-select-category,
+    /* .filters-form-select-category, */
     .ss-main.filters-form-select-category {
         height: 52px;
         max-width: 189px;
