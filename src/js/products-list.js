@@ -164,7 +164,6 @@ function addToCart(productInfo, button) {
     // Змінюємо іконку на кнопці
     const useElement = button.querySelector('.productlist-card-icon-cart use');
     const svgElement = button.querySelector('.productlist-card-icon-cart');
-    console.log(svgElement);
     svgElement.classList.replace(
       'productlist-card-icon-cart',
       'productlist-card-icon-check'
@@ -175,14 +174,12 @@ function addToCart(productInfo, button) {
     // Якщо товар ще не доданий в кошик, додаємо його та оновлюємо localStorage
     cartItems.push(productInfo);
     localStorage.setItem('cart', JSON.stringify(cartItems));
-    console.log('Товар доданий в кошик!');
   }
   updateHeaderCartText();
 }
 function updateHeaderCartText() {
   const cartItems = JSON.parse(localStorage.getItem('cart')) || [];
   const headerSpan = document.querySelector('.js-header-span');
-
   if (headerSpan) {
     headerSpan.textContent = cartItems.length;
   }
