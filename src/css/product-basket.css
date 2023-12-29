@@ -238,7 +238,7 @@
 }
 
 .cart-form-btn:is(:hover, :focus) {
-  background: 1px solid #586f1f;
+  background-color: #586f1f;
 }
 
 .cart-product-list {
