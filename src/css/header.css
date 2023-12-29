@@ -1,4 +1,18 @@
 /* ---------- */
+header {
+  position: fixed;
+  width: 100%;
+  top: 0;
+  left: 0;
+  z-index: 50;
+  transition: transform 0.8s ease;
+  background-color: rgba(235, 236, 240, 0.434);
+  transition: all 0.3s ease;
+}
+header.hide {
+  transition: transform 0.8s ease;
+  transform: translateY(-150%);
+}
 .header-container {
   display: flex;
   align-items: center;

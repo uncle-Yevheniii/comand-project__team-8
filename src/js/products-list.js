@@ -194,7 +194,6 @@ function addToCart(productInfo, button) {
 function updateHeaderCartText() {
   const cartItems = JSON.parse(localStorage.getItem('cart')) || [];
   const headerSpan = document.querySelector('.js-header-span');
-
   if (headerSpan) {
     headerSpan.textContent = cartItems.length;
   }
