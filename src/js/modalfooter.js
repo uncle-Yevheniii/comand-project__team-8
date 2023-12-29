@@ -1,27 +1,25 @@
 
-import img from '../img/subscribing-modal@1x.png'
-import img2x from '../img/subscribing-modal@2x.png'
-import cartIcon from '../img/sptite.svg';
-
 export function showModalEmail() {
-  const body = document.querySelector('body');
+    const body = document.querySelector('body');
 
-  body.insertAdjacentHTML('beforeend', createMarkupEmail());
-  handleModal();
+        body.insertAdjacentHTML('beforeend', createMarkupEmail());
+        handleModal();
+
 }
 export function showModalSubscr() {
-  const body = document.querySelector('body');
+    const body = document.querySelector('body');
 
-  body.insertAdjacentHTML('beforeend', createMarkupSubscr());
-  handleModal();
+         body.insertAdjacentHTML('beforeend', createMarkupSubscr());
+            handleModal();
+
 }
 
 // showModal()
 // function showModal() {
 //     const body = document.querySelector('body');
-
+    
 //     /*перевірка чи такий емейл уже був уведений*/
-
+    
 //     if (true) {
 //         body.insertAdjacentHTML('beforeend', createMarkupEmail());
 //         handleModal();
@@ -35,6 +33,7 @@ export function showModalSubscr() {
 // // }
 // }
 function createMarkupEmail() {
+ 
   return `
     <div class="backdrop" data-modal>
   <div class="modal-container email-container modal-product" data-modal>
@@ -44,7 +43,7 @@ function createMarkupEmail() {
       height="22"
       data-modal-close
     >
-      <use href="${cartIcon}#icon-close"></use>
+      <use href="./img/sptite.svg#icon-close"></use>
     </svg>
     <div class="modal-wrapper-title">
       <p class="modal-subscr-title">
@@ -66,8 +65,9 @@ function createMarkupEmail() {
 }
 
 function createMarkupSubscr() {
+ 
   return `
-   <div class="backdrop back-drop-sub" data-modal>
+   <div class="backdrop" data-modal>
   <div class="modal-container subscribing-container modal-product" data-modal>
     <svg
       class="modal-product-close-icon sub-icon"
@@ -75,7 +75,7 @@ function createMarkupSubscr() {
       height="22"
       data-modal-close
     >
-      <use href="${cartIcon}#icon-close"></use>
+      <use href="./img/sptite.svg#icon-close"></use>
     </svg>
     <div class="modal-wrapper-title">
       <p class="modal-subscr-title">
@@ -94,10 +94,10 @@ function createMarkupSubscr() {
     <img
       class="modal-subcr-img"
       srcset="
-        ${img} 1x,
-        ${img2x} 2x
+        ./img/subscribing-modal@1x.png 1x,
+        ./img/subscribing-modal@2x.png 2x
       "
-      src="${img}"
+      src="./img/subscribing-modal@1x.png"
       width="335"
       height="144"
       alt="Vegetables"
@@ -110,8 +110,8 @@ function createMarkupSubscr() {
 function handleModal() {
   const closeModalBtn = document.querySelector('[data-modal-close]');
   const backdrop = document.querySelector('.backdrop');
-  //   const modal = document.querySelector('[data-modal]');
-  //   modal.addEventListener('click', handleProductClick);
+//   const modal = document.querySelector('[data-modal]');
+//   modal.addEventListener('click', handleProductClick);
   function toggleModal() {
     const modal = document.querySelector('[data-modal]');
     if (modal) {
@@ -136,8 +136,8 @@ function handleModal() {
       document.removeEventListener('keydown', handleKey);
     }
   }
-  //   ul.addEventListener('click', handleCardClick);
-  //   list.addEventListener('click', handleCardProductClick);
+//   ul.addEventListener('click', handleCardClick);
+//   list.addEventListener('click', handleCardProductClick);
 
   closeModalBtn.addEventListener('click', toggleModal);
   backdrop.addEventListener('click', handleBackdrop);
@@ -148,3 +148,4 @@ function handleModal() {
     body.insertAdjacentHTML('beforeend', createMarkup(info));
   }
 }
+
