@@ -1,5 +1,8 @@
 .wrapperPopularProduct {
+  display: flex;
+  flex-direction: column;
   margin-bottom: 80px;
+  gap: 14px;
 }
 .popular__products-title {
   font-size: 28px;
@@ -12,6 +15,7 @@
   .wrapperPopularProduct {
     display: flex;
     flex-wrap: wrap;
+    flex-direction: row;
     gap: 13px;
     margin-bottom: 64px;
   }
@@ -25,16 +29,14 @@
 
 .popular__products-items {
   position: relative;
-
+  box-sizing: border-box;
   display: flex;
+
   gap: 10px;
-  max-width: 311px;
+  max-width: 335px;
   padding: 12px;
   border-radius: 10px;
   background: var(--current-white);
-}
-.popular__products-items:not(:last-child) {
-  margin-bottom: 20px;
 }
 @media only screen and (min-width: 768px) {
   .popular__products-items,
@@ -49,9 +51,10 @@
   }
 }
 .img-box {
+  box-sizing: border-box;
   padding: 9px;
-  max-width: 65px;
-  max-height: 65px;
+  max-width: 74px;
+  max-height: 74px;
   border-radius: 10px;
   background: var(--background);
 }
