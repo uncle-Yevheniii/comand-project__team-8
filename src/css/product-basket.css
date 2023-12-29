@@ -4,7 +4,7 @@
   align-items: center;
   gap: 14px;
   margin-bottom: 14px;
-  padding-top: 72px;
+  padding-top: 128px;
 }
 .cart-icon {
   width: 38px;
@@ -378,7 +378,7 @@
 
 @media only screen and (min-width: 768px) {
   .cart-info {
-    padding-top: 99px;
+    padding-top: 172px;
   }
   .cart-icon {
     width: 42px;
@@ -531,7 +531,7 @@
 
 @media screen and (min-width: 1280px) {
   .cart-info {
-    padding-top: 81px;
+    padding-top: 154px;
   }
   /* Empty basket */
   .basket-empty-img {

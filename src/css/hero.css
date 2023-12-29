@@ -1,15 +1,15 @@
 .hero-section {
-  margin-top: 64px;
+  margin-top: 128px;
   margin-bottom: 74px;
 }
 @media only screen and (min-width: 768px) {
   .hero-section {
-    margin-top: 92px;
+    margin-top: 188px;
   }
 }
 @media only screen and (min-width: 1440px) {
   .hero-section {
-    margin-top: 54px;
+    margin-top: 150px;
     margin-bottom: 100px;
   }
 }
