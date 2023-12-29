@@ -1,4 +1,5 @@
 import img from '../img/subscribing-modal@1x.png'
+import img2 from '../img/subscribing-modal@2x.png'
 import cartIcon from '../img/sptite.svg';
 export function showModalEmail() {
   const body = document.querySelector('body');
@@ -91,8 +92,8 @@ function createMarkupSubscr() {
     <img
       class="modal-subcr-img"
       srcset="
-        ../img/subscribing-modal@1x.png 1x,
-        ../img/subscribing-modal@2x.png 2x
+        ${img} 1x,
+        ${img2} 2x
       "
       src="${img}"
       width="335"
