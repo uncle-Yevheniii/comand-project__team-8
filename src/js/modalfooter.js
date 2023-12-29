@@ -1,3 +1,5 @@
+import img from '../img/subscribing-modal@1x.png'
+import cartIcon from '../img/sptite.svg';
 export function showModalEmail() {
   const body = document.querySelector('body');
 
@@ -39,7 +41,7 @@ function createMarkupEmail() {
       height="22"
       data-modal-close
     >
-      <use href="./img/sptite.svg#icon-close"></use>
+      <use href="${cartIcon}#icon-close"></use>
     </svg>
     <div class="modal-wrapper-title">
       <p class="modal-subscr-title">
@@ -70,7 +72,7 @@ function createMarkupSubscr() {
       height="22"
       data-modal-close
     >
-      <use href="./img/sptite.svg#icon-close"></use>
+      <use href="${cartIcon}#icon-close"></use>
     </svg>
     <div class="modal-wrapper-title">
       <p class="modal-subscr-title">
@@ -92,7 +94,7 @@ function createMarkupSubscr() {
         ../img/subscribing-modal@1x.png 1x,
         ../img/subscribing-modal@2x.png 2x
       "
-      src="../img/subscribing-modal@1x.png"
+      src="${img}"
       width="335"
       height="144"
       alt="Vegetables"
