@@ -40,7 +40,9 @@ async function handleCardProductClick(event) {
     button.style.background = '#6d8434';
     // button.textContent="Added to ";
     button.childNodes[0].nodeValue = 'Remove from';
+      button.addEventListener("click", deleteFromCart);
   }
+
   handleProductModal();
 }
 
@@ -71,6 +73,7 @@ async function handleCardClick(event) {
     button.style.background = '#6d8434';
     // button.textContent="Added to";
     button.childNodes[0].nodeValue = 'Remove from';
+      button.addEventListener("click", deleteFromCart);
   }
   handleProductModal();
 }
@@ -103,6 +106,7 @@ async function handleDiscountCardClick(event) {
     button.style.background = '#6d8434';
     // button.textContent="Added to";
     button.childNodes[0].nodeValue = 'Remove from';
+      button.addEventListener("click", deleteFromCart);
   }
   handleProductModal();
 }
@@ -235,10 +239,13 @@ function createMarkup(info) {
 // }
 
 function handleProductModal() {
+
+    const addToCartButton = document.querySelector('.modal-wimdow-add-to-cart-btn');
+  
+  addToCartButton.addEventListener('click', handleProductClick);
   const closeModalBtn = document.querySelector('[data-modal-close]');
   const backdrop = document.querySelector('.backdrop');
-  const modal = document.querySelector('[data-modal]');
-  modal.addEventListener('click', handleProductClick);
+
   function toggleModal() {
     const modal = document.querySelector('[data-modal]');
     if (modal) {
@@ -246,6 +253,7 @@ function handleProductModal() {
       closeModalBtn.removeEventListener('click', toggleModal);
       document.removeEventListener('keydown', handleKey);
       backdrop.removeEventListener('click', handleBackdrop);
+
     }
   }
 
@@ -277,9 +285,14 @@ function handleProductModal() {
 }
 
 async function handleProductClick(event) {
-  const target = event.target;
-  const addToCartButton = target.closest('.modal-wimdow-add-to-cart-btn');
-  if (addToCartButton) {
+  console.log("!!!!");
+ const addToCartButton = document.querySelector('.modal-wimdow-add-to-cart-btn');
+  // const target = event.target;
+  // const addToCartButton = target.closest('.modal-wimdow-add-to-cart-btn');
+       
+console.log(addToCartButton);
+
+  // if (addToCartButton) {
     const productCard = addToCartButton.closest('.modal-container');
     const productId = productCard.dataset.id;
 
@@ -294,27 +307,30 @@ async function handleProductClick(event) {
     const popularCards = await generatePopularCardListMarkup();
     updateCardList(popularCards);
     productsGeneretor();
-  }
+  // }
 }
 
 // Функція для додавання товару в кошик
 function addToCart(productInfo, button) {
   let cartItems = JSON.parse(localStorage.getItem('cart')) || [];
   const existingProduct = cartItems.find(item => item._id === productInfo._id);
-
+    button.removeEventListener('click', addToCart);  // Remove the previous event listener
   if (existingProduct) {
     // Змінюємо іконку на кнопці
-
     button.style.background = '#6d8434';
-    button.textContent = 'Remove from';
+    button.childNodes[0].nodeValue = 'Remove from';
+  
   } else {
     // Якщо товар ще не доданий в кошик, додаємо його та оновлюємо localStorage
     cartItems.push(productInfo);
+
     localStorage.setItem('cart', JSON.stringify(cartItems));
     button.style.background = '#6d8434';
-    // button.textContent="Added to";
     button.childNodes[0].nodeValue = 'Remove from';
+
   }
+
+    button.addEventListener("click",  deleteFromCart);
   updateHeaderCartText();
 }
 function updateHeaderCartText() {
@@ -325,3 +341,31 @@ function updateHeaderCartText() {
     headerSpan.textContent = cartItems.length;
   }
 }
+async function deleteFromCart() {
+  console.log("-----");
+  const button = document.querySelector('.modal-wimdow-add-to-cart-btn');
+ button.removeEventListener("click", deleteFromCart);
+  const modal = document.querySelector('.modal-product');
+    // button.removeEventListener('click', handleProductClick);
+  console.log(modal);
+  const id = modal.dataset.id;
+  console.log(id);
+   const info = await serviceProductInfo(id);
+  let cartItems = JSON.parse(localStorage.getItem('cart')) || [];
+  const existingProduct = cartItems.find(item => item._id === info._id);
+
+  if (existingProduct) {
+
+const data= JSON.parse(localStorage.getItem('cart')) || [];
+      const updatedCart = data.filter(item => item._id !== id );
+
+                localStorage.setItem('cart', JSON.stringify(updatedCart));
+  button.childNodes[0].nodeValue = 'Add to';
+     console.log("-----");
+    button.addEventListener('click', handleProductClick);
+  }
+
+
+}
+
+
