@@ -1,4 +1,4 @@
-import{s as d,p as y}from"./assets/footer-84b640de.js";import"./assets/vendor-c8bc0669.js";const p="/comand-project__team-8/assets/yellow-shopping-basket@1x-fe591d80.png",b="/comand-project__team-8/assets/yellow-shopping-basket@2x-61cba68c.png",h=`
+import{s as d,p as y}from"./assets/footer-dbcac66d.js";import"./assets/vendor-c8bc0669.js";const p="/comand-project__team-8/assets/yellow-shopping-basket@1x-fe591d80.png",b="/comand-project__team-8/assets/yellow-shopping-basket@2x-61cba68c.png",h=`
     <picture class="empty-basket">
         <source srcset="${p} 1x, ${b} 2x" />
         <img src="${p}" alt="basket" class="basket-empty-img"/>

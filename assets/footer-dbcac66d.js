@@ -65,4 +65,4 @@ import{a as c}from"./vendor-c8bc0669.js";(function(){const t=document.createElem
 </div>
     
     `}function u(){const o=document.querySelector("[data-modal-close]"),t=document.querySelector(".backdrop");function a(){const r=document.querySelector("[data-modal]");r&&(r.remove(),o.removeEventListener("click",a),document.removeEventListener("keydown",e),t.removeEventListener("click",s))}function s(r){r.target===t&&(a(),t.removeEventListener("click",s))}function e(r){r.code==="Escape"&&(a(),document.removeEventListener("keydown",e))}o.addEventListener("click",a),t.addEventListener("click",s),document.addEventListener("keydown",e),document.querySelector("[data-modal]")||body.insertAdjacentHTML("beforeend",createMarkup(info))}const y=document.querySelector(".footer-form");y.addEventListener("submit",h);async function h(o){o.preventDefault();const t=o.target.email,a=t.value,s=await l(a);s.success?(f(),t.value=""):s.status===409?(m(),t.value=""):alert(s.message)}export{L as a,w as b,q as d,k as f,S as p,d as s};
-//# sourceMappingURL=footer-84b640de.js.map
+//# sourceMappingURL=footer-dbcac66d.js.map
