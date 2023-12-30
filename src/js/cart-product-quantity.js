@@ -1,4 +1,3 @@
-// cart-product-quantity.js
 import { renderCart } from '../cart.js';
 
 export function cartProductQuantity(data) {

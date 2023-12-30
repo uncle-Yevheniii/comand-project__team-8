@@ -6,7 +6,6 @@ export async function fetchCategories() {
     const res = await axios.get(url);
     return res.data;
   } catch (error) {
-    console.error('Помилка під час запиту:', error);
     return [];
   }
 }
@@ -20,15 +19,6 @@ export async function fetchData({ keyword, category, page, limit }) {
   return response.data;
 }
 
-//Для примера вида параметра, который будет приходить в fetchData
-// const params = {
-//   keyword: 'Ac',
-//   category: 'Fresh_Produce',
-//   page: 1,
-//   limit: 1,
-// };
-
-// fetchData(params);
 export async function popularProdact() {
   const url = 'https://food-boutique.b.goit.study/api/products/popular';
   const res = await axios.get(url);
@@ -65,8 +55,7 @@ export async function postSubscribe(email) {
         status: 409,
         message: 'Email already subscribed',
       };
-    } else {      
-      console.error('Произошла ошибка при отправке:', error);
+    } else {
       return {
         success: false,
         status: error.response ? error.response.status : null,
@@ -85,20 +74,9 @@ export async function postOrders({ email, products }) {
   };
   try {
     const res = await axios.post(url, order);
-    // alert(res.data.message);
-    // console.log(res.data);
     return res.data;
   } catch (error) {
     alert('Oops! Something went wrong');
-    console.error('Произошла ошибка при отправке:', error);
     throw error;
   }
 }
-//То что должно прилететь как параметр в postOrder
-// const orderData = {
-//   email: 'examp@email5799.com',
-//   products: [
-//     { productId: "640c2dd963a319ea671e383b",
-//      amount: 2 }
-//   ]
-// };

@@ -15,24 +15,6 @@ export function showModalSubscr() {
   handleModal();
 }
 
-// showModal()
-// function showModal() {
-//     const body = document.querySelector('body');
-
-//     /*перевірка чи такий емейл уже був уведений*/
-
-//     if (true) {
-//         body.insertAdjacentHTML('beforeend', createMarkupEmail());
-//         handleModal();
-//     }
-//     // else {
-//     //     body.insertAdjacentHTML('beforeend', createMarkupSubscr());
-//     //           handleModal();}
-// //       if(true) {
-// //         body.insertAdjacentHTML('beforeend', createMarkupSubscr());
-// //               handleModal();
-// // }
-// }
 function createMarkupEmail() {
   return `
     <div class="backdrop" data-modal>
@@ -109,8 +91,6 @@ function createMarkupSubscr() {
 function handleModal() {
   const closeModalBtn = document.querySelector('[data-modal-close]');
   const backdrop = document.querySelector('.backdrop');
-  //   const modal = document.querySelector('[data-modal]');
-  //   modal.addEventListener('click', handleProductClick);
   function toggleModal() {
     const modal = document.querySelector('[data-modal]');
     if (modal) {
@@ -135,14 +115,11 @@ function handleModal() {
       document.removeEventListener('keydown', handleKey);
     }
   }
-  //   ul.addEventListener('click', handleCardClick);
-  //   list.addEventListener('click', handleCardProductClick);
 
   closeModalBtn.addEventListener('click', toggleModal);
   backdrop.addEventListener('click', handleBackdrop);
   document.addEventListener('keydown', handleKey);
 
-  // Prevent attaching multiple listeners to the same modal
   if (!document.querySelector('[data-modal]')) {
     body.insertAdjacentHTML('beforeend', createMarkup(info));
   }

@@ -1,11 +1,9 @@
 import { popularProdact } from '../API.js';
-import { popular_products_ul } from '../refs';
 import { serviceProductInfo } from '../js/modalproductcard.js';
 import { productsGeneretor } from '../js/products-list.js';
 import cartIcon from '../img/sptite.svg';
 
 const ul = document.querySelector('.wrapperPopularProduct');
-const btn = document.querySelector('.popular__products-button');
 
 document.addEventListener('DOMContentLoaded', onReload);
 async function onReload() {
@@ -94,10 +92,6 @@ function onError() {
   console.error('Error:', err);
   ul.innerHTML = '';
 }
-//
-//
-//
-//
 ul.addEventListener('click', handleProductClick);
 
 async function handleProductClick(event) {
@@ -112,7 +106,6 @@ async function handleProductClick(event) {
     const productInfo = await serviceProductInfo(productId);
     productInfo.quantity = 1;
     addToCart(productInfo, addToCartButton);
-    // location.reload();
     const popularCards = await generatePopularCardListMarkup();
     updateCardList(popularCards);
     productsGeneretor();

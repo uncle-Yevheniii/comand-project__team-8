@@ -1,6 +1,6 @@
 import SlimSelect from 'slim-select';
 import '../../node_modules/slim-select/dist/slimselect.css';
-import { fetchCategories, fetchData } from '../API';
+import { fetchCategories } from '../API';
 import { productsGeneretor } from './products-list';
 
 const searchForm = document.querySelector('.filters-form');

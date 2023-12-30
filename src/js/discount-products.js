@@ -1,4 +1,3 @@
-import axios from 'axios';
 import svgIcon from '../img/sptite.svg';
 import { discountProduct } from '../API';
 import { serviceProductInfo } from '../js/modalproductcard.js';
@@ -9,7 +8,7 @@ import '../js/modalproductcard.js';
 
 localStorageSettings();
 localStorageCart();
-//
+
 //розмітка
 function createMarkupDiscountProd(data) {
   return data
@@ -68,39 +67,6 @@ function randomPictures(data) {
   data[oneCard] = b;
 }
 
-// слайдер//////////////////
-
-// let slide = 0;
-// const cardHeigth = 252;
-// const oneSlider = 1260;
-// let allCards = 1260;
-// let timer;
-
-// autoSlider();
-
-// // const availableScreenWidth = window.screen.availWidth;
-// const cardDiv = document.querySelector('.slider-col');
-
-// function slider() {
-//   // if (availableScreenWidth <= 767.98 || availableScreenWidth >= 1440) {
-//   slide += cardHeigth;
-
-//   if (slide >= oneSlider) {
-//     slide = 0;
-//     clearTimeout(timer);
-//     // allCards += oneSlider;
-//     // cardDrawing();
-//   }
-
-//   autoSlider();
-//   cardDiv.style.bottom = slide + 'px';
-// }
-
-// function autoSlider() {
-//   timer = setTimeout(slider, 4000);
-// }
-
-/////////////////////////////////////////
 window.addEventListener('load', updateHeaderCartText);
 cardDiscountProd.addEventListener('click', handleProductClick);
 
@@ -117,14 +83,6 @@ async function handleProductClick(event) {
     const productInfo = await serviceProductInfo(productId);
     productInfo.quantity = 1;
 
-    // const productInfo = {
-    //   id: productId,
-    //   name: productCard.querySelector('.text-discount-prod').textContent,
-    //   price: productCard.querySelector('.price-text-disc').textContent,
-    //   category: productCard.dataset.category,
-    //   img: productCard.querySelector('.discount-img').src,
-    //   size: productCard.dataset.size,
-    // };
     addToCart(productInfo, addToCartButton);
   }
   cardDrawing();

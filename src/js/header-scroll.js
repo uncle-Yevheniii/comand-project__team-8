@@ -1,4 +1,3 @@
-
 let lastScroll = 0;
 const defaultOffset = 2;
 const header = document.querySelector('header');
