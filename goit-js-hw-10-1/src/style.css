@@ -1,0 +1,50 @@
+
+.is-hidden {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    margin: -1px;
+    border: 0;
+    padding: 0;
+    
+    white-space: nowrap;
+    clip-path: inset(100%);
+    clip: rect(0 0 0 0);
+    overflow: hidden;
+  }
+  
+  .cat-info {
+    display: flex;
+    flex-direction: row;
+  }
+  
+  .error{
+    color: red;
+    font-weight: 500;
+  }
+  img {
+    display: block;
+    width: 250px;
+    height: auto;
+    margin-right: 15px;
+  }
+  
+  .breed-select {
+    width: 250px;
+  }
+  
+  .cat-info {
+    margin-top: 30px;
+  }
+  
+  .select {
+    background-color: #f2f2f2;
+    position: absolute;
+    top: 0;
+    left: 0;
+    bottom: 0;
+  }
+  .list-item{
+    width: 400px;
+    height: 400px;
+  }
