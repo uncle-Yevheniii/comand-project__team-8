@@ -230,11 +230,10 @@
   position: relative;
   animation: rotate 1s linear infinite;
   visibility: hidden;
-  /* margin-left: 100px; */
 }
 .number1 {
   position: fixed;
-  left: 20px; /* Adjust the left position as needed */
+  left: 20px;
   transform: translateY(-50%);
 }
 .loader::before,

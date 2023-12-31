@@ -13,45 +13,6 @@
   }
 }
 
-/* слайдер//////////////////////////////////////////// */
-
-/* .slider {
-  max-width: 335px;
-  max-height: 484px;
-  overflow: hidden;
-  /* animation-direction: alternate; */
-/* } */
-/* @media only screen and (min-width: 768px) {
-  .slider {
-    min-width: 704px;
-
-    max-height: 232px;
-  }
-} */
-
-/* @media only screen and (min-width: 1440px) {
-  .slider {
-    min-width: 275px;
-    max-width: 275px;
-    max-height: 484px;
-    /* transition-duration: 2s;
-    animation-direction: alternate; */
-/* border: 2px solid #161515; */
-/* }
-} */
-
-/* .slider-col {
-  /* height: 5040px; */
-/* position: relative;
-
-  transition-duration: 2s;
-  /* animation-direction: alternate; */
-
-/**
-   |============================
-   | 
-   |============================
- */
 .card-discount-prod {
   display: block;
   padding-bottom: 80px;
@@ -201,23 +162,7 @@
   top: 3px;
   right: 10px;
   overflow: visible;
-
-  /* animation: animate110 4000ms infinite 1000ms; */
 }
-
-/* @keyframes animate110 {
-  0% {
-    transform: scale(1);
-  }
-
-  50% {
-    transform: scale(1.1);
-  }
-
-  100% {
-    transform: scale(1);
-  }
-} */
 
 @media only screen and (min-width: 1440px) {
   .discount-svg {
