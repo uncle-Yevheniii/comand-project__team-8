@@ -23,7 +23,6 @@ async function handleCardProductClick(event) {
     list.addEventListener('click', handleCardProductClick);
     return;
   }
-  // delete later for button
 
   const id = product.dataset.id;
 
@@ -38,7 +37,6 @@ async function handleCardProductClick(event) {
     // Змінюємо іконку на кнопці
 
     button.style.background = '#6d8434';
-    // button.textContent="Added to ";
     button.childNodes[0].nodeValue = 'Remove from';
       button.addEventListener("click", deleteFromCart);
   }
@@ -55,8 +53,7 @@ async function handleCardClick(event) {
     ul.addEventListener('click', handleCardClick);
     return;
   }
-  // delete later for button
-  // delete if click is not li
+
   const id = product.dataset.id;
 
   const info = await serviceProductInfo(id);
@@ -88,8 +85,7 @@ async function handleDiscountCardClick(event) {
     ul2.addEventListener('click', handleCardClick);
     return;
   }
-  // delete later for button
-  // delete if click is not li
+
   const id = product.dataset.id;
 
   const info = await serviceProductInfo(id);
@@ -196,48 +192,6 @@ function createMarkup(info) {
     `;
 }
 
-// function handleProductModal() {
-//   const closeModalBtn = document.querySelector('[data-modal-close]');
-//   const modal = document.querySelector('[data-modal]');
-//   const backdrop = document.querySelector('.backdrop');
-//    function toggleModal() {
-//       console.log('!!!!!!!');
-//      modal.remove();
-//       //  modal.parentElement.removeChild(modal);
-//       // document.removeEventListener('keydown', handleKey);
-//       closeModalBtn.removeEventListener('click', toggleModal);
-//     }
-//   closeModalBtn.addEventListener('click', toggleModal);
-//   backdrop.addEventListener('click', handleBackdrop);
-//   function handleBackdrop(event) {
-//     if (event.target !== backdrop) {
-//       return;
-//     }
-//     toggleModal();
-//     backdrop.removeEventListener('click', handleBackdrop);
-//   }
-//   document.addEventListener('keydown', handleKey);
-
-//   function handleKey(event) {
-//     if (event.code === 'Escape') {
-//       toggleModal();
-//             document.removeEventListener('keydown', handleKey);
-//     }
-
-//     ul.addEventListener('click', handleCardClick);
-//     list.addEventListener('click', handleCardProductClick);
-//     // list.addEventListener("click", handleCardPopularClick);
-//   }
-// }
-
-// function showLoader(span) {
-//   span.style.visibility = 'visible';
-// }
-
-// function hideLoader(span) {
-//   span.style.display = 'none';
-// }
-
 function handleProductModal() {
 
     const addToCartButton = document.querySelector('.modal-wimdow-add-to-cart-btn');
@@ -300,10 +254,6 @@ console.log(addToCartButton);
     const productInfo = await serviceProductInfo(productId);
     productInfo.quantity = 1;
     addToCart(productInfo, addToCartButton);
-    //
-    //
-    //
-    //
     const popularCards = await generatePopularCardListMarkup();
     updateCardList(popularCards);
     productsGeneretor();

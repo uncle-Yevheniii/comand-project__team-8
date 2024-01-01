@@ -64,7 +64,6 @@
 .tui-pagination strong {
   color: var(--current-white);
   background: var(--p_color);
-  /* border-color: var(--p_color); */
   cursor: default;
 }
 
@@ -76,17 +75,6 @@
 .tui-pagination strong.tui-first-child {
   margin-left: 0;
 }
-
-.tui-pagination .tui-first-child,
-.tui-pagination .tui-prev-is-ellip {
-  /* border-left: 1px solid #ddd; */
-}
-
-.tui-pagination .tui-last-child,
-.tui-pagination .tui-next-is-ellip {
-  /* border-right: 1px solid #ddd; */
-}
-
 .tui-pagination .tui-first-child.tui-is-selected {
   background: var(--p_color);
 }
@@ -109,7 +97,6 @@
   line-height: 36px;
   white-space: nowrap;
   font-weight: normal;
-  /* border: 1px solid #ddd; */
   background-color: var(--current-white);
 }
 
@@ -144,10 +131,6 @@
   line-height: 1;
   background-color: transparent;
 }
-/* .tui-prev-is-ellip:hover,
-.tui-next-is-ellip:hover {
-  background-color: var(--p_color);
-} */
 
 .tui-pagination .tui-prev {
   margin-right: 10px;

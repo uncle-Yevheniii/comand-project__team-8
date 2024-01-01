@@ -9,7 +9,6 @@ import {
 const container = document.querySelector('.products-list');
 const noProducts = document.querySelector('.products-list-none');
 const pagination = document.querySelector('.pagination-block');
-let limit = 6;
 
 const defaultParams = {
   keyword: null,
@@ -84,7 +83,6 @@ function windowChange() {
   ) {
     return;
   } else {
-    // console.log(`windowChange ${limit}`);
     productsGeneretor();
   }
 }

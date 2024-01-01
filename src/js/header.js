@@ -1,20 +1,3 @@
-// let productCount = 0;
-
-// function addProduct() {
-//   productCount++;
-//   showProductCount();
-// }
-
-// function showProductCount() {
-//   document.querySelector('.header-cart span').textContent = productCount;
-// }
-
-// document
-//   .querySelector('.header-home-icon')
-//   .addEventListener('click', addProduct);
-
-// showProductCount();
-
 let productCount = 0;
 let cart = [];
 

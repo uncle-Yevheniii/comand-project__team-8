@@ -3,7 +3,6 @@ import { postOrders } from '../API';
 
 (() => {
   const refs = {
-    // openModal: document.querySelector(".cart-form-btn"),
     openModal: document.querySelector('.cart-form-order-input'),
     closeModalBtn: document.querySelector('.modal-product-close-icon'),
     modal: document.querySelector('.backdrop-cart '),

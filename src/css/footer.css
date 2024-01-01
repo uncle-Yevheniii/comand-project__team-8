@@ -305,9 +305,6 @@
 
 /* Dekstop version */
 @media screen and (min-width: 1440px) {
-  /* .wrapper {
-    margin-bottom: 128px;
-  } */
 
   .footer-text-box {
     max-width: 410px;

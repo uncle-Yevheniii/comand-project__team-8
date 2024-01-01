@@ -1,7 +1,6 @@
 import {postSubscribe} from '../API.js';
 import {showModalEmail,showModalSubscr} from '../js/modalfooter.js';
 
-
 const submitSubscribe = document.querySelector('.footer-form');
 
 submitSubscribe.addEventListener('submit', onSubmit);
