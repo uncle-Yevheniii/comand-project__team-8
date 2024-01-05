@@ -5,6 +5,10 @@
   flex-shrink: 0;
   align-content: flex-start;
   justify-content: space-between;
+<<<<<<< productList2
+=======
+
+>>>>>>> main
   margin-bottom: 40px;
 }
 
@@ -50,6 +54,7 @@
 }
 @media only screen and (min-width: 1440px) {
   .productlist-card {
+    height: 363px;
     max-width: 255px;
     max-height: 323px;
     flex-basis: calc(((100% - 40px) / 3));
@@ -176,7 +181,8 @@
 }
 @media only screen and (min-width: 1440px) {
   .products-list-none {
-    margin: 160px auto 0;
+    margin: 160px 347px 0;
+    width: 370px;
   }
 }
 
