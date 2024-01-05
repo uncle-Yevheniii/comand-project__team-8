@@ -1,53 +1,109 @@
 import axios from 'axios';
 import cartIcon from '../img/sptite.svg';
-// import { handleModal } from "./modal";
+import {
+  generatePopularCardListMarkup,
+  updateCardList,
+} from '../js/popular-products';
+import { productsGeneretor } from '../js/products-list';
 const ul = document.querySelector('.wrapperPopularProduct');
-console.log(ul);
 const body = document.querySelector('body');
 ul.addEventListener('click', handleCardClick);
+const ul2 = document.querySelector('.card-discount-prod');
 
 const list = document.querySelector('.products-list');
-console.log(list);
 list.addEventListener('click', handleCardProductClick);
-
+ul2.addEventListener('click', handleDiscountCardClick);
 async function handleCardProductClick(event) {
   list.removeEventListener('click', handleCardProductClick);
-
+  ul.removeEventListener('click', handleCardClick);
+  ul2.removeEventListener('click', handleDiscountCardClick);
   const product = event.target.closest('.productlist-card');
 
   if (product === null || event.target.closest('.productlist-card-btn')) {
     list.addEventListener('click', handleCardProductClick);
     return;
   }
-  console.log(product);
-  // delete later for button
 
   const id = product.dataset.id;
 
   const info = await serviceProductInfo(id);
-  console.log(info);
 
   body.insertAdjacentHTML('beforeend', createMarkup(info));
+  const button = document.querySelector('.modal-wimdow-add-to-cart-btn');
+  let cartItems = JSON.parse(localStorage.getItem('cart')) || [];
+  const existingProduct = cartItems.find(item => item._id === info._id);
+
+  if (existingProduct) {
+    // Змінюємо іконку на кнопці
+
+    button.style.background = '#6d8434';
+    button.childNodes[0].nodeValue = 'Remove from';
+      button.addEventListener("click", deleteFromCart);
+  }
 
   handleProductModal();
 }
 
 async function handleCardClick(event) {
+  list.removeEventListener('click', handleCardProductClick);
   ul.removeEventListener('click', handleCardClick);
+  ul2.removeEventListener('click', handleDiscountCardClick);
   const product = event.target.closest('li');
   if (product === null || event.target.closest('.popular__products-button')) {
     ul.addEventListener('click', handleCardClick);
     return;
   }
-  // delete later for button
-  // delete if click is not li
+
   const id = product.dataset.id;
 
   const info = await serviceProductInfo(id);
-  console.log(info);
 
   body.insertAdjacentHTML('beforeend', createMarkup(info));
+  const button = document.querySelector('.modal-wimdow-add-to-cart-btn');
 
+  let cartItems = JSON.parse(localStorage.getItem('cart')) || [];
+  const existingProduct = cartItems.find(item => item._id === info._id);
+
+  if (existingProduct) {
+    // Змінюємо іконку на кнопці
+
+    button.style.background = '#6d8434';
+    // button.textContent="Added to";
+    button.childNodes[0].nodeValue = 'Remove from';
+      button.addEventListener("click", deleteFromCart);
+  }
+  handleProductModal();
+}
+
+async function handleDiscountCardClick(event) {
+  ul2.removeEventListener('click', handleCardClick);
+  list.removeEventListener('click', handleCardProductClick);
+  ul.removeEventListener('click', handleCardClick);
+
+  const product = event.target.closest('li');
+  if (product === null || event.target.closest('.btn-icon-cart')) {
+    ul2.addEventListener('click', handleCardClick);
+    return;
+  }
+
+  const id = product.dataset.id;
+
+  const info = await serviceProductInfo(id);
+
+  body.insertAdjacentHTML('beforeend', createMarkup(info));
+  const button = document.querySelector('.modal-wimdow-add-to-cart-btn');
+
+  let cartItems = JSON.parse(localStorage.getItem('cart')) || [];
+  const existingProduct = cartItems.find(item => item._id === info._id);
+
+  if (existingProduct) {
+    // Змінюємо іконку на кнопці
+
+    button.style.background = '#6d8434';
+    // button.textContent="Added to";
+    button.childNodes[0].nodeValue = 'Remove from';
+      button.addEventListener("click", deleteFromCart);
+  }
   handleProductModal();
 }
 
@@ -65,10 +121,14 @@ export async function serviceProductInfo(id) {
 }
 
 function createMarkup(info) {
-  const { name, category, size, popularity, desc, price, img } = info;
+  let category_;
+  const { _id, name, category, size, popularity, desc, price, img } = info;
+  if (category.includes('_')) {
+    category_ = category.split('_').join(' ');
+  }
   return `
     <div class="backdrop" data-modal>
-  <div class="modal-container modal-product" data-modal">
+  <div class="modal-container modal-product" data-id="${_id}" data-modal">
     <svg
       class="modal-product-close-icon"
       width="22"
@@ -93,7 +153,7 @@ function createMarkup(info) {
           <p class="modal-product modal-product-desc">
             Category:
             <span class="modal-product-desc modal-product-desc-value"
-              >${category}</span
+              >${category_}</span
             >
           </p>
 
@@ -132,49 +192,11 @@ function createMarkup(info) {
     `;
 }
 
-// function handleProductModal() {
-//   const closeModalBtn = document.querySelector('[data-modal-close]');
-//   const modal = document.querySelector('[data-modal]');
-//   const backdrop = document.querySelector('.backdrop');
-//    function toggleModal() {
-//       console.log('!!!!!!!');
-//      modal.remove();
-//       //  modal.parentElement.removeChild(modal);
-//       // document.removeEventListener('keydown', handleKey);
-//       closeModalBtn.removeEventListener('click', toggleModal);
-//     }
-//   closeModalBtn.addEventListener('click', toggleModal);
-//   backdrop.addEventListener('click', handleBackdrop);
-//   function handleBackdrop(event) {
-//     if (event.target !== backdrop) {
-//       return;
-//     }
-//     toggleModal();
-//     backdrop.removeEventListener('click', handleBackdrop);
-//   }
-//   document.addEventListener('keydown', handleKey);
-
-//   function handleKey(event) {
-//     if (event.code === 'Escape') {
-//       toggleModal();
-//             document.removeEventListener('keydown', handleKey);
-//     }
-
-//     ul.addEventListener('click', handleCardClick);
-//     list.addEventListener('click', handleCardProductClick);
-//     // list.addEventListener("click", handleCardPopularClick);
-//   }
-// }
-
-// function showLoader(span) {
-//   span.style.visibility = 'visible';
-// }
-
-// function hideLoader(span) {
-//   span.style.display = 'none';
-// }
-
 function handleProductModal() {
+
+    const addToCartButton = document.querySelector('.modal-wimdow-add-to-cart-btn');
+  
+  addToCartButton.addEventListener('click', handleProductClick);
   const closeModalBtn = document.querySelector('[data-modal-close]');
   const backdrop = document.querySelector('.backdrop');
 
@@ -185,6 +207,7 @@ function handleProductModal() {
       closeModalBtn.removeEventListener('click', toggleModal);
       document.removeEventListener('keydown', handleKey);
       backdrop.removeEventListener('click', handleBackdrop);
+
     }
   }
 
@@ -204,7 +227,7 @@ function handleProductModal() {
   }
   ul.addEventListener('click', handleCardClick);
   list.addEventListener('click', handleCardProductClick);
-
+  ul2.addEventListener('click', handleDiscountCardClick);
   closeModalBtn.addEventListener('click', toggleModal);
   backdrop.addEventListener('click', handleBackdrop);
   document.addEventListener('keydown', handleKey);
@@ -214,3 +237,85 @@ function handleProductModal() {
     body.insertAdjacentHTML('beforeend', createMarkup(info));
   }
 }
+
+async function handleProductClick(event) {
+  console.log("!!!!");
+ const addToCartButton = document.querySelector('.modal-wimdow-add-to-cart-btn');
+  // const target = event.target;
+  // const addToCartButton = target.closest('.modal-wimdow-add-to-cart-btn');
+       
+console.log(addToCartButton);
+
+  // if (addToCartButton) {
+    const productCard = addToCartButton.closest('.modal-container');
+    const productId = productCard.dataset.id;
+
+    // Отримуємо інформацію про товар для зберігання в localStorage
+    const productInfo = await serviceProductInfo(productId);
+    productInfo.quantity = 1;
+    addToCart(productInfo, addToCartButton);
+    const popularCards = await generatePopularCardListMarkup();
+    updateCardList(popularCards);
+    productsGeneretor();
+  // }
+}
+
+// Функція для додавання товару в кошик
+function addToCart(productInfo, button) {
+  let cartItems = JSON.parse(localStorage.getItem('cart')) || [];
+  const existingProduct = cartItems.find(item => item._id === productInfo._id);
+    button.removeEventListener('click', addToCart);  // Remove the previous event listener
+  if (existingProduct) {
+    // Змінюємо іконку на кнопці
+    button.style.background = '#6d8434';
+    button.childNodes[0].nodeValue = 'Remove from';
+  
+  } else {
+    // Якщо товар ще не доданий в кошик, додаємо його та оновлюємо localStorage
+    cartItems.push(productInfo);
+
+    localStorage.setItem('cart', JSON.stringify(cartItems));
+    button.style.background = '#6d8434';
+    button.childNodes[0].nodeValue = 'Remove from';
+
+  }
+
+    button.addEventListener("click",  deleteFromCart);
+  updateHeaderCartText();
+}
+function updateHeaderCartText() {
+  const cartItems = JSON.parse(localStorage.getItem('cart')) || [];
+  const headerSpan = document.querySelector('.js-header-span');
+
+  if (headerSpan) {
+    headerSpan.textContent = cartItems.length;
+  }
+}
+async function deleteFromCart() {
+  console.log("-----");
+  const button = document.querySelector('.modal-wimdow-add-to-cart-btn');
+ button.removeEventListener("click", deleteFromCart);
+  const modal = document.querySelector('.modal-product');
+    // button.removeEventListener('click', handleProductClick);
+  console.log(modal);
+  const id = modal.dataset.id;
+  console.log(id);
+   const info = await serviceProductInfo(id);
+  let cartItems = JSON.parse(localStorage.getItem('cart')) || [];
+  const existingProduct = cartItems.find(item => item._id === info._id);
+
+  if (existingProduct) {
+
+const data= JSON.parse(localStorage.getItem('cart')) || [];
+      const updatedCart = data.filter(item => item._id !== id );
+
+                localStorage.setItem('cart', JSON.stringify(updatedCart));
+  button.childNodes[0].nodeValue = 'Add to';
+     console.log("-----");
+    button.addEventListener('click', handleProductClick);
+  }
+
+
+}
+
+

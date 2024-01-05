@@ -52,7 +52,7 @@
   background-color: transparent;
   width: 40px;
   height: 40px;
-  transition: background-color .25s cubic-bezier(.4, 0, .2, 1);
+  transition: background-color 0.25s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
 .socials-svg {
@@ -138,13 +138,10 @@
 }
 
 .footer-rights-policy-terms {
-  margin-bottom: 0;
-}
-
-.footer-rights-policy-terms {
   color: #e8e8e2;
   font-size: 14px;
   line-height: 1.28;
+  margin-bottom: 0;
 }
 
 .footer-rights {
@@ -157,13 +154,30 @@
 .footer-form-container {
   margin-bottom: 80px;
 }
+@media only screen and (max-width: 767.98px) {
+  .footer-wrapper {
+    display: flex;
+    /* margin: 0 auto; */
+    flex-direction: column;
+    align-content: center;
+    flex-wrap: wrap;
+  }
+}
+@media only screen and (max-width: 767.98px) {
+  .footer-rights-policy-terms {
+    max-width: 335px;
+    margin: 0 auto;
+  }
+}
 
 /* Tablet version  */
 
-@media screen and (min-width: 767px) {
+@media screen and (min-width: 768px) {
   .footer-wrapper {
     display: flex;
     justify-content: space-between;
+    max-width: 768px;
+    margin: 0 auto;
     margin-bottom: 120px;
   }
 
@@ -175,7 +189,7 @@
     font-size: 24px;
     line-height: 1;
     letter-spacing: -0.48px;
-    transition: color .25s cubic-bezier(.4, 0, .2, 1);
+    transition: color 0.25s cubic-bezier(0.4, 0, 0.2, 1);
   }
 
   .footer-socials-list {
@@ -234,15 +248,17 @@
 
   .footer-form-btn:hover {
     color: #6d8434;
-    transition: color .25s cubic-bezier(.4, 0, .2, 1);
+    transition: color 0.25s cubic-bezier(0.4, 0, 0.2, 1);
   }
   .footer-form-btn:hover:disabled {
     color: rgba(1, 1, 1, 0.3);
   }
 
   .footer-rights-policy-terms {
+    max-width: 768px;
+    margin: 0 auto;
     display: flex;
-    transition: color .25s cubic-bezier(.4, 0, .2, 1);
+    transition: color 0.25s cubic-bezier(0.4, 0, 0.2, 1);
     justify-content: space-between;
     align-items: center;
   }
@@ -264,12 +280,12 @@
 
   .footer-policy {
     padding: 10px 0;
-    transition: border .25s cubic-bezier(.4, 0, .2, 1);
+    transition: border 0.25s cubic-bezier(0.4, 0, 0.2, 1);
   }
 
   .footer-terms {
     padding: 10px 0;
-    transition: border .25s cubic-bezier(.4, 0, .2, 1);
+    transition: border 0.25s cubic-bezier(0.4, 0, 0.2, 1);
   }
 
   .footer-rights {
@@ -289,9 +305,6 @@
 
 /* Dekstop version */
 @media screen and (min-width: 1440px) {
-  .wrapper {
-    margin-bottom: 128px;
-  }
 
   .footer-text-box {
     max-width: 410px;
@@ -300,5 +313,11 @@
   .footer-second-box {
     display: flex;
     gap: 148px;
+  }
+  .footer-rights-policy-terms {
+    max-width: 1240px;
+  }
+  .footer-wrapper {
+    max-width: 1240px;
   }
 }

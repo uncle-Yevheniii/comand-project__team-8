@@ -2,7 +2,7 @@ import { cartTotalPrice } from './cartTotalPrice';
 import icons from '../img/sptite.svg';
 
 export function basketMarkup(USER_CART) {
-    const cart = `
+  const cart = `
     <div class="basket-full-container">
         <div class="cart-with-items-container">
         
@@ -17,7 +17,7 @@ export function basketMarkup(USER_CART) {
 
             <ul class="cart-with-items-list">
             ${USER_CART.map(
-                ({ category, img, name, price, size, _id, quantity }) => `
+              ({ category, img, name, price, size, _id, quantity }) => `
                 <li class="cart-product-list" data-cart-product-id=${_id}>
                     <div class="cart-product-img-container">
                         <img class="cart-product-img" src=${img} alt=${name}/>
@@ -26,7 +26,10 @@ export function basketMarkup(USER_CART) {
                     <div class="cart-product-list-info">
                         <p class="cart-product-name">${name}</p>
                         <div class="cart-product-features">
-                            <p class="cart-product-category">Category: <span class="cart-product-category-span">${category.replace(/_/g, ' ')}</span></p>
+                            <p class="cart-product-category">Category: <span class="cart-product-category-span">${category.replace(
+                              /_/g,
+                              ' '
+                            )}</span></p>
                             <p class="cart-product-size">Size: <span class="cart-product-size-span">${size}</span></p>
                         </div>
                         <p class="cart-product-info-price">$${price}</p>
@@ -40,13 +43,13 @@ export function basketMarkup(USER_CART) {
                         <div class="cart-product-count-container">
                             <button class="cart-product-count-decrease" type="button" data-decrease=${_id}>
                                 <svg class="cart-product-count-decrease-svg" data-decrease=${_id} hidden>
-                                    <use href="${icons}#icon-" data-decrease=${_id}></use>
+                                    <use href="${icons}#icon-minus" data-decrease=${_id}></use>
                                 </svg>
                             </button>
                             <p class="cart-product-count-text" data-count="${_id}">${quantity}</p>
                             <button class="cart-product-count-increase" type="button" data-increase=${_id}>
                                 <svg class="cart-product-count-increase-svg" data-increase=${_id} hidden>
-                                    <use href="${icons}#icon-" data-increase=${_id}></use>
+                                    <use href="${icons}#icon-plus" data-increase=${_id}></use>
                                 </svg>
                             </button>
                         </div>
@@ -78,5 +81,5 @@ export function basketMarkup(USER_CART) {
             </div>
     </div>
     `;
-    return cart
-};
+  return cart;
+}

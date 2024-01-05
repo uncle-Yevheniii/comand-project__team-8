@@ -114,7 +114,7 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  min-width: 116px;
+  min-width: 130px;
   gap: 10px;
   color: var(--c_color-text);
 }
@@ -169,7 +169,7 @@
   }
   .modal-wimdow-add-to-cart-btn {
     margin-top: 48px;
-    min-width: 130px;
+    min-width: 140px;
     font-size: 16px;
   }
 
@@ -230,11 +230,10 @@
   position: relative;
   animation: rotate 1s linear infinite;
   visibility: hidden;
-  /* margin-left: 100px; */
 }
 .number1 {
   position: fixed;
-  left: 20px; /* Adjust the left position as needed */
+  left: 20px;
   transform: translateY(-50%);
 }
 .loader::before,

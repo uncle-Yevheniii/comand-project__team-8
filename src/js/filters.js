@@ -1,6 +1,6 @@
 import SlimSelect from 'slim-select';
 import '../../node_modules/slim-select/dist/slimselect.css';
-import { fetchCategories, fetchData } from '../API';
+import { fetchCategories } from '../API';
 import { productsGeneretor } from './products-list';
 
 const searchForm = document.querySelector('.filters-form');
@@ -22,9 +22,12 @@ let categories = [];
 
 const renderSelects = async () => {
   const data = await fetchCategories();
-  categories = [...data];
+  categories = [...data, 'Show all'];
   const markup = createCategoryMarkup(categories);
   categorySelect.insertAdjacentHTML('beforeend', markup);
+
+  const savedFilters = JSON.parse(localStorage.getItem('settings')) || { keyword: null, category: null };
+  categorySelect.value = savedFilters.category;
 
   new SlimSelect({
     select: '#category',
@@ -38,44 +41,44 @@ renderSelects();
 
 const onForm = event => {
   event.preventDefault();
+  let settings = JSON.parse(localStorage.getItem('settings')) || { keyword: null, category: null };
   const currentValue = searchInput.value.trim();
   const currentCategory = categorySelect.value;
-  const query = { 
-    keyword: currentValue || null, 
-    category: currentCategory === 'Show all' ? null : currentCategory.trim() || null };
-  localStorage.setItem('settings', JSON.stringify(query));
-  productsGeneretor(query);
+    settings.keyword = currentValue || null;
+    settings.category = currentCategory === 'Show all' ? null : currentCategory.trim() || null;
+    localStorage.setItem('settings', JSON.stringify(settings));
+  productsGeneretor();
 };
 
 const onSearchField = event => {
   if (event.target.value === '') {
+    let settings = JSON.parse(localStorage.getItem('settings')) || { keyword: null, category: null };
     const currentCategory = categorySelect.value;
-    const query = { 
-      keyword: null, 
-      category: currentCategory === 'Show all' ? null : currentCategory.trim() || null };
-    localStorage.setItem('settings', JSON.stringify(query));
-    productsGeneretor(query);
+      settings.keyword = null;
+      settings.category = currentCategory === 'Show all' ? null : currentCategory.trim() || null;
+      localStorage.setItem('settings', JSON.stringify(settings));
+    productsGeneretor();
   }
 };
 
 const onCategoryField = event => {
+  let settings = JSON.parse(localStorage.getItem('settings')) || { keyword: null, category: null };
   const currentValue = searchInput.value.trim();
   const currentCategory = event.target.value;
-  const query = { 
-    keyword: currentValue || null, 
-    category: currentCategory.trim() || null };
-  localStorage.setItem('settings', JSON.stringify(query));
-  productsGeneretor(query);
+    settings.keyword = currentValue || null;
+    settings.category = currentCategory === 'Show all' ? null : currentCategory.trim() || null;
+    settings.page = 1;
+    localStorage.setItem('settings', JSON.stringify(settings));
+  productsGeneretor();
 };
 
 window.addEventListener('load', () => {
-  const savedFilters = JSON.parse(localStorage.getItem('settings')) || { keyword: null, category: null };
+  const savedFilters = JSON.parse(localStorage.getItem('settings')) || { keyword: null, category: null};
   searchInput.value = savedFilters.keyword;
-  categorySelect.value = savedFilters.category;
 
   productsGeneretor(savedFilters);
 
   searchForm.addEventListener('submit', onForm);
-  categorySelect.addEventListener('change', onCategoryField);
   searchInput.addEventListener('input', onSearchField);
+  categorySelect.addEventListener('change', onCategoryField);
 });

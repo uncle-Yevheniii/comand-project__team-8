@@ -1,9 +1,14 @@
 import sprite from '../img/sptite.svg';
 import { fetchData } from '../API.js';
 import { serviceProductInfo } from '../js/modalproductcard.js';
+import { renderPagination } from '../js/pagination.js';
+import {
+  generatePopularCardListMarkup,
+  updateCardList,
+} from '../js/popular-products';
 const container = document.querySelector('.products-list');
 const noProducts = document.querySelector('.products-list-none');
-let limit = 6;
+const pagination = document.querySelector('.pagination-block');
 
 const defaultParams = {
   keyword: null,
@@ -43,12 +48,24 @@ async function render(params) {
     if (data.results.length === 0) {
       noProducts.classList.remove('hidden');
       container.classList.add('hidden');
+      pagination.classList.add('hidden');
     } else {
       if (container.classList.contains('hidden')) {
         noProducts.classList.add('hidden');
         container.classList.remove('hidden');
+        pagination.classList.remove('hidden');
       }
       container.innerHTML = createCardMarkup(data.results);
+
+      if (data.totalPages > 1) {
+        if (pagination.classList.contains('hidden')) {
+          pagination.classList.remove('hidden');
+        }
+
+        renderPagination(data, data.perPage, data.page);
+      } else {
+        pagination.classList.add('hidden');
+      }
     }
   } catch (error) {
     console.log(error.message);
@@ -66,7 +83,6 @@ function windowChange() {
   ) {
     return;
   } else {
-    console.log(`windowChange ${limit}`);
     productsGeneretor();
   }
 }
@@ -143,7 +159,6 @@ async function handleProductClick(event) {
   const target = event.target;
   const addToCartButton = target.closest('.productlist-card-btn');
 
-  // console.dir(document.querySelector('.productlist-card'));
   if (addToCartButton) {
     const productCard = addToCartButton.closest('.productlist-card');
     const productId = productCard.dataset.id;
@@ -152,6 +167,10 @@ async function handleProductClick(event) {
     const productInfo = await serviceProductInfo(productId);
     productInfo.quantity = 1;
     addToCart(productInfo, addToCartButton);
+    productsGeneretor();
+    const popularCards = await generatePopularCardListMarkup();
+    updateCardList(popularCards);
+
   }
 }
 
